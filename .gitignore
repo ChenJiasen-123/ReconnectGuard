@@ -1,0 +1,7 @@
+vendor/
+work/
+results/
+__pycache__/
+*.pyc
+.venv/
+evidence/
