@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "client_disconnect_reconnect",
+      "backend": "mock",
+      "reconnect_mode": "explicit",
+      "steps": [
+        {"observe": "connected_baseline"},
+        {"action": "client_disconnect", "expect": "sta_disconnected", "timeout_s": 5},
+        {"snapshot": "after_disconnect"},
+        {"action": "client_reconnect", "expect": "connection_restored", "timeout_s": 20},
+        {"snapshot": "after_reconnect"}
+      ]
+    }
+  ]
+}

@@ -75,3 +75,19 @@ flowchart LR
 
 
 WiFi Framework参考：[Wi-Fi Framework](https://github.com/domienschepers/wifi-framework)。
+
+## 王奥鑫第一阶段模拟原型
+
+无需 Linux 或 sudo，使用 Python 3.10+：
+
+```sh
+python3 runner.py --case client_disconnect_reconnect
+python3 runner.py --scenario noisy_events
+python3 -m unittest discover -s tests -v
+```
+
+`--scenario disconnect_timeout` 和 `--scenario reconnect_timeout` 演示失败记录，退出码为 1。输出位于 `results/<run_id>/`，所有结果标记为模拟数据。真实平台尚未接入上层 Runner。
+
+设计、状态图、接口、配置格式及验收范围见 [第一阶段设计说明](docs/phase1-design.md)。
+
+团队接手步骤、建议分工、接口待确认项和已知限制见 [第一阶段交接单](docs/handoff-phase1.md)。
