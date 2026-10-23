@@ -100,10 +100,20 @@ python3 runner.py --scenario noisy_events
 python3 -m unittest discover -s tests -v
 ```
 
-`--scenario disconnect_timeout` 和 `--scenario reconnect_timeout` 演示失败记录，退出码为 1。输出位于 `results/<run_id>/`，所有结果标记为模拟数据。真实平台尚未接入上层 Runner。
+`--scenario disconnect_timeout` 和 `--scenario reconnect_timeout` 演示失败记录，退出码为 1。输出位于 `results/<run_id>/`，所有结果标记为模拟数据。统一 Runner 现已支持 `--backend real`；模拟模式保持兼容。
 
 设计、状态图、接口、配置格式及验收范围见 [第一阶段设计说明](docs/phase1-design.md)。
 
 团队接手步骤、建议分工、接口待确认项和已知限制见 [第一阶段交接单](docs/handoff-phase1.md)。
 
 真实 Observer 的责任边界、映射规则、输出样例与限制见 [Observer 适配器设计](docs/observer-design.md)。
+
+## 统一 Runner：真实实验入口
+
+| 操作 | 命令 |
+|---|---|
+| 真实主动断开与显式重连 | `sudo python3 runner.py --backend real --client stock` |
+| 连续十轮 | `sudo python3 runner.py --backend real --client stock --repeat 10` |
+| 独立 Python 环境 | 将 python3 换为 `.venv/bin/python` |
+
+对另外三位成员的调用接口、字段、时序与输出责任，统一见 [组员接口说明](docs/platform-api.md)。旧阶段一交接单是历史记录，当前接口以这份说明和代码为准。Deauth 样例仍走 probes；真实 Runner 当前只接入客户端主动断开和显式重连，不代表完整安全 Oracle 已完成。

@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from .control import Control
 from .journal import EventJournal
+from model.contracts import BackendError
 
 ROOT = Path(__file__).resolve().parents[1]
 FW = ROOT / "vendor/wifi-framework"
@@ -36,13 +37,13 @@ def hwsim_phys():
 
 
 class Lab:
-    def __init__(self, mode):
+    def __init__(self, mode, *, output_root=None):
         if mode not in ("framework", "stock"):
             raise ValueError(mode)
         self.mode = mode
         self.run_id = datetime.now().strftime("%Y%m%d-%H%M%S") + "-" + os.urandom(3).hex()
-        self.out = ROOT / "results" / self.run_id
-        self.out.mkdir(parents=True)
+        self.out = Path(output_root if output_root is not None else ROOT / "results").resolve() / self.run_id
+        self.out.mkdir(parents=True, exist_ok=False)
         self.runtime = Path("/run/reconnectguard") / self.run_id
         self.runtime.mkdir(parents=True)
         self.processes, self.namespaces, self.threads = [], [], []
@@ -51,13 +52,15 @@ class Lab:
         self.events = []
         self.event_journal = EventJournal(self.run_id)
         self._event_lock = threading.Lock()
+        self.collection_errors = []
+        self._cleanup = None
         self.phys = []
         self.lock = None
         self.meta = {"run_id": self.run_id, "simulated": False, "mode": mode,
                      "scope": "platform smoke only", "created_at": utc(), "actions": []}
 
     def save(self, name, value):
-        (self.out / name).write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n")
+        (self.out / name).write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     def start(self):
         self.lock = open("/run/reconnectguard/platform.lock", "w")
@@ -155,6 +158,8 @@ class Lab:
         raise TimeoutError("control sockets not ready")
 
     def command(self, target, command, semantic, allow_rejected=False):
+        if target not in {"ap", "sta"}:
+            raise ValueError("target must be ap or sta")
         fw = target == "ap" or self.mode == "framework"
         endpoint = self.ap_ctrl if target == "ap" else self.sta_ctrl
         start = time.monotonic()
@@ -182,8 +187,17 @@ class Lab:
                         log.flush()
                     except socket.timeout:
                         pass
+        except Exception as exc:
+            self.collection_errors.append(str(exc))
         finally:
             ctrl.close()
+
+    def check_health(self):
+        if self.collection_errors:
+            raise BackendError("collection_error", "; ".join(self.collection_errors))
+        exited = [role for role, process, _ in self.processes if process.poll() is not None]
+        if exited:
+            raise BackendError("process_exit", "进程退出: " + ", ".join(exited))
 
     def record_event(self, source, raw_event, attempt_id=None):
         """Record all producers through one sequence without consuming listener sockets."""
@@ -210,6 +224,11 @@ class Lab:
         raise TimeoutError("WPA3 connection timeout")
 
     def snapshot(self, checkpoint):
+        import re
+        if not re.fullmatch(r"[A-Za-z0-9_-]+", checkpoint):
+            raise ValueError("checkpoint must be a safe filename stem")
+        if checkpoint in {"meta", "result", "cleanup", "context", "snapshots", "error"}:
+            raise ValueError("reserved checkpoint name")
         began = utc()
         sta = self.status()
         ap = self.command("ap", "STA " + sta["address"], "read_ap_station", allow_rejected=True) if "address" in sta else "unknown"
@@ -222,6 +241,8 @@ class Lab:
         return record
 
     def stop(self):
+        if self._cleanup is not None:
+            return self._cleanup
         self.stop_event.set()
         for t in self.threads:
             t.join(timeout=1)
@@ -254,14 +275,26 @@ class Lab:
             else:
                 errors.append("foreign hwsim radios detected; not unloading module")
         self.meta["finished_at"] = utc()
-        self.save("meta.json", self.meta)
-        self.save("cleanup.json", {"errors": errors})
-        active = Path("/run/reconnectguard/active.json")
-        if active.exists() and json.loads(active.read_text()).get("run_id") == self.run_id:
-            active.unlink()
-        shutil.rmtree(self.runtime)
-        if self.lock:
-            self.lock.close()
+        try:
+            self.save("meta.json", self.meta)
+        except OSError as exc:
+            errors.append("meta save: " + str(exc))
+        try:
+            active = Path("/run/reconnectguard/active.json")
+            if active.exists() and json.loads(active.read_text()).get("run_id") == self.run_id:
+                active.unlink()
+            shutil.rmtree(self.runtime)
+        except Exception as exc:
+            errors.append("runtime cleanup: " + str(exc))
+        finally:
+            if self.lock:
+                self.lock.close()
+        self._cleanup = {"errors": errors}
+        try:
+            self.save("cleanup.json", self._cleanup)
+        except OSError as exc:
+            errors.append("cleanup record save: " + str(exc))
+        return self._cleanup
 
 
 def main():

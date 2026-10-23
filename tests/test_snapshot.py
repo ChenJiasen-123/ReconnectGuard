@@ -2,6 +2,9 @@
 import tempfile
 import unittest
 from pathlib import Path
+import sys
+if sys.platform != "linux":
+    raise unittest.SkipTest("Lab 需要 Linux fcntl 与网络命名空间")
 from rg_platform.lab import Lab
 
 

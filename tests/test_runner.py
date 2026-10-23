@@ -17,23 +17,23 @@ class RunnerTest(unittest.TestCase):
                 self.assertEqual(result["failed_step"], failed_step)
                 self.assertEqual(result["security_verdict"], "not_evaluated")
                 self.assertTrue(result["simulated"])
-                self.assertEqual(json.loads((out / "result.json").read_text()), result)
-                transitions = [json.loads(line) for line in (out / "transitions.jsonl").read_text().splitlines()]
-                actions = [json.loads(line) for line in (out / "actions.jsonl").read_text().splitlines()]
+                self.assertEqual(json.loads((out / "result.json").read_text(encoding="utf-8")), result)
+                transitions = [json.loads(line) for line in (out / "transitions.jsonl").read_text(encoding="utf-8").splitlines()]
+                actions = [json.loads(line) for line in (out / "actions.jsonl").read_text(encoding="utf-8").splitlines()]
                 self.assertEqual(transitions[-1]["to"], state)
                 if scenario == "disconnect_timeout":
                     self.assertEqual(len(actions), 1)
                     self.assertEqual(result["recovery"], "not_evaluated")
                 if scenario == "reconnect_timeout":
                     self.assertEqual(result["recovery"], "fail")
-                    self.assertIn("failure", (out / "snapshots.json").read_text())
+                    self.assertIn("failure", (out / "snapshots.json").read_text(encoding="utf-8"))
                 if scenario == "noisy_events":
-                    ignored = json.loads((out / "observations.json").read_text())
+                    ignored = json.loads((out / "observations.json").read_text(encoding="utf-8"))
                     self.assertEqual({v["ignored"] for v in ignored}, {"wrong_context", "wrong_source"})
                     self.assertEqual(len(transitions), 5)
 
     def test_invalid_timeout_rejected_before_run(self):
-        document = json.loads((ROOT / "cases.yaml").read_text())
+        document = json.loads((ROOT / "cases.yaml").read_text(encoding="utf-8"))
         for timeout in (-1, 0, True, float("inf"), "5"):
             document["cases"][0]["steps"][1]["timeout_s"] = timeout
             with tempfile.TemporaryDirectory() as tmp:

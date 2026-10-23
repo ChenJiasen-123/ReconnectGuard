@@ -7,6 +7,7 @@ from pathlib import Path
 from rg_platform.control import Control
 
 
+@unittest.skipUnless(hasattr(socket, "AF_UNIX"), "需要 UNIX datagram socket")
 class ControlTest(unittest.TestCase):
     def exchange(self, framework, expected, reply, event=None):
         with tempfile.TemporaryDirectory() as tmp:

@@ -21,6 +21,15 @@ class ActionReceipt:
     action: str
     accepted: bool
     effect_status: str = "unverified"
+    run_id: str | None = None
+    attempt_id: int | None = None
+    target: str | None = None
+    command: str | None = None
+    raw_response: str | None = None
+    started_at_utc: str | None = None
+    finished_at_utc: str | None = None
+    duration_ms: float | None = None
+    error_category: str | None = None
 
 
 @dataclass
@@ -47,3 +56,9 @@ class Observer(Protocol):
                    context: Context) -> Event: ...
     def snapshot(self, checkpoint: str) -> dict: ...
     def close(self) -> None: ...
+
+
+class BackendError(RuntimeError):
+    def __init__(self, category: str, message: str):
+        super().__init__(message)
+        self.category = category

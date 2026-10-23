@@ -4,7 +4,7 @@ import json
 import re
 import time
 
-from model.contracts import Context, Event
+from model.contracts import Context, Event, BackendError
 
 
 SUPPORTED_EVENTS = {"baseline_confirmed", "sta_disconnected", "connection_restored"}
@@ -40,12 +40,14 @@ class PlatformObserver:
         deadline = time.monotonic() + timeout
         cursor = after
         while True:
+            if hasattr(self.lab, "check_health"):
+                self.lab.check_health()
             remaining = deadline - time.monotonic()
             if remaining <= 0:
                 raise TimeoutError(f"{expected}: no matching event within {timeout}s")
-            records = self.lab.event_journal.wait_after(cursor, remaining)
+            records = self.lab.event_journal.wait_after(cursor, min(remaining, .2))
             if not records:
-                raise TimeoutError(f"{expected}: no matching event within {timeout}s")
+                continue
             for record in records:
                 cursor = max(cursor, record.seq)
                 event, reason = self._normalize(record, expected, after, context)
@@ -63,7 +65,14 @@ class PlatformObserver:
 
     def snapshot(self, checkpoint: str) -> dict:
         self._require_active()
-        raw = self.lab.snapshot(checkpoint)
+        if hasattr(self.lab, "check_health"):
+            self.lab.check_health()
+        try:
+            raw = self.lab.snapshot(checkpoint)
+        except BackendError:
+            raise
+        except Exception as exc:
+            raise BackendError("collection_error", "快照采集失败: " + str(exc)) from exc
         ap_raw = raw.get("ap_raw", "unknown")
         ap_available = bool(raw.get("ap_query_available"))
         flags = _ap_flags(ap_raw) if ap_available else set()
@@ -97,7 +106,10 @@ class PlatformObserver:
             "processes": processes,
             "raw_snapshot_ref": f"{checkpoint}.json",
         }
-        self.lab.save(checkpoint + "-observer.json", normalized)
+        try:
+            self.lab.save(checkpoint + "-observer.json", normalized)
+        except OSError as exc:
+            raise BackendError("artifact_write_error", str(exc)) from exc
         return normalized
 
     def close(self) -> None:
@@ -124,7 +136,8 @@ class PlatformObserver:
             try:
                 status = self.lab.status()
             except Exception as exc:
-                return None, "status_error:" + str(exc)
+                self._ignore(record, expected, "status_error:" + str(exc))
+                raise BackendError("collection_error", "STATUS 查询失败: " + str(exc)) from exc
             if status.get("wpa_state") != "COMPLETED":
                 return None, "status_not_connected"
             data = self._base_data(record)
@@ -160,8 +173,11 @@ class PlatformObserver:
         self._append_jsonl("observer-observations.jsonl", value)
 
     def _append_jsonl(self, name: str, value: dict) -> None:
-        with open(self.lab.out / name, "a", encoding="utf-8") as stream:
-            stream.write(json.dumps(value, ensure_ascii=False) + "\n")
+        try:
+            with open(self.lab.out / name, "a", encoding="utf-8") as stream:
+                stream.write(json.dumps(value, ensure_ascii=False) + "\n")
+        except OSError as exc:
+            raise BackendError("artifact_write_error", name + ": " + str(exc)) from exc
 
     def _require_active(self) -> None:
         if not self.active:
