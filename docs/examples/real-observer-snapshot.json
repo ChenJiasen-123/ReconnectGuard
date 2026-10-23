@@ -1,0 +1,63 @@
+{
+  "run_id": "20261023-113227-42f31e",
+  "checkpoint": "post_reconnect",
+  "simulated": false,
+  "sta": {
+    "bssid": "02:00:00:00:00:00",
+    "freq": "2412",
+    "ssid": "ReconnectGuardLab",
+    "id": "0",
+    "mode": "station",
+    "wifi_generation": "4",
+    "pairwise_cipher": "CCMP",
+    "group_cipher": "CCMP",
+    "key_mgmt": "SAE",
+    "pmf": "2",
+    "mgmt_group_cipher": "BIP",
+    "wpa_state": "COMPLETED",
+    "p2p_device_address": "42:00:00:00:01:00",
+    "address": "02:00:00:00:01:00",
+    "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+  },
+  "ap_state": "authorized",
+  "ap_flags": [
+    "ASSOC",
+    "AUTH",
+    "AUTHORIZED",
+    "HT",
+    "MFP",
+    "SHORT_PREAMBLE",
+    "WMM"
+  ],
+  "pmksa_presence": "present",
+  "auth_path": "unknown",
+  "key_state": "unknown",
+  "port_authorized": "authorized",
+  "process_epoch": {
+    "ap": "2026-10-23T03:32:27.387223+00:00",
+    "sta": "2026-10-23T03:32:27.388265+00:00",
+    "capture": "2026-10-23T03:32:27.890866+00:00"
+  },
+  "same_processes_alive": true,
+  "processes": [
+    {
+      "role": "ap",
+      "pid": 18919,
+      "process_epoch": "2026-10-23T03:32:27.387223+00:00",
+      "alive": true
+    },
+    {
+      "role": "sta",
+      "pid": 18920,
+      "process_epoch": "2026-10-23T03:32:27.388265+00:00",
+      "alive": true
+    },
+    {
+      "role": "capture",
+      "pid": 18946,
+      "process_epoch": "2026-10-23T03:32:27.890866+00:00",
+      "alive": true
+    }
+  ],
+  "raw_snapshot_ref": "post_reconnect.json"
+}

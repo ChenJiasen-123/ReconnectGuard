@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
-exec python3 -m rg_platform.stop
+unset PYTHONPATH
+PYTHON=python3
+if [[ -x .venv/bin/python ]]; then
+  PYTHON="$PWD/.venv/bin/python"
+fi
+exec "$PYTHON" -m rg_platform.stop

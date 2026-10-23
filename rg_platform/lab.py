@@ -11,9 +11,11 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 from .control import Control
+from .journal import EventJournal
 
 ROOT = Path(__file__).resolve().parents[1]
 FW = ROOT / "vendor/wifi-framework"
+STOCK_WPA = ROOT / "vendor/wpa_supplicant-2.10/wpa_supplicant/wpa_supplicant"
 
 
 def utc():
@@ -47,6 +49,8 @@ class Lab:
         self.stop_event = threading.Event()
         self.loaded = False
         self.events = []
+        self.event_journal = EventJournal(self.run_id)
+        self._event_lock = threading.Lock()
         self.phys = []
         self.lock = None
         self.meta = {"run_id": self.run_id, "simulated": False, "mode": mode,
@@ -89,8 +93,13 @@ class Lab:
         os.chmod(self.sta_config, 0o600)
         fw_python = FW / "setup/venv/bin/python"
         ap_binary = FW / "dependencies/hostap_2_10/hostapd/hostapd"
-        sta_binary = (FW / "dependencies/hostap_2_10/wpa_supplicant/wpa_supplicant"
-                      if self.mode == "framework" else Path("/usr/sbin/wpa_supplicant"))
+        framework_sta = FW / "dependencies/hostap_2_10/wpa_supplicant/wpa_supplicant"
+        stock_sta = Path(os.environ.get("RG_STOCK_WPA_SUPPLICANT", STOCK_WPA))
+        sta_binary = framework_sta if self.mode == "framework" else stock_sta
+        for label, binary in (("Framework Python", fw_python), ("AP", ap_binary),
+                              ("client", sta_binary)):
+            if not binary.is_file():
+                raise RuntimeError(f"{label} dependency missing: {binary}; run scripts/setup.sh")
         self.spawn(self.namespaces[0], [fw_python, FW / "hostap.py", self.ap_if,
                    "--ap", "--config", self.ap_config, "--binary", ap_binary, "--debug", "1"], "ap")
         if self.mode == "framework":
@@ -127,8 +136,11 @@ class Lab:
 
     def spawn(self, ns, cmd, role):
         log = open(self.out / (role + ".log"), "w")
+        child_env = os.environ.copy()
+        child_env.pop("PYTHONPATH", None)
         proc = subprocess.Popen(["ip", "netns", "exec", ns] + [str(x) for x in cmd],
-                                cwd=FW, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
+                                cwd=FW, env=child_env, stdout=log,
+                                stderr=subprocess.STDOUT, start_new_session=True)
         log.close()
         self.processes.append((role, proc, utc()))
 
@@ -165,15 +177,22 @@ class Lab:
                 while not self.stop_event.is_set():
                     try:
                         event = ctrl.sock.recv(65535).decode(errors="replace")
-                        self.events.append((role, event, time.monotonic()))
-                        log.write(json.dumps({"run_id": self.run_id, "source": role,
-                                  "received_at": utc(), "monotonic_ns": time.monotonic_ns(),
-                                  "raw_event": event, "attempt_id": None}) + "\n")
+                        record = self.record_event(role, event)
+                        log.write(json.dumps(record.to_dict()) + "\n")
                         log.flush()
                     except socket.timeout:
                         pass
         finally:
             ctrl.close()
+
+    def record_event(self, source, raw_event, attempt_id=None):
+        """Record all producers through one sequence without consuming listener sockets."""
+        with self._event_lock:
+            record = self.event_journal.append(source, raw_event, attempt_id)
+            self.events.append((source, raw_event, record.monotonic_s))
+            with open(self.out / "events.jsonl", "a") as log:
+                log.write(json.dumps(record.to_dict()) + "\n")
+            return record
 
     def status(self):
         return fields(self.command("sta", "STATUS", "read_status"))

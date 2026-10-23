@@ -1,5 +1,9 @@
 """底层平台能力验证样例；不替代团队 Executor / Oracle。"""
+from dataclasses import asdict
 import time
+
+from backends.platform_observer import PlatformObserver
+from model.contracts import Context
 
 
 def connect(lab):
@@ -51,4 +55,38 @@ def reconnect(lab):
               "final_sta_state": "COMPLETED", "auth_path": "unknown", "security_verdict": "not_evaluated"})
 
 
-PROBES = {"connect": connect, "deauth": deauth, "reconnect": reconnect}
+def observer_reconnect(lab):
+    """Exercise the real Observer while keeping actions outside the adapter."""
+    context = Context(lab.run_id)
+    observer = PlatformObserver(lab)
+    observer.start()
+    try:
+        baseline = observer.wait_event("baseline_confirmed", 0, 5, context)
+        observer.snapshot("connected_baseline")
+
+        cursor = observer.mark()
+        lab.command("sta", "DISCONNECT", "client_disconnect")
+        disconnected = observer.wait_event("sta_disconnected", cursor, 5, context)
+        observer.snapshot("post_disconnect")
+
+        context.attempt_id += 1
+        cursor = observer.mark()
+        lab.command("sta", "RECONNECT", "request_reconnect")
+        restored = observer.wait_event("connection_restored", cursor, 20, context)
+        after = observer.snapshot("post_reconnect")
+        lab.save("observer-check.json", {
+            "scope": "real Observer adapter smoke",
+            "simulated": False,
+            "events": [asdict(event) for event in (baseline, disconnected, restored)],
+            "final_sta_state": after["sta"].get("wpa_state"),
+            "same_processes_alive": after["same_processes_alive"],
+            "auth_path": after["auth_path"],
+            "key_state": after["key_state"],
+            "security_verdict": "not_evaluated",
+        })
+    finally:
+        observer.close()
+
+
+PROBES = {"connect": connect, "deauth": deauth, "observer-reconnect": observer_reconnect,
+          "reconnect": reconnect}
