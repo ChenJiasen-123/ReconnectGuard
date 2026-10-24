@@ -10,12 +10,12 @@ def connect(lab):
     lab.snapshot("connected_baseline")
 
 
-def deauth(lab):
-    # 仅验证陈家森的平台 AP 控制能力；不实现其他成员完整 PoC / Oracle。
+def _ap_disconnect(lab, command, action, scope):
+    """Smoke-test one AP-side management-frame disconnect action."""
     before = lab.snapshot("connected_baseline")
     mac = before["sta"]["address"]
     began = time.monotonic()
-    lab.command("ap", "DEAUTHENTICATE " + mac + " reason=3", "ap_deauth")
+    lab.command("ap", f"{command} {mac} reason=3", action)
     deadline = time.monotonic() + 5
     while time.monotonic() < deadline:
         seen_sta = any(r == "sta" and "CTRL-EVENT-DISCONNECTED" in e and t >= began for r,e,t in lab.events)
@@ -24,17 +24,29 @@ def deauth(lab):
             break
         time.sleep(.05)
     else:
-        raise TimeoutError("Deauth response received but bilateral disconnect events missing")
+        raise TimeoutError(f"{action} response received but bilateral disconnect events missing")
     # 快速自动重连可能先于快照；保留实际状态，不强行标为断开。
-    lab.snapshot("post_deauth_observed")
+    lab.snapshot("post_" + action.removeprefix("ap_") + "_observed")
     lab.wait_connected()
     after = lab.snapshot("post_reconnect")
     epochs = all(p.poll() is None for _, p, _ in lab.processes)
-    lab.save("platform-check.json", {"scope": "AP deauth control smoke", "simulated": False,
+    lab.save("platform-check.json", {"scope": scope, "simulated": False,
               "same_processes_alive": epochs, "elapsed_ms": round((time.monotonic()-began)*1000,2),
               "final_sta_state": after["sta"].get("wpa_state"),
-              "disconnect_effect": "bilateral_disconnect_events_observed", "auth_path": "unknown",
+              "disconnect_action": action, "disconnect_effect": "bilateral_disconnect_events_observed",
+              "auth_path": "unknown",
               "authorization_timing": "unknown", "security_verdict": "not_evaluated"})
+
+
+def deauth(lab):
+    # 仅验证陈家森的平台 AP 控制能力；不实现其他成员完整 PoC / Oracle。
+    _ap_disconnect(lab, "DEAUTHENTICATE", "ap_deauth", "AP deauth control smoke")
+
+
+def disassoc(lab):
+    # 与 deauth 使用相同的双端事件和恢复检查，动作语义单独保留。
+    _ap_disconnect(lab, "DISASSOCIATE", "ap_disassoc", "AP disassoc control smoke")
+
 
 def reconnect(lab):
     lab.snapshot("connected_baseline")
@@ -88,5 +100,6 @@ def observer_reconnect(lab):
         observer.close()
 
 
-PROBES = {"connect": connect, "deauth": deauth, "observer-reconnect": observer_reconnect,
+PROBES = {"connect": connect, "deauth": deauth, "disassoc": disassoc,
+          "observer-reconnect": observer_reconnect,
           "reconnect": reconnect}

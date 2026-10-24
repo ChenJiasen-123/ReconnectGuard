@@ -19,6 +19,7 @@ bash scripts/setup.sh
 | 检查基础工具和控制通道测试 | `bash scripts/check.sh` |
 | Framework 双端连接 | `sudo bash scripts/start.sh --client framework --probe connect` |
 | 原版客户端 AP Deauth 示例 | `sudo bash scripts/start.sh --client stock --probe deauth` |
+| 原版客户端 AP Disassoc 示例 | `sudo bash scripts/start.sh --client stock --probe disassoc` |
 | 主动断开 / 重连控制检查 | `sudo bash scripts/start.sh --client stock --probe reconnect` |
 | 保持环境运行 | 在上述命令后加 `--hold` |
 | 单独关闭保持运行的环境 | 另一终端执行 `sudo bash scripts/stop.sh` |
@@ -44,6 +45,7 @@ flowchart LR
 | rg_platform/lab.py | hwsim、命名空间、进程、控制适配、基础快照、清理 |
 | rg_platform/control.py | 标准协议 / Framework 前缀；独立命令和监听连接 |
 | rg_platform/journal.py | 单轮线程安全事件序号与多读者游标 |
+| backends/platform_executor.py | 客户端断开/重连、AP Deauth/Disassoc 动作回执 |
 | backends/platform_observer.py | 真实 Observer 事件标准化、过滤、去重与快照映射 |
 | rg_platform/probes.py | 平台能力验证函数与注册表，不是完整 Executor |
 | rg_platform/stop.py | 核实进程身份后停止本平台 |
@@ -85,7 +87,9 @@ flowchart LR
 | 6 | 加入 PROBES 注册表；命令行自动出现新选项 |
 | 7 | 独立核验对应帧与日志，未知结论保留 unknown |
 
-现有 `deauth(lab)` 只是参考模板。后续 Executor 接入时复用平台控制层请和我陈家森沟通。
+`deauth(lab)` 和 `disassoc(lab)` 是底层平台 smoke probe，用来核实 AP 控制接口和双端断开事件。
+统一 Runner 的动作接口见 [组员接口说明](docs/platform-api.md)；Executor 已提供四种动作，
+但 AP Deauth/Disassoc 仍需由 Runner/EFSM 负责人接入完整测试案例。
 
 
 WiFi Framework参考：[Wi-Fi Framework](https://github.com/domienschepers/wifi-framework)。

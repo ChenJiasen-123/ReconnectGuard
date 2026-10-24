@@ -31,7 +31,7 @@ flowchart TD
 | 负责人 | 负责维护的模块 | 后续工作 | 与其他模块的边界 |
 |---|---|---|---|
 | 王奥鑫 | runner.py、model/、backends/sessions.py | 维护实验流程和状态机，在现有接线上扩展案例与调度 | 调用平台、Executor 和 Observer；复用 Lab 的 run_id、结果目录与事件序号 |
-| 江天豪 | backends/platform_executor.py | 在现有 execute(action, context) 上扩展断开与重连动作 | 通过 Lab.command 发命令；不直接改 EFSM 状态；OK 只表示命令接受 |
+| 江天豪 | backends/platform_executor.py | 维护客户端断开/重连与 AP Deauth/Disassoc 动作 | 通过 Lab.command 发命令；不直接改 EFSM 状态；OK 只表示命令接受 |
 | 王梓权 | backends/platform_observer.py、rg_platform/journal.py 的观测接口 | 完善事件标准化、状态快照与证据处理；journal 底层变更与陈家森协调 | 通过 journal 读取事件，不争抢 Lab 的控制 socket；保留原始证据引用 |
 | 陈家森（平台提供方） | rg_platform/lab.py、rg_platform/control.py；journal 的底层记录入口 | 提供并维护环境启停、进程、控制通道、事件记录与失败清理；支持其他成员联调 | 一轮中不重启客户端；清理失败阻止下一轮；接口变动同步其他三人，无需再次接入平台 |
 
@@ -86,7 +86,8 @@ flowchart TD
 |---|---|---|---|
 | client_disconnect | sta | DISCONNECT | 已接入 |
 | client_reconnect | sta | RECONNECT | 已接入 |
-| ap_deauth / ap_disassoc | ap | 待 Executor 扩展 | 未接入统一 Runner |
+| ap_deauth | ap | DEAUTHENTICATE `<STA_MAC>` reason=3 | Executor 已接入；Runner 案例待接入 |
+| ap_disassoc | ap | DISASSOCIATE `<STA_MAC>` reason=3 | Executor 已接入；Runner 案例待接入 |
 
 | 回执字段 | 说明 |
 |---|---|
@@ -95,9 +96,11 @@ flowchart TD
 | run_id、attempt_id | 继承 Context，不另行生成 |
 | target、command、raw_response | 实际发送与原始响应 |
 | started_at_utc、finished_at_utc、duration_ms | UTC 用于查阅，耗时使用单调时钟 |
-| error_category | action_rejected / action_timeout / control_unavailable，成功为 null |
+| error_category | action_rejected / action_timeout / control_unavailable，成功为 null；非法目标在调用前抛 `invalid_target` |
 
-调用失败时先保存回执，Runner 再进入失败分支。控制超时不自动重发，因为命令可能已经生效。健康检查未通过或不支持的动作直接抛 BackendError。
+AP 动作发送前通过客户端 `STATUS` 读取并校验 `address` 字段，避免把未经校验的字符串拼入控制命令。
+调用失败时先保存回执，Runner 再进入失败分支。控制超时不自动重发，因为命令可能已经生效。
+健康检查未通过、不支持的动作或找不到有效 STA MAC 时直接抛 `BackendError`。
 
 ## Observer 接口
 
