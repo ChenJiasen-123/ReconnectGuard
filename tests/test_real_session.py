@@ -63,6 +63,17 @@ class LabDouble:
             if self.failure != "timeout":
                 self.connected = False
                 self.record_event("sta", "CTRL-EVENT-DISCONNECTED")
+        elif command.startswith("DEAUTHENTICATE ") or command.startswith("DISASSOCIATE "):
+            if self.failure == "reject":
+                return "FAIL"
+            if self.failure == "process":
+                self.dead = True
+                return "OK"
+            if self.failure != "timeout":
+                self.connected = False
+                self.record_event("sta", "CTRL-EVENT-DISCONNECTED")
+                self.connected = True
+                self.record_event("sta", "CTRL-EVENT-CONNECTED", attempt_id=2)
         elif command == "RECONNECT":
             self.connected = True
             self.record_event("sta", "CTRL-EVENT-CONNECTED")
@@ -71,7 +82,8 @@ class LabDouble:
     def status(self):
         if self.failure == "collection":
             raise OSError("STATUS unavailable")
-        return PROFILE.copy() if self.connected else {"wpa_state": "DISCONNECTED"}
+        return (dict(PROFILE, address="02:00:00:00:00:01") if self.connected
+                else {"wpa_state": "DISCONNECTED", "address": "02:00:00:00:00:01"})
 
     def snapshot(self, checkpoint):
         if checkpoint == "failure" and self.failure == "startup":
@@ -133,6 +145,34 @@ class RealSessionTest(unittest.TestCase):
                 self.assertEqual(result["execution_status"], "failed")
                 self.assertEqual(result["error_category"], category)
                 self.assertEqual(result["security_verdict"], "not_evaluated")
+
+    def test_real_automatic_ap_cases_use_executor_and_observer(self):
+        for case_id, command_prefix in (("ap_deauth", "DEAUTHENTICATE "),
+                                        ("ap_disassoc", "DISASSOCIATE ")):
+            with self.subTest(case_id=case_id):
+                case = deepcopy(load_case(ROOT / "cases.yaml", case_id))
+                with tempfile.TemporaryDirectory() as tmp:
+                    instances = []
+
+                    def factory(output_root, scenario, client):
+                        def create(mode, **kwargs):
+                            lab = LabDouble(mode, **kwargs)
+                            instances.append(lab)
+                            return lab
+                        return RealSession(output_root, client, lab_factory=create)
+
+                    result, out = run_case(case, tmp, backend="real", session_factory=factory)
+                    actions = [json.loads(line) for line in
+                               (out / "actions.jsonl").read_text(encoding="utf-8").splitlines()]
+                    events = [json.loads(line) for line in
+                              (out / "runner-events.jsonl").read_text(encoding="utf-8").splitlines()]
+                    self.assertEqual(result["execution_status"], "completed")
+                    self.assertEqual(result["state"], "RECONNECTED")
+                    self.assertEqual(result["recovery"], "pass")
+                    self.assertEqual(len(actions), 1)
+                    self.assertTrue(actions[0]["command"].startswith(command_prefix))
+                    self.assertEqual([event["attempt_id"] for event in events], [1, 1, 1, 2])
+                    self.assertEqual(instances[0].stops, 1)
 
 
 class BatchTest(unittest.TestCase):

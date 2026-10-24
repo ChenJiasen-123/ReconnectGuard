@@ -40,13 +40,18 @@ flowchart TD
 | 用途 | 项目根目录执行 |
 |---|---|
 | 原来的模拟案例 | `python runner.py` |
+| 模拟 AP Deauth 案例 | `python runner.py --case ap_deauth` |
+| 模拟 AP Disassoc 案例 | `python runner.py --case ap_disassoc` |
 | 模拟噪声事件 | `python runner.py --scenario noisy_events` |
 | 真实 PoC 1 | `sudo python3 runner.py --backend real --client stock` |
+| 真实 AP Deauth 案例 | `sudo python3 runner.py --case ap_deauth --backend real --client stock` |
+| 真实 AP Disassoc 案例 | `sudo python3 runner.py --case ap_disassoc --backend real --client stock` |
 | 真实十轮 | `sudo python3 runner.py --backend real --client stock --repeat 10` |
 | 指定结果根目录 | 加 `--output /absolute/path/to/results` |
 | 平台自检 | `sudo bash scripts/start.sh --client stock --probe deauth` |
+| 平台 Disassoc 自检 | `sudo bash scripts/start.sh --client stock --probe disassoc` |
 
-如使用仓库 .venv，真实 Runner 改用 `sudo .venv/bin/python runner.py ...`。真实模式只在 Linux 运行，不接受 mock 的故障 scenario。当前统一 Runner 只支持主动断开和显式重连；AP Deauth 仍是平台样例，未硬套入该状态机。
+如使用仓库 .venv，真实 Runner 改用 `sudo .venv/bin/python runner.py ...`。真实模式只在 Linux 运行，不接受 mock 的故障 scenario。客户端主动断开使用显式重连；AP Deauth/Disassoc 使用自动恢复案例，真实 Linux 轮次仍需单独验收。
 
 ## 平台对外方法
 
@@ -86,8 +91,8 @@ flowchart TD
 |---|---|---|---|
 | client_disconnect | sta | DISCONNECT | 已接入 |
 | client_reconnect | sta | RECONNECT | 已接入 |
-| ap_deauth | ap | DEAUTHENTICATE `<STA_MAC>` reason=3 | Executor 已接入；Runner 案例待接入 |
-| ap_disassoc | ap | DISASSOCIATE `<STA_MAC>` reason=3 | Executor 已接入；Runner 案例待接入 |
+| ap_deauth | ap | DEAUTHENTICATE `<STA_MAC>` reason=3 | Executor 与 Runner 案例已接入 |
+| ap_disassoc | ap | DISASSOCIATE `<STA_MAC>` reason=3 | Executor 与 Runner 案例已接入 |
 
 | 回执字段 | 说明 |
 |---|---|
@@ -157,6 +162,8 @@ sequenceDiagram
 ```
 
 每次收到标准观测，Runner 用 EFSM.apply 更新状态；命令回执不推动效果状态。首次采集在 Lab.start 内先就绪，Observer 后续读取已有 journal，因此不会因后创建适配器而丢掉已入账的首次连接。
+
+AP Deauth/Disassoc 案例在断开事件后递增 `attempt_id`，再等待客户端自动恢复；原始断开和恢复事件仍通过同一个 journal 游标关联。客户端主动断开案例继续使用显式 `client_reconnect`。
 
 ## 输出由谁写
 

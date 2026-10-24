@@ -6,6 +6,22 @@ from runner import ROOT, load_case, run_case
 
 
 class RunnerTest(unittest.TestCase):
+    def test_ap_cases_run_with_automatic_recovery(self):
+        for case_id, action in (("ap_deauth", "ap_deauth"),
+                                ("ap_disassoc", "ap_disassoc")):
+            with self.subTest(case_id=case_id), tempfile.TemporaryDirectory() as tmp:
+                case = load_case(ROOT / "cases.yaml", case_id)
+                result, out = run_case(case, tmp)
+                self.assertEqual(result["execution_status"], "completed")
+                self.assertEqual(result["state"], "RECONNECTED")
+                self.assertEqual(result["recovery"], "pass")
+                self.assertIn("DISCONNECTED->RECONNECTED", result["covered_transitions"])
+                actions = [json.loads(line) for line in (out / "actions.jsonl").read_text(encoding="utf-8").splitlines()]
+                self.assertEqual([action["action"] for action in actions], [action])
+                context = json.loads((out / "context.json").read_text(encoding="utf-8"))
+                self.assertEqual(context["disconnect_method"], action)
+                self.assertEqual(context["reconnect_mode"], "automatic")
+
     def test_all_scenarios_and_saved_evidence(self):
         case = load_case(ROOT / "cases.yaml", "client_disconnect_reconnect")
         for scenario, state, failed_step in [("normal", "RECONNECTED", None),

@@ -12,6 +12,30 @@
         {"action": "client_reconnect", "expect": "connection_restored", "timeout_s": 20},
         {"snapshot": "after_reconnect"}
       ]
+    },
+    {
+      "id": "ap_deauth",
+      "backend": "mock",
+      "reconnect_mode": "automatic",
+      "steps": [
+        {"observe": "connected_baseline"},
+        {"action": "ap_deauth", "expect": "sta_disconnected", "timeout_s": 5},
+        {"snapshot": "after_disconnect"},
+        {"observe": "connection_restored", "timeout_s": 20},
+        {"snapshot": "after_reconnect"}
+      ]
+    },
+    {
+      "id": "ap_disassoc",
+      "backend": "mock",
+      "reconnect_mode": "automatic",
+      "steps": [
+        {"observe": "connected_baseline"},
+        {"action": "ap_disassoc", "expect": "sta_disconnected", "timeout_s": 5},
+        {"snapshot": "after_disconnect"},
+        {"observe": "connection_restored", "timeout_s": 20},
+        {"snapshot": "after_reconnect"}
+      ]
     }
   ]
 }

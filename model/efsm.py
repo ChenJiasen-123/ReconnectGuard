@@ -17,12 +17,17 @@ class InvalidTransition(ValueError):
     pass
 
 
+DISCONNECT_ACTIONS = frozenset({"client_disconnect", "ap_deauth", "ap_disassoc"})
+RECONNECT_ACTIONS = frozenset({"client_reconnect"})
+
+
 RULES = {
     (State.INIT, "baseline_confirmed"): State.CONNECTED,
     (State.CONNECTED, "disconnect_requested"): State.DISCONNECTING,
     (State.DISCONNECTING, "sta_disconnected"): State.DISCONNECTED,
     (State.DISCONNECTED, "reconnect_requested"): State.RECONNECTING,
     (State.RECONNECTING, "connection_restored"): State.RECONNECTED,
+    (State.DISCONNECTED, "connection_restored"): State.RECONNECTED,
 }
 
 
@@ -34,8 +39,8 @@ class EFSM:
         self.seen = set()
 
     def allowed_actions(self) -> set[str]:
-        return {State.CONNECTED: {"client_disconnect"},
-                State.DISCONNECTED: {"client_reconnect"}}.get(self.state, set())
+        return {State.CONNECTED: set(DISCONNECT_ACTIONS),
+                State.DISCONNECTED: set(RECONNECT_ACTIONS)}.get(self.state, set())
 
     def apply(self, event: Event, after: int = -1) -> bool:
         if (event.run_id != self.context.run_id

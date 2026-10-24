@@ -100,6 +100,8 @@ WiFi Framework参考：[Wi-Fi Framework](https://github.com/domienschepers/wifi-
 
 ```sh
 python3 runner.py --case client_disconnect_reconnect
+python3 runner.py --case ap_deauth
+python3 runner.py --case ap_disassoc
 python3 runner.py --scenario noisy_events
 python3 -m unittest discover -s tests -v
 ```
@@ -117,7 +119,9 @@ python3 -m unittest discover -s tests -v
 | 操作 | 命令 |
 |---|---|
 | 真实主动断开与显式重连 | `sudo python3 runner.py --backend real --client stock` |
+| 真实 AP Deauth 案例 | `sudo python3 runner.py --case ap_deauth --backend real --client stock` |
+| 真实 AP Disassoc 案例 | `sudo python3 runner.py --case ap_disassoc --backend real --client stock` |
 | 连续十轮 | `sudo python3 runner.py --backend real --client stock --repeat 10` |
 | 独立 Python 环境 | 将 python3 换为 `.venv/bin/python` |
 
-对另外三位成员的调用接口、字段、时序与输出责任，统一见 [组员接口说明](docs/platform-api.md)。旧阶段一交接单是历史记录，当前接口以这份说明和代码为准。Deauth 样例仍走 probes；真实 Runner 当前只接入客户端主动断开和显式重连，不代表完整安全 Oracle 已完成。
+对另外三位成员的调用接口、字段、时序与输出责任，统一见 [组员接口说明](docs/platform-api.md)。旧阶段一交接单是历史记录，当前接口以这份说明和代码为准。真实 Runner 已接入客户端主动断开、AP Deauth 和 AP Disassoc；AP 案例使用自动恢复模式，仍需在 Linux hwsim 上完成真实验证，不代表完整安全 Oracle 已完成。

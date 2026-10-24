@@ -63,12 +63,23 @@ sudo python3 runner.py --backend real --client stock --repeat 10
 批次文件：`results/batch-84123ca46c4a4bf79a9cd75753eff78a.json`。
 完整摘要与逐文件代码 SHA-256 在本地 `evidence/runner-acceptance.json`；原始日志和抓包不提交 Git。
 
+## 2026-10-24 案例接入进展
+
+本次补充了 `ap_deauth` 和 `ap_disassoc` 两个五步案例。两者在 Mock 后端使用自动恢复模式，真实后端复用同一个 Executor、Observer 和 EFSM 路径；Windows 逻辑回归已覆盖动作回执、自动恢复和真实装配替身。
+
+当前本机没有 Linux hwsim 环境，因此以下真实验证仍需在 Kali 完成：
+
+```bash
+sudo python3 runner.py --case ap_deauth --backend real --client stock --repeat 10
+sudo python3 runner.py --case ap_disassoc --backend real --client stock --repeat 10
+```
+
 ## 还没做
 
 | 项目 | 当前范围 |
 |---|---|
-| AP Deauth / Disassoc 状态机案例 | Deauth 平台样例保留；未接入统一 Runner |
-| 自动重连模型 | 当前 Runner 只支持主动断开和显式重连 |
+| AP Deauth / Disassoc 真实十轮 | 案例和动作已接入；等待 Linux hwsim 验证 |
+| 自动重连行为的真实分类 | Runner 已记录恢复事件；具体认证路径仍由 Observer/Oracle 分析 |
 | 完整 SAE / 缓存使用分类 | auth_path 保留 unknown |
 | 授权时序和漏洞判定 | insufficient_evidence / not_evaluated，尚未实现 Oracle |
 

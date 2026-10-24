@@ -1,4 +1,4 @@
-"""统一入口：mock 保留原型，real 运行 hwsim 主动断开与显式重连。"""
+"""统一入口：mock 保留原型，real 运行 hwsim 断开与恢复案例。"""
 import argparse
 from dataclasses import asdict
 import json
@@ -9,9 +9,12 @@ import uuid
 from backends.mock import SCENARIOS
 from backends.sessions import MockSession, RealSession
 from model.contracts import BackendError
-from model.efsm import EFSM, State, InvalidTransition, profile_matches
+from model.efsm import (DISCONNECT_ACTIONS, RECONNECT_ACTIONS, EFSM, State,
+                        InvalidTransition, profile_matches)
 
 ROOT = Path(__file__).resolve().parent
+OBSERVED_EVENTS = {"connected_baseline": "baseline_confirmed",
+                   "connection_restored": "connection_restored"}
 
 
 def load_case(path, case_id):
@@ -23,23 +26,45 @@ def load_case(path, case_id):
     if len(matches) != 1:
         raise ValueError("案例不存在或编号重复")
     case = matches[0]
-    if case.get("backend") not in {"mock", "real"} or case.get("reconnect_mode") != "explicit":
-        raise ValueError("目前只支持 mock/real 后端及 explicit 重连")
-    expected = [("observe", "connected_baseline"), ("action", "client_disconnect"),
-                ("snapshot", "after_disconnect"), ("action", "client_reconnect"),
-                ("snapshot", "after_reconnect")]
+    mode = case.get("reconnect_mode")
+    if case.get("backend") not in {"mock", "real"} or mode not in {"explicit", "automatic"}:
+        raise ValueError("目前只支持 mock/real 后端及 explicit/automatic 重连")
     steps = case.get("steps", [])
-    if len(steps) != len(expected):
-        raise ValueError("第一版要求完整的五步案例")
-    for step, (key, value) in zip(steps, expected):
-        if step.get(key) != value or set(step) != ({"action", "expect", "timeout_s"} if key == "action" else {key}):
-            raise ValueError("不支持的案例步骤")
-        if key == "action":
-            wanted = "sta_disconnected" if value == "client_disconnect" else "connection_restored"
-            timeout = step.get("timeout_s")
-            if step.get("expect") != wanted or isinstance(timeout, bool) or not isinstance(timeout, (int, float)) or not math.isfinite(timeout) or timeout <= 0:
-                raise ValueError("等待事件或超时配置无效")
+    if len(steps) != 5:
+        raise ValueError("案例必须包含完整的五步流程")
+
+    if steps[0] != {"observe": "connected_baseline"}:
+        raise ValueError("第一步必须观察 connected_baseline")
+    disconnect_step = steps[1]
+    if (set(disconnect_step) != {"action", "expect", "timeout_s"}
+            or disconnect_step.get("action") not in DISCONNECT_ACTIONS
+            or disconnect_step.get("expect") != "sta_disconnected"):
+        raise ValueError("第二步必须是支持的断开动作并等待 sta_disconnected")
+    _validate_timeout(disconnect_step["timeout_s"])
+    if steps[2] != {"snapshot": "after_disconnect"}:
+        raise ValueError("第三步必须保存 after_disconnect 快照")
+
+    recovery_step = steps[3]
+    if mode == "explicit":
+        if (set(recovery_step) != {"action", "expect", "timeout_s"}
+                or recovery_step.get("action") not in RECONNECT_ACTIONS
+                or recovery_step.get("expect") != "connection_restored"):
+            raise ValueError("explicit 案例第四步必须是 client_reconnect")
+    else:
+        if (set(recovery_step) != {"observe", "timeout_s"}
+                or recovery_step.get("observe") != "connection_restored"
+                or disconnect_step["action"] not in {"ap_deauth", "ap_disassoc"}):
+            raise ValueError("automatic 案例第四步必须观察 AP 动作后的 connection_restored")
+    _validate_timeout(recovery_step["timeout_s"])
+    if steps[4] != {"snapshot": "after_reconnect"}:
+        raise ValueError("第五步必须保存 after_reconnect 快照")
     return case
+
+
+def _validate_timeout(timeout):
+    if (isinstance(timeout, bool) or not isinstance(timeout, (int, float))
+            or not math.isfinite(timeout) or timeout <= 0):
+        raise ValueError("等待事件或超时配置无效")
 
 
 def _save(path, value):
@@ -72,20 +97,25 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
     else:
         session = MockSession(output_root, scenario) if chosen == "mock" else RealSession(output_root, client)
     context, out = session.context, session.out
+    context.reconnect_mode = case["reconnect_mode"]
     observer, executor = session.observer, session.executor
     machine = EFSM(context)
     snapshots, diagnostics = [], []
     error = category = None
     step_number = 0
     recovered = False
+    last_event_seq = 0
     cleanup = {"errors": []}
     try:
         session.start()
         for step_number, step in enumerate(case["steps"], 1):
             if "observe" in step:
-                event = observer.wait_event("baseline_confirmed", 0, 20, context)
-                if not machine.apply(event):
-                    raise InvalidTransition("基线事件未被接受")
+                expected = OBSERVED_EVENTS[step["observe"]]
+                after = 0 if expected == "baseline_confirmed" else last_event_seq
+                event = observer.wait_event(expected, after, step.get("timeout_s", 20), context)
+                if not machine.apply(event, after=after):
+                    raise InvalidTransition("观测事件未被接受")
+                last_event_seq = event.seq
                 snapshots.append(observer.snapshot(step["observe"]))
             elif "snapshot" in step:
                 snapshots.append(observer.snapshot(step["snapshot"]))
@@ -94,10 +124,13 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
                 if action not in machine.allowed_actions():
                     raise InvalidTransition(f"当前状态禁止动作: {action}")
                 cursor = observer.mark()
-                if action == "client_reconnect":
+                if action in RECONNECT_ACTIONS:
                     context.attempt_id += 1
+                else:
+                    context.disconnect_method = action
                 request = session.record_request("disconnect_requested" if action == "client_disconnect"
-                                                 else "reconnect_requested")
+                                                 else ("reconnect_requested" if action in RECONNECT_ACTIONS
+                                                       else "disconnect_requested"))
                 if not machine.apply(request, after=cursor):
                     raise InvalidTransition("请求未被接受")
                 receipt = executor.execute(action, context)
@@ -107,6 +140,10 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
                 event = observer.wait_event(step["expect"], request.seq, step["timeout_s"], context)
                 if not machine.apply(event, after=request.seq):
                     raise InvalidTransition("观测事件未被接受")
+                last_event_seq = event.seq
+                if (case["reconnect_mode"] == "automatic"
+                        and action in {"ap_deauth", "ap_disassoc"}):
+                    context.attempt_id += 1
         recovered = machine.state == State.RECONNECTED
     except KeyboardInterrupt:
         error, category = "用户中断本轮实验", "cancelled"

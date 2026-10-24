@@ -1,6 +1,7 @@
 """确定性虚拟时钟；仅验证软件流程，不执行无线操作。"""
 from dataclasses import asdict
 from model.contracts import ActionReceipt, Context, Event
+from model.efsm import DISCONNECT_ACTIONS
 
 SCENARIOS = {"normal", "disconnect_timeout", "reconnect_timeout", "noisy_events"}
 PROFILE = {"wpa_state": "COMPLETED", "key_mgmt": "SAE",
@@ -35,13 +36,19 @@ class MockBackend:
     def execute(self, action, context):
         if not self.listening:
             raise RuntimeError("必须先启动监听")
-        if action not in {"client_disconnect", "client_reconnect"}:
+        if action not in DISCONNECT_ACTIONS | {"client_reconnect"}:
             raise ValueError(action)
         receipt = ActionReceipt(f"a{len(self.receipts)+1}", action, True)
         self.receipts.append(receipt)
-        if action == "client_disconnect" and self.scenario != "disconnect_timeout":
+        if action in DISCONNECT_ACTIONS and self.scenario != "disconnect_timeout":
             self.connected = False
             self.emit("sta_disconnected")
+            if (action in {"ap_deauth", "ap_disassoc"}
+                    and context.reconnect_mode == "automatic"
+                    and self.scenario != "reconnect_timeout"):
+                self.connected = True
+                self.emit("connection_restored", data=PROFILE.copy(),
+                          attempt_id=context.attempt_id + 1)
         elif action == "client_reconnect" and self.scenario != "reconnect_timeout":
             if self.scenario == "noisy_events":
                 self.emit("connection_restored", data=PROFILE.copy(), attempt_id=1)

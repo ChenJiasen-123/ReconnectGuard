@@ -41,3 +41,20 @@ class EFSMTest(unittest.TestCase):
         self.model.apply(self.event(event_id="two", seq=2, source="runner", kind="disconnect_requested"))
         self.assertEqual(self.model.state, State.DISCONNECTING)
         self.assertEqual(self.model.allowed_actions(), set())
+
+    def test_all_disconnect_actions_are_allowed(self):
+        self.model.apply(self.event())
+        self.assertEqual(self.model.allowed_actions(),
+                         {"client_disconnect", "ap_deauth", "ap_disassoc"})
+
+    def test_automatic_reconnect_can_restore_from_disconnected(self):
+        self.model.apply(self.event())
+        self.model.apply(self.event(event_id="request", seq=2, source="runner",
+                                    kind="disconnect_requested"))
+        self.model.apply(self.event(event_id="disconnected", seq=3,
+                                    kind="sta_disconnected", data={}))
+        restored = self.event(event_id="restored", seq=4, attempt_id=2,
+                              kind="connection_restored")
+        self.model.context.attempt_id = 2
+        self.assertTrue(self.model.apply(restored, after=3))
+        self.assertEqual(self.model.state, State.RECONNECTED)
