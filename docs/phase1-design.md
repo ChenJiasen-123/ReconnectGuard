@@ -1,5 +1,7 @@
 # 王奥鑫第一阶段：状态机与模拟测试
 
+> 本文保留第一阶段交付快照。当前接入状态见 [真实 Runner 验收](runner-integration-validation.md)，最新调度与统计见 [后续交付](wang-phase4-delivery.md)。
+
 本实现用于第一阶段软件流程验收。依据团队 Proposal 的上下文连续性设计，先覆盖客户端主动断开。模拟结果不代表真实 Wi-Fi 测试结果。
 
 ## 使用

@@ -125,3 +125,13 @@ python3 -m unittest discover -s tests -v
 | 独立 Python 环境 | 将 python3 换为 `.venv/bin/python` |
 
 对另外三位成员的调用接口、字段、时序与输出责任，统一见 [组员接口说明](docs/platform-api.md)。旧阶段一交接单是历史记录，当前接口以这份说明和代码为准。真实 Runner 已接入客户端主动断开、AP Deauth 和 AP Disassoc；AP 案例使用自动恢复模式，仍需在 Linux hwsim 上完成真实验证，不代表完整安全 Oracle 已完成。
+
+## 三路径对照调度
+
+```sh
+python3 comparison.py --backend mock --repeat 10
+# Linux hwsim 环境中执行真实实验
+sudo python3 comparison.py --backend real --client stock --repeat 10
+```
+
+输出批次计划、逐轮证据、JSON 汇总和 CSV 比较表。恢复耗时引用已接受的事件；覆盖统计限定为流程模型转换。实验条件、阶段状态及真实验收步骤见 [王奥鑫后续交付](docs/wang-phase4-delivery.md)。

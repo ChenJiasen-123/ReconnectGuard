@@ -9,6 +9,7 @@ import uuid
 from backends.mock import SCENARIOS
 from backends.sessions import MockSession, RealSession
 from model.contracts import BackendError
+from model.metrics import summarize_transitions
 from model.efsm import (DISCONNECT_ACTIONS, RECONNECT_ACTIONS, EFSM, State,
                         InvalidTransition, profile_matches)
 
@@ -181,6 +182,9 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
               "auth_path": "unknown", "authorization_timing": "insufficient_evidence",
               "security_verdict": "not_evaluated",
               "covered_transitions": sorted({t["from"] + "->" + t["to"] for t in machine.transitions})}
+    result.update({"case_id": case["id"], "disconnect_method": context.disconnect_method,
+                   "reconnect_mode": context.reconnect_mode,
+                   **summarize_transitions(machine.transitions)})
     metadata = session.metadata()
     metadata.update({"case": case, "runner_backend": chosen, "simulated": session.simulated,
                      "scenario": scenario if session.simulated else None})

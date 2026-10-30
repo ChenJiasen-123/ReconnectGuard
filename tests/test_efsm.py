@@ -48,6 +48,7 @@ class EFSMTest(unittest.TestCase):
                          {"client_disconnect", "ap_deauth", "ap_disassoc"})
 
     def test_automatic_reconnect_can_restore_from_disconnected(self):
+        self.model.context.reconnect_mode = "automatic"
         self.model.apply(self.event())
         self.model.apply(self.event(event_id="request", seq=2, source="runner",
                                     kind="disconnect_requested"))
@@ -58,3 +59,23 @@ class EFSMTest(unittest.TestCase):
         self.model.context.attempt_id = 2
         self.assertTrue(self.model.apply(restored, after=3))
         self.assertEqual(self.model.state, State.RECONNECTED)
+
+    def test_explicit_mode_rejects_unsolicited_restore(self):
+        self.model.apply(self.event())
+        self.model.apply(self.event(event_id='request', seq=2, source='runner', kind='disconnect_requested'))
+        self.model.apply(self.event(event_id='disconnected', seq=3, kind='sta_disconnected', data={}))
+        with self.assertRaises(InvalidTransition):
+            self.model.apply(self.event(event_id='restored', seq=4, kind='connection_restored'))
+
+    def test_old_sequence_new_id_and_wrong_source_do_not_advance(self):
+        self.model.apply(self.event())
+        self.assertFalse(self.model.apply(self.event(event_id='other')))
+        self.assertFalse(self.model.apply(self.event(event_id='noise', seq=2, source='ap', kind='noise')))
+        self.assertEqual(len(self.model.transitions), 1)
+
+    def test_rejects_bad_event_time(self):
+        self.model.apply(self.event())
+        for value in (0.0, float('nan'), float('inf')):
+            with self.subTest(value=value), self.assertRaises(InvalidTransition):
+                self.model.apply(self.event(event_id='request', seq=2, source='runner',
+                                           kind='disconnect_requested', monotonic_s=value))
