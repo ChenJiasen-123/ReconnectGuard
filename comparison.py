@@ -70,7 +70,8 @@ def run_comparison(cases_path, output_root, repeat=10, backend="mock", client="s
         writer = csv.DictWriter(stream, fieldnames=fields, extrasaction="ignore")
         writer.writeheader()
         writer.writerows(groups)
-        (out / "comparison.csv").write_text(stream.getvalue(), encoding="utf-8")
+        with (out / "comparison.csv").open("w", encoding="utf-8", newline="") as csv_file:
+            csv_file.write(stream.getvalue())
         return report
     report = save_progress()
     by_id = {c["id"]: c for c in cases}

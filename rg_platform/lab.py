@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from .control import Control
 from .journal import EventJournal
+from .evidence import archive_configs
 from model.contracts import BackendError
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -94,6 +95,9 @@ class Lab:
         self.ap_config.write_text(ap_template)
         self.sta_config.write_text(sta_template)
         os.chmod(self.sta_config, 0o600)
+        self.meta["runtime_configs"] = archive_configs(
+            self.out, {"ap": self.ap_config, "sta": self.sta_config})
+        self.save("meta.json", self.meta)
         fw_python = FW / "setup/venv/bin/python"
         ap_binary = FW / "dependencies/hostap_2_10/hostapd/hostapd"
         framework_sta = FW / "dependencies/hostap_2_10/wpa_supplicant/wpa_supplicant"
@@ -112,8 +116,13 @@ class Lab:
             sta_cmd = [sta_binary, "-Dnl80211", "-i", self.sta_if, "-c", self.sta_config, "-dd"]
         self.spawn(self.namespaces[1], sta_cmd, "sta")
         self.wait_controls()
-        self.spawn(self.namespaces[0], ["tcpdump", "-i", "mon" + self.ap_if,
-                   "-s", "0", "-U", "-w", self.out / "trace.pcap"], "capture")
+        # -U flushes the savefile, not libpcap's kernel delivery buffer.
+        capture_cmd = ["tcpdump", "--immediate-mode", "-i", "mon" + self.ap_if,
+                       "-s", "0", "-U", "-w", self.out / "trace.pcap"]
+        self.meta["capture"] = {"argv": [str(x) for x in capture_cmd],
+                                "version": run("tcpdump", "--version"),
+                                "immediate_mode": True}
+        self.spawn(self.namespaces[0], capture_cmd, "capture")
         time.sleep(.3)
         if self.processes[-1][1].poll() is not None:
             raise RuntimeError("capture failed; see capture.log")
