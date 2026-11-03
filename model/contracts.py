@@ -43,6 +43,7 @@ class Context:
     key_state: str = "unknown"
     port_authorized: str = "unknown"
     evidence_refs: list[str] = field(default_factory=list)
+    observations: list[dict] = field(default_factory=list)
 
 
 class Executor(Protocol):

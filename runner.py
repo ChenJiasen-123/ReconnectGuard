@@ -9,6 +9,7 @@ import uuid
 from backends.mock import SCENARIOS
 from backends.sessions import MockSession, RealSession
 from model.contracts import BackendError
+from model.evaluation import evaluate, record_snapshot
 from model.metrics import summarize_transitions
 from model.efsm import (DISCONNECT_ACTIONS, RECONNECT_ACTIONS, EFSM, State,
                         InvalidTransition, profile_matches)
@@ -87,7 +88,7 @@ def _continuity(snapshots):
 
 
 def run_case(case, output_root=ROOT / "results", scenario="normal", *,
-             backend=None, client="stock", session_factory=None):
+             backend=None, client="stock", session_factory=None, evaluator=None):
     chosen = backend or case["backend"]
     if chosen not in {"mock", "real"}:
         raise ValueError("未知 backend")
@@ -107,6 +108,11 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
     recovered = False
     last_event_seq = 0
     cleanup = {"errors": []}
+    recovery_profile = None
+    def capture(checkpoint):
+        snapshot = observer.snapshot(checkpoint)
+        snapshots.append(snapshot)
+        record_snapshot(context, snapshot, len(snapshots) - 1)
     try:
         session.start()
         for step_number, step in enumerate(case["steps"], 1):
@@ -116,10 +122,13 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
                 event = observer.wait_event(expected, after, step.get("timeout_s", 20), context)
                 if not machine.apply(event, after=after):
                     raise InvalidTransition("观测事件未被接受")
+                if event.kind == "connection_restored":
+                    recovered = True
+                    recovery_profile = dict(event.data)
                 last_event_seq = event.seq
-                snapshots.append(observer.snapshot(step["observe"]))
+                capture(step["observe"])
             elif "snapshot" in step:
-                snapshots.append(observer.snapshot(step["snapshot"]))
+                capture(step["snapshot"])
             else:
                 action = step["action"]
                 if action not in machine.allowed_actions():
@@ -141,6 +150,9 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
                 event = observer.wait_event(step["expect"], request.seq, step["timeout_s"], context)
                 if not machine.apply(event, after=request.seq):
                     raise InvalidTransition("观测事件未被接受")
+                if event.kind == "connection_restored":
+                    recovered = True
+                    recovery_profile = dict(event.data)
                 last_event_seq = event.seq
                 if (case["reconnect_mode"] == "automatic"
                         and action in {"ap_deauth", "ap_disassoc"}):
@@ -155,7 +167,7 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
                            else "environment_error" if step_number == 0 else "test_error")
         machine.fail(error)
         try:
-            snapshots.append(observer.snapshot("failure"))
+            capture("failure")
         except Exception as snapshot_error:
             diagnostics.append({"category": "failure_snapshot_error", "error": str(snapshot_error)})
     finally:
@@ -168,7 +180,15 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
             if error is None:
                 error, category = "实验清理失败", "cleanup_error"
                 machine.fail(error)
-    last_sta = snapshots[-1].get("sta", {}) if snapshots else {}
+    checks = []
+    try:
+        checks = evaluate(evaluator, context, snapshots, session.events())
+    except Exception as exc:
+        diagnostics.append({"category": "evaluation_error", "error": str(exc)})
+        checks = evaluate(None, context, snapshots, [])
+        if error is None:
+            error, category = str(exc), "evaluation_error"
+            machine.fail(error)
     result = {"schema_version": 1, "run_id": context.run_id, "simulated": session.simulated,
               "backend": chosen, "scenario": scenario if session.simulated else None,
               "execution_status": "completed" if recovered and error is None else "failed",
@@ -176,10 +196,12 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
               "error_category": category, "error": error, "diagnostics": diagnostics,
               "cleanup_status": "failed" if cleanup.get("errors") else "completed",
               "disconnect_observed": any(t.get("to") == "DISCONNECTED" for t in machine.transitions),
-              "recovery": "pass" if recovered else ("fail" if step_number == 4 else "not_evaluated"),
-              "security_profile": "pass" if recovered and profile_matches(last_sta) else "not_evaluated",
+              "recovery": "pass" if recovered else ("fail" if step_number == 4 and category == "observation_timeout" else "not_evaluated"),
+              "security_profile": "pass" if recovered and profile_matches(recovery_profile or {}) else "not_evaluated",
               "client_process_unchanged": _continuity(snapshots),
-              "auth_path": "unknown", "authorization_timing": "insufficient_evidence",
+              "auth_path": context.auth_path, "authorization_timing": "insufficient_evidence",
+              "checks": [asdict(check) for check in checks],
+              "collection_status": "failed" if category == "collection_error" or any(d["category"] == "failure_snapshot_error" for d in diagnostics) else "no_error_observed",
               "security_verdict": "not_evaluated",
               "covered_transitions": sorted({t["from"] + "->" + t["to"] for t in machine.transitions})}
     result.update({"case_id": case["id"], "disconnect_method": context.disconnect_method,

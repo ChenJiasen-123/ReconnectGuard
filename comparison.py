@@ -31,7 +31,11 @@ def summarize(rows, case_ids):
                        "observed_recovery_median_ms": statistics.median(values) if values else None,
                        "errors": dict(Counter(r.get("error_category") or r.get("result", {}).get("error_category")
                                               for r in entries if r.get("error_category") or r.get("result", {}).get("error_category"))),
-                       "covered": sorted(covered), "auth_path": "unknown"})
+                       "covered": sorted(covered), "auth_path": "unknown",
+                       "auth_path_counts": dict(Counter(r.get("auth_path", "unknown") for r in results)),
+                       "check_counts": {name: dict(Counter(next((c["status"] for c in r.get("checks", [])
+                                            if c["name"] == name), "not_evaluated") for r in results))
+                                        for name in ("state_consistency", "authorization_timing")}})
     return groups
 
 
