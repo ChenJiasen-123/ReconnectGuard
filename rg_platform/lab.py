@@ -6,6 +6,7 @@ import json
 import os
 import shutil
 import subprocess
+import sys
 import threading
 import time
 from datetime import datetime, timezone
@@ -134,7 +135,10 @@ class Lab:
             self.threads.append(thread)
         # 网络配置初始 disabled，确保监听开始后才放行第一次连接。
         self.command("sta", "ENABLE_NETWORK 0", "initial_connect")
-        self.meta.update({"kernel": run("uname", "-r"), "framework_commit": run("git", "-C", FW, "rev-parse", "HEAD"),
+        self.meta.update({"python_version": sys.version.split()[0],
+                          "framework_patch_sha256": hashlib.sha256(subprocess.check_output(
+                              ["git", "-C", str(FW), "diff", "--binary", "HEAD", "--"])).hexdigest(),
+                          "kernel": run("uname", "-r"), "framework_commit": run("git", "-C", FW, "rev-parse", "HEAD"),
                           "submodules": run("git", "-C", FW, "submodule", "status"),
                           "ap_iface": self.ap_if, "sta_iface": self.sta_if,
                           "namespaces": self.namespaces, "phys": self.phys,
@@ -253,9 +257,11 @@ class Lab:
         if self._cleanup is not None:
             return self._cleanup
         self.stop_event.set()
+        errors = []
         for t in self.threads:
             t.join(timeout=1)
-        errors = []
+            if t.is_alive():
+                errors.append("event listener did not stop")
         import signal
         for role, proc, _ in reversed(self.processes):
             try:
@@ -275,14 +281,14 @@ class Lab:
                 errors.append(str(exc))
         if self.loaded:
             # 只在 hwsim 仍完全属于本次创建的集合时卸载。
-            remaining = hwsim_phys()
-            if set(remaining).issubset(set(self.phys)):
-                try:
+            try:
+                remaining = hwsim_phys()
+                if set(remaining).issubset(set(self.phys)):
                     run("modprobe", "-r", "mac80211_hwsim")
-                except Exception as exc:
-                    errors.append(str(exc))
-            else:
-                errors.append("foreign hwsim radios detected; not unloading module")
+                else:
+                    errors.append("foreign hwsim radios detected; not unloading module")
+            except Exception as exc:
+                errors.append("hwsim cleanup: " + str(exc))
         self.meta["finished_at"] = utc()
         try:
             self.save("meta.json", self.meta)
