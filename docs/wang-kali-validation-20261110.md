@@ -12,7 +12,7 @@
 | 内核 / Python | `6.19.14+kali-amd64` / `3.13.12` |
 | 平台 | Framework `7a173c1824caa95a848f351fe6eab2d5e5b389e1` 的 `hostap_2_10`，hostapd v2.10；官方未修改 wpa_supplicant 2.10（w1.fi 源码编译，SHA-256 已校验） |
 | 抓包 | `tcpdump --immediate-mode` 于 `mon<ap_if>`，产物 `trace.pcap` |
-| 项目目录 | `/home/kali/Projects/rg-kali-20261110`（独立工作区，含未提交的 `observer/` 等新增文件） |
+| 项目目录 | `/home/kali/Projects/rg-kali-20261110`（独立工作区；验证时 `observer/` 等为未提交新增文件，现已随 `10530d2` 入库） |
 | 依赖 | `scripts/setup.sh` 全流程；Framework venv 内 scapy 2.6.1；hwsim 双端 + netns，sudo 运行 |
 
 平台自检 `sudo bash scripts/start.sh --client stock --probe deauth` 通过
@@ -232,7 +232,9 @@ python3 -m unittest tests.test_frames -v
 团队原本就把原始证据留在服务器，不随代码提交。
 文中的 `D:/CS_project/...` 与 `/home/kali/Projects/...` 是本次验证的本机路径，
 在各自机器上复现时替换为本地 `results/<run_id>` 即可。
-本次只新增文件、未修改队友模块，未执行 `git commit` / `git push`。
+本次验证只新增文件、未修改队友模块；验证完成后代码与文档已随提交 `10530d2`
+（2026-11-10 08:56）推送到 `origin/main`，队友 `git pull --ff-only` 即可获取。
+真实 pcap、日志与证据报告仍不入库，需另行索取。
 
 ## 7. 环境踩坑记录（可复用）
 

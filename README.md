@@ -141,3 +141,5 @@ sudo python3 comparison.py --backend real --client stock --repeat 10
 ## 中期检查器与失败恢复接入
 
 单案例和对照入口现支持 `--evaluator module:factory`，每轮新建检查器实例。默认仍为未评估，不代表安全检查通过。mock 有界恢复示例、真实依赖及最新验证记录见 [王奥鑫中期代码交接](docs/wang-midterm-code-handoff.md)。
+
+实际检查器已交付，加载名 `observer.oracle:Oracle`（例如 `python3 runner.py --case ap_deauth --evaluator observer.oracle:Oracle`）。判定规则与证据引用格式见 [检查器交付](docs/wang-oracle-delivery.md)，Kali 真实验证与真实帧号见 [验证补充](docs/wang-kali-validation-20261110.md)，逐条交接状态与待集成项见 [交接核对清单](docs/wang-handoff-checklist.md)。真实运行中 `authorization_timing` 仍为 `insufficient_evidence`，不代表安全检查通过。

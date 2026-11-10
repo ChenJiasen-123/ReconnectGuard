@@ -3,10 +3,11 @@
 日期：2026-11-10。基线提交 `3050854`。本文给队友逐条核对用，不替代
 [检查器交付](wang-oracle-delivery.md)与[Kali 真实验证](wang-kali-validation-20261110.md)。
 
-> **交付状态**：下列文件全是本地**未跟踪的新增文件**，未 `git commit`、未 `git push`。
-> 队友现在执行 `git pull --ff-only` 取不到任何一行。需我提交或先打包转交。
-> 已跟踪文件零改动（`git diff --stat` 为空），未修改任何队友模块。
-> 精确提交清单、排除项与可直接复制的命令见第六节。
+> **交付状态**：2026-11-10 08:56 已提交 `10530d2` 并推送到 `origin/main`
+> （10 个文件、2196 行新增，纯快进）。队友执行 `git pull --ff-only` 即可取到
+> 全部代码与文档，无需再向我索取或打包转交。
+> 开发基线为 `3050854`，期间只新增文件、未修改任何队友模块。
+> 提交记录、排除项与队友验证命令见第六节；真实 pcap / 日志不入库，见第四节。
 
 ## 一、已完成，可直接验收
 
@@ -83,14 +84,21 @@ vendor/wifi-framework/setup/venv/bin/python -m observer.frames results/<run_id> 
 5. 不要把 31 轮的恢复耗时与队友服务器那组（18.105 / 3872.180 / 3872.726 ms）直接比较，
    环境不同，三组重连机制也不同。
 
-## 六、提交清单（由王梓权本人执行）
+## 六、提交记录（已执行）
 
-2026-11-10 核对：本地 `HEAD = origin/main = 3050854`，无分叉；`main` 跟踪 `origin/main`；
-`user.name` / `user.email` 已配置；暂存区空；已跟踪文件零改动。
+2026-11-10 08:56 已由王梓权提交并推送，**队友不需要再执行提交动作**：
+
+```sh
+git commit -m "feat(observer): add evidence-driven oracle and real-frame evidence analysis"
+git push origin main
+```
+
+提交号 `10530d2`，`HEAD = origin/main = 10530d2`，纯快进无 merge，
+共 10 个文件、2196 行新增。开发基线 `3050854`，期间未修改队友模块。
 `.gitignore` 已覆盖 `results/`、`evidence/`、`vendor/`、`work/`、`__pycache__/`、`*.pyc`；
-`.gitattributes` 会把 `*.py` 规范为 LF。**按下面精确清单提交即可，不要用 `git add -A`。**
+`.gitattributes` 把 `*.py` 规范为 LF。当前 `git status` 只剩下列 3 个排除项。
 
-### 应提交的 10 个文件
+### 已提交的 10 个文件（提交 `10530d2`）
 
 | 类别 | 文件 |
 |---|---|
@@ -98,7 +106,7 @@ vendor/wifi-framework/setup/venv/bin/python -m observer.frames results/<run_id> 
 | 测试 | `tests/test_oracle.py`、`tests/test_frames.py` |
 | 文档 | `docs/wang-oracle-delivery.md`、`docs/wang-kali-validation-20261110.md`、`docs/wang-handoff-checklist.md` |
 
-### 必须排除的 3 个文件
+### 仍排除、未入库的 3 个文件
 
 | 文件 | 原因 |
 |---|---|
@@ -108,30 +116,15 @@ vendor/wifi-framework/setup/venv/bin/python -m observer.frames results/<run_id> 
 
 保留在本地即可，不要删除、也不要入库。
 
-### 完整命令（Git Bash / PowerShell 通用）
+### 已执行的精确暂存清单（留档，无需重跑）
 
 ```sh
-cd D:/CS_project/ReconnectGuard
-
-# 1. 提交前再确认远端未前进（本次核对时双方均为 3050854）
-git fetch origin
-git status -sb
-
-# 2. 精确暂存；单行命令，两种 shell 都能直接粘贴
 git add observer/__init__.py observer/oracle.py observer/evidence.py observer/demo.py observer/frames.py tests/test_oracle.py tests/test_frames.py docs/wang-oracle-delivery.md docs/wang-kali-validation-20261110.md docs/wang-handoff-checklist.md
-
-# 3. 复核：暂存区应恰好 10 个文件，且没有 要求.txt / real_observer / .pyc
-git status --short
-git diff --cached --stat
-
-# 4. 提交（沿用仓库英文 conventional commit 风格）
-git commit -m "feat(observer): add evidence-driven oracle and real-frame evidence analysis"
-
-# 5. 推送；当前为纯快进
-git push origin main
 ```
 
-### 提交后队友验证
+用精确清单而不是 `git add -A`，是为了不误带上述 3 个排除项。
+
+### 队友获取与验证
 
 ```sh
 git pull --ff-only
@@ -149,9 +142,10 @@ mock 冒烟返回两个 `insufficient_evidence` 与 `security_verdict=not_evalua
 - **真实 pcap、日志与证据报告不入库**：32 个产物在 `D:/CS_project/kali-validation-20261110/`
   与 Kali 的 `.../kali-validation/evidence/`，文档中的帧号、日志行号、`run_id` 都指向这两处。
   队友需要原始帧请另行索取；团队原本就把原始证据留在服务器。
-- 若 `git push` 返回 403 / permission denied，说明账号对
-  `ChenJiasen-123/ReconnectGuard` 没有写权限，需仓库所有者添加协作者，或改走
-  fork + Pull Request。这与本地文件状态无关。
-- `README.md` 本次**未改**（保持已跟踪文件零改动）。若希望队友在第一屏就看到新模块，
-  可在 README「中期检查器与失败恢复接入」一节末尾补一行指向本清单与加载名
-  `observer.oracle:Oracle`。
+- **后续再修订这些文档需要另一次提交**：本文及另两份文档已随 `10530d2` 入库，
+  改的是已被 Git 跟踪的文件，会产生新的工作区改动；必须再执行
+  `git add` / `git commit` / `git push`，队友 `git pull` 才能看到。
+  `git pull` 不会把任何人的本地改动同步给别人。`10530d2` 已推送，
+  **不要**用 `git commit --amend` 改写它，也不要 force push。
+- `README.md` 已在「中期检查器与失败恢复接入」补上入口，指向加载名
+  `observer.oracle:Oracle` 与本文、交付文档、验证补充文档；队友在第一屏即可找到。

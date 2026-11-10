@@ -6,7 +6,9 @@
 ## 交付边界（先说清楚）
 
 - 只新增文件，**未修改** `runner.py`、`comparison.py`、`model/evaluation.py`、
-  `backends/platform_observer.py` 等队友模块；未执行 `git commit` / `git push`。
+  `backends/platform_observer.py` 等队友模块。2026-11-10 08:56 已随提交 `10530d2`
+  推送到 `origin/main`，队友 `git pull --ff-only` 即可获取；提交记录、排除项与
+  队友验证命令见[交接核对清单](wang-handoff-checklist.md)第六节。
 - **2026-11-10 补充**：已在 VMware 的 Kali 虚拟机上完成 Linux 专属测试与 31 轮真实
   hwsim 实验，真实 `run_id`、事件 seq、快照索引、帧号、PMKID 与日志行号见
   [Kali 真实验证与帧级证据补充](wang-kali-validation-20261110.md)。本文下面
@@ -225,4 +227,5 @@ supplicant 日志有 `PMKSA cache entry found` / `matched PMKID` / `PMKSA cachin
   EAPOL Key Info 分类。
 - 保守性：不同输入产生 6 种以上不同判定组合，不存在固定返回 pass 的路径；
   真实环境下 31 轮未出现一轮安全通过。
-- 工作区：`git diff --stat` 为空，已跟踪文件零改动；新增文件均未提交。
+- 工作区：开发期间 `git diff --stat` 为空、已跟踪文件零改动；10 个新增文件均随
+  `10530d2` 入库并推送。后续修订本文需另一次 `commit` / `push` 才能同步给队友。
