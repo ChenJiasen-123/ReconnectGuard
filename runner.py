@@ -9,7 +9,7 @@ import uuid
 from backends.mock import SCENARIOS
 from backends.sessions import MockSession, RealSession
 from model.contracts import BackendError
-from model.evaluation import evaluate, record_snapshot
+from model.evaluation import evaluate, record_snapshot, load_evaluator
 from model.metrics import summarize_transitions
 from model.efsm import (DISCONNECT_ACTIONS, RECONNECT_ACTIONS, EFSM, State,
                         InvalidTransition, profile_matches)
@@ -17,6 +17,10 @@ from model.efsm import (DISCONNECT_ACTIONS, RECONNECT_ACTIONS, EFSM, State,
 ROOT = Path(__file__).resolve().parent
 OBSERVED_EVENTS = {"connected_baseline": "baseline_confirmed",
                    "connection_restored": "connection_restored"}
+
+
+class RecoveryTimeout(TimeoutError):
+    """仅表示等待恢复事件超时，不包括动作发送或采集超时。"""
 
 
 def load_case(path, case_id):
@@ -60,7 +64,22 @@ def load_case(path, case_id):
     _validate_timeout(recovery_step["timeout_s"])
     if steps[4] != {"snapshot": "after_reconnect"}:
         raise ValueError("第五步必须保存 after_reconnect 快照")
+    validate_retry_policy(case)
     return case
+
+
+def validate_retry_policy(case, backend=None):
+    policy = case.get("recovery_policy", {"max_retries": 0})
+    if not isinstance(policy, dict) or set(policy) != {"max_retries"}:
+        raise ValueError("recovery_policy 只允许 max_retries")
+    budget = policy["max_retries"]
+    if type(budget) is not int or not 0 <= budget <= 3:
+        raise ValueError("max_retries 必须为 0 至 3 的整数")
+    if budget and case["reconnect_mode"] != "explicit":
+        raise ValueError("有界重试目前只支持显式重连")
+    if budget and backend == "real":
+        raise ValueError("真实重试尚未启用：缺少可靠尝试边界和恢复动作契约")
+    return budget
 
 
 def _validate_timeout(timeout):
@@ -88,12 +107,17 @@ def _continuity(snapshots):
 
 
 def run_case(case, output_root=ROOT / "results", scenario="normal", *,
-             backend=None, client="stock", session_factory=None, evaluator=None):
+             backend=None, client="stock", session_factory=None, evaluator=None, evaluator_spec=None):
     chosen = backend or case["backend"]
     if chosen not in {"mock", "real"}:
         raise ValueError("未知 backend")
     if chosen == "real" and scenario != "normal":
         raise ValueError("--scenario 仅用于 mock；真实失败需单独注入")
+    retry_budget = validate_retry_policy(case, chosen)
+    if evaluator is not None and evaluator_spec:
+        raise ValueError("evaluator 与 evaluator_spec 不能同时指定")
+    if evaluator_spec:
+        evaluator = load_evaluator(evaluator_spec)
     if session_factory is not None:
         session = session_factory(output_root, scenario, client)
     else:
@@ -109,54 +133,97 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
     last_event_seq = 0
     cleanup = {"errors": []}
     recovery_profile = None
+    recovery_attempts = []
+    retries_used = 0
     def capture(checkpoint):
-        snapshot = observer.snapshot(checkpoint)
+        try:
+            snapshot = observer.snapshot(checkpoint)
+        except TimeoutError as exc:
+            raise BackendError("collection_error", str(exc)) from exc
         snapshots.append(snapshot)
         record_snapshot(context, snapshot, len(snapshots) - 1)
+    def wait_event(expected, after, timeout):
+        try:
+            return observer.wait_event(expected, after, timeout, context)
+        except TimeoutError as exc:
+            if expected == "connection_restored":
+                raise RecoveryTimeout(str(exc)) from exc
+            raise
+    def execute_step(step):
+        nonlocal recovered, recovery_profile, last_event_seq
+        if "observe" in step:
+            expected = OBSERVED_EVENTS[step["observe"]]
+            after = 0 if expected == "baseline_confirmed" else last_event_seq
+            event = wait_event(expected, after, step.get("timeout_s", 20))
+            if not machine.apply(event, after=after):
+                raise InvalidTransition("观测事件未被接受")
+            if event.kind == "connection_restored":
+                recovered = True
+                recovery_profile = dict(event.data)
+            last_event_seq = event.seq
+            capture(step["observe"])
+        elif "snapshot" in step:
+            capture(step["snapshot"])
+        else:
+            action = step["action"]
+            if action not in machine.allowed_actions():
+                raise InvalidTransition(f"当前状态禁止动作: {action}")
+            cursor = observer.mark()
+            if action in RECONNECT_ACTIONS:
+                context.attempt_id += 1
+            else:
+                context.disconnect_method = action
+            request = session.record_request("disconnect_requested" if action == "client_disconnect"
+                                             else ("reconnect_requested" if action in RECONNECT_ACTIONS
+                                                   else "disconnect_requested"))
+            if not machine.apply(request, after=cursor):
+                raise InvalidTransition("请求未被接受")
+            try:
+                receipt = executor.execute(action, context)
+            except TimeoutError as exc:
+                raise BackendError("action_timeout", str(exc)) from exc
+            if not receipt.accepted:
+                raise BackendError(receipt.error_category or "action_rejected", "动作未被接受: " + action)
+            # 请求与观测属于同一个 seq 空间；请求之前的事件不能完成等待。
+            event = wait_event(step["expect"], request.seq, step["timeout_s"])
+            if not machine.apply(event, after=request.seq):
+                raise InvalidTransition("观测事件未被接受")
+            if event.kind == "connection_restored":
+                recovered = True
+                recovery_profile = dict(event.data)
+            last_event_seq = event.seq
+            if (case["reconnect_mode"] == "automatic"
+                    and action in {"ap_deauth", "ap_disassoc"}):
+                context.attempt_id += 1
     try:
         session.start()
         for step_number, step in enumerate(case["steps"], 1):
-            if "observe" in step:
-                expected = OBSERVED_EVENTS[step["observe"]]
-                after = 0 if expected == "baseline_confirmed" else last_event_seq
-                event = observer.wait_event(expected, after, step.get("timeout_s", 20), context)
-                if not machine.apply(event, after=after):
-                    raise InvalidTransition("观测事件未被接受")
-                if event.kind == "connection_restored":
-                    recovered = True
-                    recovery_profile = dict(event.data)
-                last_event_seq = event.seq
-                capture(step["observe"])
-            elif "snapshot" in step:
-                capture(step["snapshot"])
-            else:
-                action = step["action"]
-                if action not in machine.allowed_actions():
-                    raise InvalidTransition(f"当前状态禁止动作: {action}")
-                cursor = observer.mark()
-                if action in RECONNECT_ACTIONS:
-                    context.attempt_id += 1
-                else:
-                    context.disconnect_method = action
-                request = session.record_request("disconnect_requested" if action == "client_disconnect"
-                                                 else ("reconnect_requested" if action in RECONNECT_ACTIONS
-                                                       else "disconnect_requested"))
-                if not machine.apply(request, after=cursor):
-                    raise InvalidTransition("请求未被接受")
-                receipt = executor.execute(action, context)
-                if not receipt.accepted:
-                    raise BackendError(receipt.error_category or "action_rejected", "动作未被接受: " + action)
-                # 请求与观测属于同一个 seq 空间；请求之前的事件不能完成等待。
-                event = observer.wait_event(step["expect"], request.seq, step["timeout_s"], context)
-                if not machine.apply(event, after=request.seq):
-                    raise InvalidTransition("观测事件未被接受")
-                if event.kind == "connection_restored":
-                    recovered = True
-                    recovery_profile = dict(event.data)
-                last_event_seq = event.seq
-                if (case["reconnect_mode"] == "automatic"
-                        and action in {"ap_deauth", "ap_disassoc"}):
-                    context.attempt_id += 1
+            retries = 0
+            while True:
+                try:
+                    execute_step(step)
+                    if step_number == 4:
+                        recovery_attempts.append({"attempt_id": context.attempt_id, "outcome": "pass"})
+                    break
+                except RecoveryTimeout as exc:
+                    if step_number != 4 or recovered:
+                        raise
+                    recovery_attempts.append({"attempt_id": context.attempt_id,
+                                              "outcome": "fail", "error_category": "observation_timeout",
+                                              "error": str(exc)})
+                    if retries >= retry_budget:
+                        raise
+                    capture("recovery_timeout")
+                    machine.prepare_retry(str(exc))
+                    retries += 1
+                    retries_used += 1
+                except Exception as exc:
+                    if step_number == 4:
+                        recovery_attempts.append({"attempt_id": context.attempt_id,
+                                                  "outcome": "pass" if recovered else "not_evaluated",
+                                                  "error_category": getattr(exc, "category", "test_error"),
+                                                  "error": str(exc)})
+                    raise
         recovered = machine.state == State.RECONNECTED
     except KeyboardInterrupt:
         error, category = "用户中断本轮实验", "cancelled"
@@ -192,6 +259,9 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
     result = {"schema_version": 1, "run_id": context.run_id, "simulated": session.simulated,
               "backend": chosen, "scenario": scenario if session.simulated else None,
               "execution_status": "completed" if recovered and error is None else "failed",
+              "recovery_attempts": recovery_attempts,
+              "retries_used": retries_used,
+              "evaluator": evaluator_spec or (type(evaluator).__module__ + ":" + type(evaluator).__qualname__ if evaluator else None),
               "state": machine.state.value, "failed_step": step_number if error else None,
               "error_category": category, "error": error, "diagnostics": diagnostics,
               "cleanup_status": "failed" if cleanup.get("errors") else "completed",
@@ -212,7 +282,7 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
                      "scenario": scenario if session.simulated else None})
     artifacts = {"meta.json": metadata, "result.json": result, "snapshots.json": snapshots,
                  "context.json": asdict(context), "observations.json": observer.observations,
-                 "runner-cleanup.json": cleanup}
+                 "runner-cleanup.json": cleanup, "recovery-attempts.json": recovery_attempts}
     try:
         for name, value in artifacts.items():
             _save(out / name, value)
@@ -235,6 +305,7 @@ def main():
     parser.add_argument("--client", choices=["stock", "framework"], default="stock")
     parser.add_argument("--repeat", type=int, default=1)
     parser.add_argument("--output", type=Path, default=ROOT / "results")
+    parser.add_argument("--evaluator", help="本地检查器工厂 module:factory；每轮新建实例")
     args = parser.parse_args()
     if args.repeat < 1:
         parser.error("--repeat 必须为正整数")
@@ -247,7 +318,7 @@ def main():
     rows = []
     for _ in range(args.repeat):
         try:
-            result, out = run_case(case, args.output, args.scenario, backend=args.backend, client=args.client)
+            result, out = run_case(case, args.output, args.scenario, backend=args.backend, client=args.client, evaluator_spec=args.evaluator)
         except (BackendError, OSError, ValueError) as exc:
             print(json.dumps({"error_category": getattr(exc, "category", "environment_error"),
                               "error": str(exc)}, ensure_ascii=False))

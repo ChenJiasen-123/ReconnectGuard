@@ -50,3 +50,21 @@ def evaluate(evaluator, context, snapshots, events):
         checks[result.name] = result
         seen.add(result.name)
     return list(checks.values())
+
+
+def load_evaluator(spec):
+    """加载用户明确指定的本地检查器工厂 module:factory，每轮创建新实例。"""
+    import importlib
+    if not spec:
+        return None
+    module, separator, name = spec.partition(':')
+    if not separator or not module or not name.isidentifier():
+        raise ValueError('检查器格式必须为 module:factory')
+    try:
+        factory = getattr(importlib.import_module(module), name)
+        evaluator = factory()
+    except Exception as exc:
+        raise ValueError(f'无法加载检查器 {spec}: {exc}') from exc
+    if not callable(getattr(evaluator, 'evaluate', None)):
+        raise ValueError('检查器必须实现 evaluate')
+    return evaluator

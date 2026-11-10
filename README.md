@@ -137,3 +137,7 @@ sudo python3 comparison.py --backend real --client stock --repeat 10
 输出批次计划、逐轮证据、JSON 汇总和 CSV 比较表。恢复耗时引用已接受的事件；覆盖统计限定为流程模型转换。实验条件、阶段状态及真实验收步骤见 [王奥鑫后续交付](docs/wang-phase4-delivery.md)。
 
 阶段五新增结果分离、上下文历史和检查器接口。成员接入任务及仍待依赖的重试设计见 [阶段五交接](docs/phase5-handoff.md)。
+
+## 中期检查器与失败恢复接入
+
+单案例和对照入口现支持 `--evaluator module:factory`，每轮新建检查器实例。默认仍为未评估，不代表安全检查通过。mock 有界恢复示例、真实依赖及最新验证记录见 [王奥鑫中期代码交接](docs/wang-midterm-code-handoff.md)。
