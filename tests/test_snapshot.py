@@ -26,3 +26,30 @@ class SnapshotTest(unittest.TestCase):
             self.assertFalse(result["ap_query_available"])
             self.assertEqual(result["sta"]["wpa_state"], "DISCONNECTED")
             self.assertEqual(result["auth_path"], "unknown")
+
+    def test_cleanup_enumeration_failure_releases_lock_and_records_error(self):
+        from threading import Event
+        from unittest.mock import patch
+        import json
+
+        with tempfile.TemporaryDirectory() as tmp:
+            lab = Lab.__new__(Lab)
+            lab.out = Path(tmp)
+            lab.runtime = lab.out / "runtime"
+            lab.runtime.mkdir()
+            lab.run_id = "cleanup-regression"
+            lab.meta = {}
+            lab._cleanup = None
+            lab.stop_event = Event()
+            lab.threads, lab.processes, lab.namespaces = [], [], []
+            lab.loaded = True
+            lab.lock = (lab.out / "lock").open("w")
+            with patch("rg_platform.lab.hwsim_phys", side_effect=OSError("enumeration failed")), \
+                    patch("rg_platform.lab.run") as command:
+                result = lab.stop()
+            command.assert_not_called()
+            self.assertTrue(lab.lock.closed)
+            self.assertFalse(lab.runtime.exists())
+            self.assertIn("hwsim cleanup: enumeration failed", result["errors"])
+            self.assertEqual(json.loads((lab.out / "cleanup.json").read_text()), result)
+            self.assertEqual(lab.stop(), result)
