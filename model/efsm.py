@@ -11,6 +11,7 @@ class State(str, Enum):
     DISCONNECTED = "DISCONNECTED"
     RECONNECTING = "RECONNECTING"
     RECONNECTED = "RECONNECTED"
+    FAILURE_HANDLING = "FAILURE_HANDLING"
     FAILED = "FAILED"
 
 
@@ -43,7 +44,8 @@ class EFSM:
 
     def allowed_actions(self) -> set[str]:
         return {State.CONNECTED: set(DISCONNECT_ACTIONS),
-                State.DISCONNECTED: set(RECONNECT_ACTIONS)}.get(self.state, set())
+                State.DISCONNECTED: set(RECONNECT_ACTIONS),
+                State.FAILURE_HANDLING: set(RECONNECT_ACTIONS)}.get(self.state, set())
 
     def apply(self, event: Event, after: int = -1) -> bool:
         if (event.run_id != self.context.run_id
@@ -59,6 +61,8 @@ class EFSM:
                 and self.context.reconnect_mode != "automatic"):
             raise InvalidTransition("显式重连模式缺少重连请求")
         target = RULES.get((self.state, event.kind))
+        if self.state == State.FAILURE_HANDLING and event.kind == "reconnect_requested":
+            target = State.RECONNECTING
         if target is None:
             raise InvalidTransition(f"{self.state.value}: {event.kind}")
         if event.kind in {"baseline_confirmed", "connection_restored"}:
@@ -73,6 +77,13 @@ class EFSM:
                                  "monotonic_s": event.monotonic_s})
         self.state = target
         return True
+
+    def prepare_retry(self, reason):
+        if self.state != State.RECONNECTING or self.context.reconnect_mode != "explicit":
+            raise InvalidTransition("仅显式重连等待超时后允许失败恢复")
+        self.transitions.append({"from": self.state.value, "to": State.FAILURE_HANDLING.value,
+                                 "reason": reason, "attempt_id": self.context.attempt_id})
+        self.state = State.FAILURE_HANDLING
 
     def fail(self, reason: str):
         self.transitions.append({"from": self.state.value, "to": State.FAILED.value,

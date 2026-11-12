@@ -44,7 +44,8 @@ class SnapshotTest(unittest.TestCase):
             lab.threads, lab.processes, lab.namespaces = [], [], []
             lab.loaded = True
             lab.lock = (lab.out / "lock").open("w")
-            with patch("rg_platform.lab.hwsim_phys", side_effect=OSError("enumeration failed")),                  patch("rg_platform.lab.run") as command:
+            with patch("rg_platform.lab.hwsim_phys", side_effect=OSError("enumeration failed")), \
+                    patch("rg_platform.lab.run") as command:
                 result = lab.stop()
             command.assert_not_called()
             self.assertTrue(lab.lock.closed)

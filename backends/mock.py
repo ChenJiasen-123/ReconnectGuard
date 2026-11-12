@@ -3,7 +3,7 @@ from dataclasses import asdict
 from model.contracts import ActionReceipt, Context, Event
 from model.efsm import DISCONNECT_ACTIONS
 
-SCENARIOS = {"normal", "disconnect_timeout", "reconnect_timeout", "noisy_events"}
+SCENARIOS = {"normal", "disconnect_timeout", "reconnect_timeout", "noisy_events", "reconnect_once_timeout"}
 PROFILE = {"wpa_state": "COMPLETED", "key_mgmt": "SAE",
            "pairwise_cipher": "CCMP", "pmf": "2"}
 
@@ -49,7 +49,8 @@ class MockBackend:
                 self.connected = True
                 self.emit("connection_restored", data=PROFILE.copy(),
                           attempt_id=context.attempt_id + 1)
-        elif action == "client_reconnect" and self.scenario != "reconnect_timeout":
+        elif (action == "client_reconnect" and self.scenario != "reconnect_timeout"
+              and not (self.scenario == "reconnect_once_timeout" and context.attempt_id == 2)):
             if self.scenario == "noisy_events":
                 self.emit("connection_restored", data=PROFILE.copy(), attempt_id=1)
                 self.emit("connection_restored", source="ap", data=PROFILE.copy())
