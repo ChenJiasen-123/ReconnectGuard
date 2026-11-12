@@ -40,7 +40,7 @@
 | 是否改变缓存 | 同上 | 已实测 | 第 3.2 节；PMKID 全程不变 |
 | 是否触发额外自动连接 | 同上 | 已实测 | 第 3.2 节；关联帧 4 个 = 两次关联 |
 | 能否保持同一客户端进程 | 同上 | 已实测 | 第 3.2 节；PID 830231 全程不变 |
-| 动作拒绝的回执与事件 | 交接第 58 行 | **未取得** | 第九节 |
+| 动作拒绝的回执与事件 | 交接第 58 行 | 未触发（路径存在） | 第九节；`lab.py` 第 187 行、`platform_executor.py` 第 42—44 行 |
 | 恢复超时的回执与事件 | 同上 | 已实测（hold 模式，平台层回执） | 第 3.3 节；`sta.log` 第 1351 行、`error.json` |
 | 重复调用的回执与事件 | 同上 | 已实测 | 第 3.2 节；两条 `OK` |
 | 区分「命令被接受」与「动作效果已发生」 | 阶段五第 55 行 | 已落地为字段 | 第一、二节；`backends/receipts.py` |
@@ -300,13 +300,16 @@ for name, rows in {event_file: [asdict(e) for e in session.events()],
 
 ## 九、仍未取得的证据
 
-| 项 | 状态 | 需要什么 |
+| 项 | 状态 | 说明 |
 |---|---|---|
-| E2 动作拒绝的真实回执（`action_rejected`） | 未取得 | 需要 AP 侧拒绝场景：对未关联 STA 发 `DEAUTHENTICATE`，让控制面返回非 `OK`。hold 模式的 `wpa_cli` 不产生 `ActionReceipt`，Runner 案例结构也不允许插入该顺序。E1 轮证明的是「命令被接受」，`error.json` 记为 `environment_error`，不是动作拒绝 |
+| E2 动作拒绝的真机回执（`action_rejected`） | 未触发 | 路径存在，不是死代码：`rg_platform/lab.py` 第 187 行在 `allow_rejected=True` 时把非 `OK` 原文原样返回，`backends/platform_executor.py` 第 42—44 行只认 `response == "OK"`，其余记 `action_rejected`。触发条件是控制接口回 `FAIL` 或 `UNKNOWN COMMAND`；本次四类动作在该平台上都没拿到非 `OK`，未触发。E1 轮是「命令被接受」，`error.json` 记为 `environment_error`，不是动作拒绝 |
 | E4 真实重试 | 未取得 | `runner.py` 第 80—81 行拒绝真实后端重试；需要王奥鑫按第五节条件放开后再跑 |
 | 20 秒完整超时窗 | 未取得 | E1 的平台在 AP 消失后 14 秒自行清理，观测窗不足；需要在 AP 仍存活但拒绝关联的条件下重测 |
 | `ap_deauth` / `ap_disassoc` 两路的重复调用 | 未测 | 本次只测了显式重连路径 |
 | Framework 客户端与实体网卡 | 未测 | 结论仅覆盖 stock 客户端与 hwsim |
+
+`lab.py` 第 181—185 行在平台侧记录动作时同样写 `effect_status: "unverified"`，
+与第 1.1 节 Executor 侧一致：这个字段在设计上留了位置，两条写入路径都没有填。
 
 ## 十、验证
 
