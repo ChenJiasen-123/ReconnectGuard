@@ -28,6 +28,28 @@
 不是 `git pull` 得到的。这点影响的是代码版本口径，不影响实验结论：
 `backends/receipts.py` 不参与实验执行，只读取产物。
 
+三轮真机的日志原文、回执 JSON 与帧号摘录见
+[真机证据附录](evidence-jiang-2026-11-12.md)。
+
+## 交付清单对照
+
+| 要求 | 出处 | 状态 | 位置 |
+|---|---|---|---|
+| 恢复失败后再次 RECONNECT：什么时候允许重试 | 交接第 54 行、阶段五第 51 行 | 已给判定条件 | 第五节；`efsm.py` 第 45—48、81—86 行 |
+| 重复调用是否有副作用 | 同上 | 已实测 | 第 3.2 节；`sta.log` 第 1510、1512 行后无关联 |
+| 是否改变缓存 | 同上 | 已实测 | 第 3.2 节；PMKID 全程不变 |
+| 是否触发额外自动连接 | 同上 | 已实测 | 第 3.2 节；关联帧 4 个 = 两次关联 |
+| 能否保持同一客户端进程 | 同上 | 已实测 | 第 3.2 节；PID 830231 全程不变 |
+| 动作拒绝的回执与事件 | 交接第 58 行 | **未取得** | 第九节 |
+| 恢复超时的回执与事件 | 同上 | 已实测（hold 模式，平台层回执） | 第 3.3 节；`sta.log` 第 1351 行、`error.json` |
+| 重复调用的回执与事件 | 同上 | 已实测 | 第 3.2 节；两条 `OK` |
+| 区分「命令被接受」与「动作效果已发生」 | 阶段五第 55 行 | 已落地为字段 | 第一、二节；`backends/receipts.py` |
+| 动作记录含本轮与本次尝试编号 | 阶段五第 55 行 | 已满足 | 第 1.1 节 `actions.jsonl` 的 `run_id` / `attempt_id` |
+| 三种 PoC 复现步骤 | 中期复测第 60 行 | 已给命令 | 第六节 |
+| 三种 PoC 完整演示录屏 | 中期复测第 60 行 | **未交付** | 第七节镜头表，需人工录制 |
+| 真实重试验收 | 中期复测第 61 行 | **未取得** | 第九节，依赖 `runner.py` 第 80—81 行放开 |
+
+
 ## 一、回执契约：`accepted` 与 `effect_status` 是两件事
 
 `ActionReceipt` 定义在 [model/contracts.py](../model/contracts.py) 第 19—33 行：
@@ -97,6 +119,7 @@ python3 -m backends.receipts results/<run_id>
 | `execution_status` / `recovery` | `completed` / `pass` |
 | `security_verdict` | `not_evaluated` |
 | `client_process_unchanged` | `pass` |
+| `checks` | `state_consistency`、`authorization_timing` 均为 `not_evaluated`（本轮未传 `--evaluator`） |
 | `reconnect_request_to_restored` | 11.524 ms（`raw:19` → `raw:28`） |
 | `disconnect_observed_to_restored` | 17.735 ms（`raw:17` → `raw:28`） |
 | `auth_path`（Runner） | `unknown` |
@@ -154,7 +177,8 @@ hold 模式（`scripts/start.sh --client stock --probe connect --hold`）下人�
 该轮 `error.json` 记录 `{"classification": "environment_error", "error": "WPA3 connection timeout"}`：
 平台把这次失败归为环境错误，而不是动作拒绝。
 
-观测窗为 14 秒而不是 20 秒：AP 进程消失后平台在 14 秒内自行清理并删除命名空间。
+观测窗为 14 秒而不是 20 秒：AP 进程消失后平台在 14 秒内清理并删除了命名空间。
+平台为什么在 14 秒时清理，本次未查，这里只记录时点。
 这一轮证明的是「命令被接受、效果没有发生」，不是「Runner 完整跑了 20 秒超时」。
 
 ## 四、重复 RECONNECT 的语义
