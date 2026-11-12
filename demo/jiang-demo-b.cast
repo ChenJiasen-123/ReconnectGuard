@@ -1,0 +1,11 @@
+{"version": 2, "width": 118, "height": 40, "timestamp": 1794511197, "idle_time_limit": 3.0, "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}, "title": "ReconnectGuard 中期演示 B 真机案例"}
+[0.002028, "o", "\u001b[2J\u001b[HReconnectGuard 中期演示（第二段）：真机案例\r\n"]
+[0.003161, "o", "设备 kali   2026-11-12T13:19:57-06:00\r\n注：本录制已在 root 会话中，命令省略 sudo；文档命令为 sudo python3 runner.py ...\r\n----------------------------------------------------------------------\r\n"]
+[2.004586, "o", "$ python3 runner.py --case ap_deauth --backend real --client stock --evaluator observer.oracle:Oracle\r\n----------------------------------------------------------------------\r\n"]
+[12.744743, "o", "exit=0\r\n"]
+[13.747097, "o", "[结果摘要]\r\n"]
+[13.767414, "o", "  run_id                 20261112-132000-e446c2\r\n  backend                real\r\n  simulated              False\r\n  execution_status       completed\r\n  recovery               pass\r\n  client_process_unchanged pass\r\n  security_verdict       not_evaluated\r\n  collection_status      no_error_observed\r\n  checks\r\n    state_consistency    pass\r\n    authorization_timing insufficient_evidence\r\n  timings_ms\r\n    disconnect_request_to_restored         3926.191\r\n    disconnect_observed_to_restored        3888.079\r\n    reconnect_request_to_restored          None\r\n  covered_transitions ['CONNECTED->DISCONNECTING', 'DISCONNECTED->RECONNECTED', 'DISCONNECTING->DISCONNECTED', 'INIT->CONNECTED']\r\n  output /home/chen/Projects/rg-jiang-20261112/results/20261112-132000-e446c2\r\n"]
+[13.769947, "o", "----------------------------------------------------------------------\r\n"]
+[15.771455, "o", "[收尾] 本轮结束后的平台状态\r\n"]
+[15.784026, "o", "hwsim: 已卸载\r\n"]
+[15.784604, "o", "本段结束 2026-11-12T13:20:13-06:00\r\n"]

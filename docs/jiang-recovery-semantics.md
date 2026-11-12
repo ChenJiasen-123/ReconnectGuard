@@ -46,7 +46,7 @@
 | 区分「命令被接受」与「动作效果已发生」 | 阶段五第 55 行 | 已落地为字段 | 第一、二节；`backends/receipts.py` |
 | 动作记录含本轮与本次尝试编号 | 阶段五第 55 行 | 已满足 | 第 1.1 节 `actions.jsonl` 的 `run_id` / `attempt_id` |
 | 三种 PoC 复现步骤 | 中期复测第 60 行 | 已给命令 | 第六节 |
-| 三种 PoC 完整演示录屏 | 中期复测第 60 行 | **未交付** | 第七节镜头表，需人工录制 |
+| 三种 PoC 完整演示录屏 | 中期复测第 60 行 | 已交付 | `demo/jiang-demo.mp4`（33.5 秒，两段实录），见第七节 |
 | 真实重试验收 | 中期复测第 61 行 | **未取得** | 第九节，依赖 `runner.py` 第 80—81 行放开 |
 
 
@@ -256,22 +256,30 @@ E1 与 E3 的差别只在一个动作：断开后 `pkill -f "hostapd.*<后缀>"`
 hold 模式不写 `actions.jsonl`，因此这两轮的回执是控制接口原文加日志行号；
 Runner 的 `ActionReceipt` 见第 3.1 节。
 
-## 七、演示录屏镜头表
+## 七、演示录像
 
-录制时长约 4—6 分钟，录屏加讲解：
+已录制：[demo/jiang-demo.mp4](../demo/jiang-demo.mp4)，33.5 秒，实验机上的真实会话，
+命令与输出未编辑；分镜讲解词见 [demo/index.html](../demo/index.html)。
 
-| 镜头 | 操作 | 屏幕上应出现 | 讲解一句 |
-|---|---|---|---|
-| 1 | `git log --oneline -3`、`git status` | 当前提交与干净工作区 | 说明演示的是哪个提交 |
-| 2 | `python3 runner.py --backend mock` | `recovery=pass`、两条回执 | 基线正常流程 |
-| 3 | `python3 runner.py --case ap_deauth --backend mock` | 自动恢复 | AP 侧动作路径 |
-| 4 | 恢复超时重试的 mock 命令 | `retries_used=1`，attempt 2 fail、3 pass | 首次失败保留 |
-| 5 | 打开该轮 `actions.jsonl` | `accepted=true`，`effect_status=unverified` | 回执只说命令被接受 |
-| 6 | `python3 -m backends.receipts results/<run_id>` | 回执 `effect=observed` 与事件引用 | 效果来自事件，不来自 `OK` |
-| 7 | 打开 `recovery-attempts.json` | attempt 2 的失败记录 | 失败记录不因成功消失 |
-| 8 | 真机：`sudo python3 runner.py --case ap_deauth --backend real --client stock --evaluator observer.oracle:Oracle` | 检查器判定与 `security_verdict=not_evaluated` | 检查结论与执行状态是两件事 |
+| 时间 | 内容 |
+|---|---|
+| 0:00 | 版本与工作区 |
+| 0:02 | mock 显式断开重连 |
+| 0:04 | mock AP Deauth 自动恢复 |
+| 0:06 | mock 恢复超时后重试（attempt 2 失败、attempt 3 成功） |
+| 0:08 | 回执字段：`accepted=true`、`effect_status=unverified`（mock 与真机各一行） |
+| 0:11 | 从事件补算效果归属 |
+| 0:15 | `recovery-attempts.json`：首次失败保留 |
+| 0:22 | 真机 AP Deauth + 检查器：`recovery=pass`、`state_consistency=pass`、`authorization_timing=insufficient_evidence`、`security_verdict=not_evaluated` |
 
-镜头 8 需要实验机。前七段在任意装了 Python 的机器上可复现。
+录像由两段 asciinema 录制合成：`demo/jiang-demo-a.cast`（mock 与回执）、
+`demo/jiang-demo-b.cast`（真机案例）。合成脚本是本次本机工作脚本，未入库。
+第二段命令省略 `sudo`：录制会话本身已是 root。真机命令若在 root 会话里再套一层
+`sudo`，lab 采集框架补丁时 git 会因框架仓库属主检查失败（exit 129），
+该条件下本轮以 `environment_error` 结束；触发条件本次未查清，规避方式是直接以 root 运行。
+
+需要重录时在实验机上用 `asciinema rec -c "<演示脚本>"` 分两段录制，
+再把两段 cast 合并渲染；两段录制都能用 `asciinema play` 独立回放。
 
 ## 八、给王奥鑫的集成点
 

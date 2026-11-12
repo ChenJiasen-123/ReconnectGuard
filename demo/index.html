@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>ReconnectGuard 中期演示（江天豪）</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0f1216; color: #cfd8e3;
+         font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif; }
+  header { padding: 22px 28px 6px; }
+  h1 { font-size: 18px; font-weight: 600; margin: 0 0 8px; }
+  p.meta { margin: 0; font-size: 13px; color: #8b97a6; line-height: 1.7; }
+  main { padding: 12px 28px 36px; max-width: 1180px; }
+  video { width: 100%; border-radius: 8px; background: #000; display: block; }
+  h2 { font-size: 14px; font-weight: 600; margin: 26px 0 8px; color: #cfd8e3; }
+  table { border-collapse: collapse; font-size: 13px; width: 100%; }
+  th, td { text-align: left; padding: 6px 10px; border-bottom: 1px solid #1e242c; vertical-align: top; }
+  th { color: #8b97a6; font-weight: 500; }
+  td.t { color: #7fd1ff; font-family: Consolas, monospace; white-space: nowrap; width: 64px; }
+  code { font-family: Consolas, monospace; background: #171c22; padding: 1px 5px;
+         border-radius: 4px; color: #cfd8e3; }
+  a { color: #7fd1ff; }
+  ul { margin: 6px 0 0; padding-left: 20px; font-size: 13px; line-height: 1.9; color: #9aa6b4; }
+  p.note { font-size: 13px; color: #9aa6b4; line-height: 1.9; margin: 8px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>ReconnectGuard 中期演示：动作回执与恢复语义</h1>
+  <p class="meta">江天豪　2026-11-12　Kali + hwsim 实验机实录　33.5 秒　无声，讲解词见下表</p>
+</header>
+<main>
+  <video src="jiang-demo.mp4" controls preload="metadata"></video>
+
+  <h2>分镜与讲解词</h2>
+  <table>
+    <tr><th>时间</th><th>画面</th><th>讲什么</th></tr>
+    <tr><td class="t">0:00</td><td><code>[1]</code> 版本与工作区</td><td>先对齐版本：演示跑的是哪个提交。</td></tr>
+    <tr><td class="t">0:02</td><td><code>[2]</code> mock 显式断开重连</td><td>正常流程：断开、重连、两条回执都是 <code>accepted=true</code>。</td></tr>
+    <tr><td class="t">0:04</td><td><code>[3]</code> mock AP Deauth</td><td>AP 侧断开的自动恢复，同样走完流程。</td></tr>
+    <tr><td class="t">0:06</td><td><code>[4]</code> 恢复超时后重试</td><td>第一次超时记为 attempt 2 失败，第二次 attempt 3 成功，<code>retries_used=1</code>。</td></tr>
+    <tr><td class="t">0:08</td><td><code>[5]</code> 回执字段</td><td>关键一行：<code>accepted</code> 有值，<code>effect_status</code> 恒为 <code>unverified</code>——真机那轮也一样。</td></tr>
+    <tr><td class="t">0:11</td><td><code>[6]</code> 补算效果归属</td><td>从事件补算：断开对应 <code>sta_disconnected</code>，重连对应 <code>connection_restored</code>，附事件编号。</td></tr>
+    <tr><td class="t">0:15</td><td><code>[7]</code> 尝试历史</td><td>最终成功没有覆盖首次失败，<code>recovery-attempts.json</code> 里仍在。</td></tr>
+    <tr><td class="t">0:18</td><td><code>[8]</code>–<code>[9]</code> 段间说明与收尾</td><td>真机段单独录制，原因见下方注记；收尾时命名空间已清理、hwsim 已卸载。</td></tr>
+    <tr><td class="t">0:22</td><td>第二段：真机 AP Deauth + 检查器</td><td><code>recovery=pass</code>、<code>state_consistency=pass</code>、<code>authorization_timing</code> 证据不足、<code>security_verdict=not_evaluated</code>。恢复成功不等于安全通过。</td></tr>
+  </table>
+
+  <h2>录制说明</h2>
+  <ul>
+    <li>录像分两段：<a href="jiang-demo-a.cast">jiang-demo-a.cast</a>（mock 与回执，25 秒）与 <a href="jiang-demo-b.cast">jiang-demo-b.cast</a>（真机案例），由 <code>work/render_cast.py</code> 合成 <code>jiang-demo.mp4</code>。</li>
+    <li>两段都是实验机上的真实会话，命令与输出未编辑；时间戳、<code>run_id</code>、事件编号都能在服务器 <code>results/</code> 下对应到原始产物。</li>
+    <li>第二段命令省略 <code>sudo</code>：录制会话本身已是 root。真机命令若在 root 会话里再套一层 <code>sudo</code>，lab 采集框架补丁时 git 会因框架仓库属主检查失败（exit 129），该条件下本轮会以 <code>environment_error</code> 结束。触发条件本次未查清，规避方式是直接以 root 运行。</li>
+    <li><code>asciinema play jiang-demo-a.cast</code> 可回放原始录制。</li>
+  </ul>
+
+  <p class="note">语义与证据说明见 <a href="../docs/jiang-recovery-semantics.md">恢复动作语义与动作回执</a>，日志原文见 <a href="../docs/evidence-jiang-2026-11-12.md">真机证据附录</a>。</p>
+</main>
+</body>
+</html>
