@@ -296,7 +296,7 @@ class Lab:
         self.stop_event.set()
         errors = []
         for t in self.threads:
-            t.join(timeout=1)
+            t.join(timeout=5)
             if t.is_alive():
                 errors.append("event listener did not stop")
         import signal

@@ -53,3 +53,25 @@ class SnapshotTest(unittest.TestCase):
             self.assertIn("hwsim cleanup: enumeration failed", result["errors"])
             self.assertEqual(json.loads((lab.out / "cleanup.json").read_text()), result)
             self.assertEqual(lab.stop(), result)
+
+    def test_cleanup_waits_for_listener_finishing_pending_write(self):
+        import threading
+        import time
+        with tempfile.TemporaryDirectory() as tmp:
+            lab = Lab.__new__(Lab)
+            lab.out = Path(tmp)
+            lab.runtime = lab.out / 'runtime'
+            lab.runtime.mkdir()
+            lab.run_id, lab.meta, lab._cleanup = 'listener-close-test', {}, None
+            lab.stop_event = threading.Event()
+            lab.processes, lab.namespaces = [], []
+            lab.loaded, lab.lock = False, None
+            def finishing_write():
+                lab.stop_event.wait()
+                time.sleep(1.1)
+            listener = threading.Thread(target=finishing_write)
+            lab.threads = [listener]
+            listener.start()
+            result = lab.stop()
+            self.assertFalse(listener.is_alive())
+            self.assertEqual(result['errors'], [])

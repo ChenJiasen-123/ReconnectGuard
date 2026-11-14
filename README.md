@@ -162,3 +162,20 @@ sudo python3 comparison.py --backend real --radio physical \
 结束后恢复接口管理状态及软件禁用状态。默认配置为 2.4 GHz / 20 MHz、
 WPA3-SAE、CCMP、PMF Required、请求 802.11ax；是否实际协商 Wi-Fi 6 需看 STATUS。
 不能将创建的虚拟接口误当第三块独立物理抓包设备。
+
+实体案例支持 `--analyze`：每轮清理后从抓包和日志生成
+`authentication-analysis.json`，回填结果与对照表中的派生认证路径。
+原始事件、快照和 Context 不改写。需安装 Scapy；分析异常会使该轮执行失败，
+已观测的恢复事实仍保留。
+
+```sh
+sudo python3 comparison.py --backend real --radio physical \
+  --ap-iface wlan1 --sta-iface wlan2 --repeat 10 \
+  --evaluator observer.oracle:Oracle --analyze
+# 对已有批次追加独立分析报告，不改写旧 result.json / summary.json：
+sudo python3 -m observer.postprocess results/comparison-实际编号
+```
+
+分析只接受本轮目标 MAC 对及已接受的恢复时间窗口，保留输入哈希、帧号、
+日志行号。缓存复用需关联 PMKID 与本次缓存命中/匹配日志一致，并捕获一致的
+四次握手；证据不足保留 unknown。授权时序仍需独立的密钥安装和授权证据。

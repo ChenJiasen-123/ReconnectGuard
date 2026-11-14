@@ -107,7 +107,7 @@ def _continuity(snapshots):
 
 
 def run_case(case, output_root=ROOT / "results", scenario="normal", *,
-             backend=None, client="stock", session_factory=None, evaluator=None, evaluator_spec=None, radio="hwsim", ap_iface=None, sta_iface=None):
+             backend=None, client="stock", session_factory=None, evaluator=None, evaluator_spec=None, radio="hwsim", ap_iface=None, sta_iface=None, analyze=False):
     chosen = backend or case["backend"]
     if chosen not in {"mock", "real"}:
         raise ValueError("未知 backend")
@@ -115,6 +115,8 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
         raise ValueError("--scenario 仅用于 mock；真实失败需单独注入")
     if radio not in {"hwsim", "physical"} or (radio == "physical" and chosen != "real"):
         raise ValueError("physical radio 必须使用 real 后端")
+    if analyze and chosen != "real":
+        raise ValueError("帧级事后分析仅用于 real 后端")
     retry_budget = validate_retry_policy(case, chosen)
     if evaluator is not None and evaluator_spec:
         raise ValueError("evaluator 与 evaluator_spec 不能同时指定")
@@ -307,6 +309,20 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
             (out / name).write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
     except OSError as exc:
         raise BackendError("artifact_write_error", str(exc)) from exc
+    if analyze:
+        try:
+            from observer.postprocess import analyze_run
+            report = analyze_run(out)
+            result.update(analysis_status="completed", auth_path=report["auth_path"]["value"],
+                          auth_path_evidence={"report":"authentication-analysis.json",
+                                              "frames":report["auth_path"]["frame_refs"],
+                                              "logs":report["auth_path"]["log_refs"]})
+        except Exception as exc:
+            result.update(analysis_status="failed", execution_status="failed")
+            result["diagnostics"].append({"category":"analysis_error", "error":str(exc)})
+            if result["error_category"] is None:
+                result.update(error_category="analysis_error", error=str(exc))
+        _save(out / "result.json", result)
     return result, out
 
 
@@ -323,6 +339,7 @@ def main():
     parser.add_argument("--radio", choices=["hwsim", "physical"], default="hwsim")
     parser.add_argument("--ap-iface")
     parser.add_argument("--sta-iface")
+    parser.add_argument("--analyze", action="store_true", help="清理后分析抓包和认证路径，需 Scapy")
     args = parser.parse_args()
     if args.repeat < 1:
         parser.error("--repeat 必须为正整数")
@@ -335,7 +352,7 @@ def main():
     rows = []
     for _ in range(args.repeat):
         try:
-            result, out = run_case(case, args.output, args.scenario, backend=args.backend, client=args.client, evaluator_spec=args.evaluator, radio=args.radio, ap_iface=args.ap_iface, sta_iface=args.sta_iface)
+            result, out = run_case(case, args.output, args.scenario, backend=args.backend, client=args.client, evaluator_spec=args.evaluator, radio=args.radio, ap_iface=args.ap_iface, sta_iface=args.sta_iface, analyze=args.analyze)
         except (BackendError, OSError, ValueError) as exc:
             print(json.dumps({"error_category": getattr(exc, "category", "environment_error"),
                               "error": str(exc)}, ensure_ascii=False))

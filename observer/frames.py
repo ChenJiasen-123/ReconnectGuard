@@ -177,6 +177,9 @@ def read_pcap_frames(path: Path) -> list[dict]:
                 payload = bytes(packet[EAPOL].payload)
                 if len(payload) >= 3 and payload[0] == 2:  # RSN Key descriptor
                     row["eapol_key_info"] = int.from_bytes(payload[1:3], "big")
+                    if len(payload) >= 45:
+                        row["replay_counter"] = int.from_bytes(payload[5:13], "big")
+                        row["nonce"] = payload[13:45].hex()
             rows.append(row)
     return rows
 

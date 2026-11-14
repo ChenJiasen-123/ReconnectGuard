@@ -24,6 +24,7 @@ def summarize(rows, case_ids):
                   for r in results if r["recovery"] == "pass"]
         values = [v for v in values if v is not None]
         covered = {t for r in results for t in r["model_coverage"]["covered"]}
+        paths = Counter(r.get("auth_path", "unknown") for r in results)
         groups.append({"case_id": case_id, "executed": len(entries),
                        "completed": sum(r["execution_status"] == "completed" for r in results),
                        "recovered": sum(r["recovery"] == "pass" for r in results),
@@ -31,21 +32,23 @@ def summarize(rows, case_ids):
                        "observed_recovery_median_ms": statistics.median(values) if values else None,
                        "errors": dict(Counter(r.get("error_category") or r.get("result", {}).get("error_category")
                                               for r in entries if r.get("error_category") or r.get("result", {}).get("error_category"))),
-                       "covered": sorted(covered), "auth_path": "unknown",
-                       "auth_path_counts": dict(Counter(r.get("auth_path", "unknown") for r in results)),
+                       "covered": sorted(covered), "auth_path": next(iter(paths)) if len(paths) == 1 else ("mixed" if paths else "unknown"),
+                       "auth_path_counts": dict(paths),
                        "check_counts": {name: dict(Counter(next((c["status"] for c in r.get("checks", [])
                                             if c["name"] == name), "not_evaluated") for r in results))
                                         for name in ("state_consistency", "authorization_timing")}})
     return groups
 
 
-def run_comparison(cases_path, output_root, repeat=10, backend="mock", client="stock", *, run=run_case, evaluator_spec=None, radio="hwsim", ap_iface=None, sta_iface=None):
+def run_comparison(cases_path, output_root, repeat=10, backend="mock", client="stock", *, run=run_case, evaluator_spec=None, radio="hwsim", ap_iface=None, sta_iface=None, analyze=False):
     if repeat < 1 or backend not in {"mock", "real"}:
         raise ValueError("repeat 必须为正数，backend 必须为 mock/real")
     if radio not in {"physical", "hwsim"}:
         raise ValueError("未知 radio")
     if radio == "physical" and backend != "real":
         raise ValueError("physical radio 必须使用 real 后端")
+    if analyze and backend != "real":
+        raise ValueError("帧级事后分析仅用于 real 后端")
     cases = [load_case(cases_path, name) for name in CASE_IDS]
     for case in cases:
         validate_retry_policy(case, backend)
@@ -60,7 +63,7 @@ def run_comparison(cases_path, output_root, repeat=10, backend="mock", client="s
     plan = [{"round": n + 1, "case_id": cases[(n + offset) % len(cases)]["id"]}
             for n in range(repeat) for offset in range(len(cases))]
     config = {"schema_version": 1, "backend": backend, "client": client,
-              "simulated": backend == "mock", "evaluator": evaluator_spec, "radio":radio, "ap_iface":ap_iface, "sta_iface":sta_iface, "repeats_per_case": repeat,
+              "simulated": backend == "mock", "evaluator": evaluator_spec, "analyze":analyze, "radio":radio, "ap_iface":ap_iface, "sta_iface":sta_iface, "repeats_per_case": repeat,
               "cases": cases, "schedule": plan,
               "case_file_sha256": hashlib.sha256(Path(cases_path).read_bytes()).hexdigest(),
               "interpretation": "descriptive_comparison_modes_differ"}
@@ -90,6 +93,8 @@ def run_comparison(cases_path, output_root, repeat=10, backend="mock", client="s
     for item in plan:
         try:
             options = {"evaluator_spec": evaluator_spec} if evaluator_spec else {}
+            if analyze:
+                options["analyze"] = True
             if radio == "physical":
                 options.update(radio=radio, ap_iface=ap_iface, sta_iface=sta_iface)
             result, run_out = run(by_id[item["case_id"]], out, backend=backend, client=client, **options)
@@ -120,9 +125,10 @@ def main():
     parser.add_argument("--radio", choices=["hwsim", "physical"], default="hwsim")
     parser.add_argument("--ap-iface")
     parser.add_argument("--sta-iface")
+    parser.add_argument("--analyze", action="store_true", help="每轮清理后分析认证路径，需 Scapy")
     args = parser.parse_args()
     try:
-        report, out = run_comparison(args.cases, args.output, args.repeat, args.backend, args.client, evaluator_spec=args.evaluator, radio=args.radio, ap_iface=args.ap_iface, sta_iface=args.sta_iface)
+        report, out = run_comparison(args.cases, args.output, args.repeat, args.backend, args.client, evaluator_spec=args.evaluator, radio=args.radio, ap_iface=args.ap_iface, sta_iface=args.sta_iface, analyze=args.analyze)
     except (ValueError, OSError, KeyError, TypeError) as exc:
         parser.error(str(exc))
     print(json.dumps({"output": str(out.resolve()), "executed": report["executed"],
