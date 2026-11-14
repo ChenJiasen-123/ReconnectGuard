@@ -178,7 +178,7 @@ class Lab:
     def command(self, target, command, semantic, allow_rejected=False):
         if target not in {"ap", "sta"}:
             raise ValueError("target must be ap or sta")
-        fw = target == "ap" or self.mode == "framework"
+        fw = getattr(self, "framework_ap", True) if target == "ap" else self.mode == "framework"
         endpoint = self.ap_ctrl if target == "ap" else self.sta_ctrl
         start = time.monotonic()
         with Control(endpoint, framework=fw) as ctrl:
@@ -316,6 +316,11 @@ class Lab:
                 run("ip", "netns", "del", ns)
             except Exception as exc:
                 errors.append(str(exc))
+        if hasattr(self, "restore_radios"):
+            try:
+                errors.extend(self.restore_radios())
+            except Exception as exc:
+                errors.append("radio restore: " + str(exc))
         if self.loaded:
             # 只在 hwsim 仍完全属于本次创建的集合时卸载。
             try:

@@ -145,3 +145,20 @@ sudo python3 comparison.py --backend real --client stock --repeat 10
 实际检查器已交付，加载名 `observer.oracle:Oracle`（例如 `python3 runner.py --case ap_deauth --evaluator observer.oracle:Oracle`）。判定规则与证据引用格式见 [检查器交付](docs/wang-oracle-delivery.md)，Kali 真实验证与真实帧号见 [验证补充](docs/wang-kali-validation-20261110.md)，逐条交接状态与待集成项见 [交接核对清单](docs/wang-handoff-checklist.md)。真实运行中 `authorization_timing` 仍为 `insufficient_evidence`，不代表安全检查通过。
 
 动作回执只说命令被平台接受，`actions.jsonl` 的 `effect_status` 原本恒为 `unverified`。`backends/receipts.py` 从事件补算效果归属（`observed` / `not_observed` / `unverified`），可对已有结果目录事后运行：`python3 -m backends.receipts results/<run_id>`。重复 `RECONNECT` 在 Runner 路径被状态机拒绝且不消耗 `attempt_id`；hwsim 实测重复调用返回 `OK` 但不产生新关联、不改 PMKSA、不换客户端进程，AP 停止后 `RECONNECT` 同样返回 `OK` 而始终未恢复。动作拒绝回执与真实重试仍未取得。详见 [恢复动作语义与动作回执](docs/jiang-recovery-semantics.md)，日志原文与帧号摘录见 [真机证据附录](docs/evidence-jiang-2026-11-12.md)。
+
+## 实体 USB 网卡实验
+
+新增入口支持明确指定的两块闲置 MT7921U 网卡（例如 Raspberry Pi 5 上的
+FU-AX1801D）。需 Linux、root、NetworkManager、iw、rfkill、iproute2、ping、
+系统 hostapd / wpa_supplicant 和 tcpdump。主机应通过独立网口管理。
+该入口使用发行版 hostapd，实验条件不同于 Framework AP 的 hwsim 批次。
+
+```sh
+sudo python3 comparison.py --backend real --radio physical \
+  --ap-iface wlan1 --sta-iface wlan2 --repeat 1 --evaluator observer.oracle:Oracle
+```
+
+接口必须无 IP 且处于 DOWN；仅接受 mt7921u 驱动。程序在独立命名空间中运行，
+结束后恢复接口管理状态及软件禁用状态。默认配置为 2.4 GHz / 20 MHz、
+WPA3-SAE、CCMP、PMF Required、请求 802.11ax；是否实际协商 Wi-Fi 6 需看 STATUS。
+不能将创建的虚拟接口误当第三块独立物理抓包设备。

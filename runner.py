@@ -107,12 +107,14 @@ def _continuity(snapshots):
 
 
 def run_case(case, output_root=ROOT / "results", scenario="normal", *,
-             backend=None, client="stock", session_factory=None, evaluator=None, evaluator_spec=None):
+             backend=None, client="stock", session_factory=None, evaluator=None, evaluator_spec=None, radio="hwsim", ap_iface=None, sta_iface=None):
     chosen = backend or case["backend"]
     if chosen not in {"mock", "real"}:
         raise ValueError("未知 backend")
     if chosen == "real" and scenario != "normal":
         raise ValueError("--scenario 仅用于 mock；真实失败需单独注入")
+    if radio not in {"hwsim", "physical"} or (radio == "physical" and chosen != "real"):
+        raise ValueError("physical radio 必须使用 real 后端")
     retry_budget = validate_retry_policy(case, chosen)
     if evaluator is not None and evaluator_spec:
         raise ValueError("evaluator 与 evaluator_spec 不能同时指定")
@@ -121,7 +123,7 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
     if session_factory is not None:
         session = session_factory(output_root, scenario, client)
     else:
-        session = MockSession(output_root, scenario) if chosen == "mock" else RealSession(output_root, client)
+        session = MockSession(output_root, scenario) if chosen == "mock" else RealSession(output_root, client, **({"radio":radio,"ap_iface":ap_iface,"sta_iface":sta_iface} if radio == "physical" else {}))
     context, out = session.context, session.out
     context.reconnect_mode = case["reconnect_mode"]
     observer, executor = session.observer, session.executor
@@ -318,6 +320,9 @@ def main():
     parser.add_argument("--repeat", type=int, default=1)
     parser.add_argument("--output", type=Path, default=ROOT / "results")
     parser.add_argument("--evaluator", help="本地检查器工厂 module:factory；每轮新建实例")
+    parser.add_argument("--radio", choices=["hwsim", "physical"], default="hwsim")
+    parser.add_argument("--ap-iface")
+    parser.add_argument("--sta-iface")
     args = parser.parse_args()
     if args.repeat < 1:
         parser.error("--repeat 必须为正整数")
@@ -330,7 +335,7 @@ def main():
     rows = []
     for _ in range(args.repeat):
         try:
-            result, out = run_case(case, args.output, args.scenario, backend=args.backend, client=args.client, evaluator_spec=args.evaluator)
+            result, out = run_case(case, args.output, args.scenario, backend=args.backend, client=args.client, evaluator_spec=args.evaluator, radio=args.radio, ap_iface=args.ap_iface, sta_iface=args.sta_iface)
         except (BackendError, OSError, ValueError) as exc:
             print(json.dumps({"error_category": getattr(exc, "category", "environment_error"),
                               "error": str(exc)}, ensure_ascii=False))

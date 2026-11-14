@@ -39,9 +39,13 @@ def summarize(rows, case_ids):
     return groups
 
 
-def run_comparison(cases_path, output_root, repeat=10, backend="mock", client="stock", *, run=run_case, evaluator_spec=None):
+def run_comparison(cases_path, output_root, repeat=10, backend="mock", client="stock", *, run=run_case, evaluator_spec=None, radio="hwsim", ap_iface=None, sta_iface=None):
     if repeat < 1 or backend not in {"mock", "real"}:
         raise ValueError("repeat 必须为正数，backend 必须为 mock/real")
+    if radio not in {"physical", "hwsim"}:
+        raise ValueError("未知 radio")
+    if radio == "physical" and backend != "real":
+        raise ValueError("physical radio 必须使用 real 后端")
     cases = [load_case(cases_path, name) for name in CASE_IDS]
     for case in cases:
         validate_retry_policy(case, backend)
@@ -56,7 +60,7 @@ def run_comparison(cases_path, output_root, repeat=10, backend="mock", client="s
     plan = [{"round": n + 1, "case_id": cases[(n + offset) % len(cases)]["id"]}
             for n in range(repeat) for offset in range(len(cases))]
     config = {"schema_version": 1, "backend": backend, "client": client,
-              "simulated": backend == "mock", "evaluator": evaluator_spec, "repeats_per_case": repeat,
+              "simulated": backend == "mock", "evaluator": evaluator_spec, "radio":radio, "ap_iface":ap_iface, "sta_iface":sta_iface, "repeats_per_case": repeat,
               "cases": cases, "schedule": plan,
               "case_file_sha256": hashlib.sha256(Path(cases_path).read_bytes()).hexdigest(),
               "interpretation": "descriptive_comparison_modes_differ"}
@@ -86,6 +90,8 @@ def run_comparison(cases_path, output_root, repeat=10, backend="mock", client="s
     for item in plan:
         try:
             options = {"evaluator_spec": evaluator_spec} if evaluator_spec else {}
+            if radio == "physical":
+                options.update(radio=radio, ap_iface=ap_iface, sta_iface=sta_iface)
             result, run_out = run(by_id[item["case_id"]], out, backend=backend, client=client, **options)
             rows.append({**item, "result": result, "output": str(Path(run_out).resolve())})
             if result["cleanup_status"] == "failed" or result["error_category"] == "cancelled":
@@ -111,9 +117,12 @@ def main():
     parser.add_argument("--backend", choices=["mock", "real"], default="mock")
     parser.add_argument("--client", choices=["stock", "framework"], default="stock")
     parser.add_argument("--evaluator", help="本地检查器工厂 module:factory")
+    parser.add_argument("--radio", choices=["hwsim", "physical"], default="hwsim")
+    parser.add_argument("--ap-iface")
+    parser.add_argument("--sta-iface")
     args = parser.parse_args()
     try:
-        report, out = run_comparison(args.cases, args.output, args.repeat, args.backend, args.client, evaluator_spec=args.evaluator)
+        report, out = run_comparison(args.cases, args.output, args.repeat, args.backend, args.client, evaluator_spec=args.evaluator, radio=args.radio, ap_iface=args.ap_iface, sta_iface=args.sta_iface)
     except (ValueError, OSError, KeyError, TypeError) as exc:
         parser.error(str(exc))
     print(json.dumps({"output": str(out.resolve()), "executed": report["executed"],

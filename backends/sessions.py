@@ -35,14 +35,20 @@ class MockSession:
 class RealSession:
     simulated = False
 
-    def __init__(self, output_root, client="stock", lab_factory=None):
+    def __init__(self, output_root, client="stock", lab_factory=None, *, radio="hwsim", ap_iface=None, sta_iface=None):
         if lab_factory is None:
             import os
             import sys
             if sys.platform != "linux" or os.geteuid() != 0:
                 raise BackendError("environment_error", "真实模式需要在 Linux 中使用 sudo")
             from rg_platform.lab import Lab
-            lab_factory = Lab
+            if radio == "physical":
+                from rg_platform.physical import PhysicalLab
+                lab_factory = lambda mode, **kw: PhysicalLab(mode, ap_iface=ap_iface, sta_iface=sta_iface, **kw)
+            elif radio != "hwsim":
+                raise ValueError("未知 radio")
+            else:
+                lab_factory = Lab
         from .platform_observer import PlatformObserver
         from .platform_executor import PlatformExecutor
         self.lab = lab_factory(client, output_root=output_root)
