@@ -13,6 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from .control import Control
 from .journal import EventJournal
+from .epochs import ConnectionEpochs
 from .evidence import archive_configs
 from model.contracts import BackendError
 
@@ -133,6 +134,10 @@ class Lab:
             thread = threading.Thread(target=self.listen, args=(role, listener), daemon=True)
             thread.start()
             self.threads.append(thread)
+        # Addresses exist only in this Lab's private network namespaces.
+        for ns, iface, address in zip(self.namespaces, (self.ap_if, self.sta_if),
+                                     ("10.203.0.1/24", "10.203.0.2/24")):
+            run("ip", "-n", ns, "addr", "add", address, "dev", iface)
         # 网络配置初始 disabled，确保监听开始后才放行第一次连接。
         self.command("sta", "ENABLE_NETWORK 0", "initial_connect")
         self.meta.update({"python_version": sys.version.split()[0],
@@ -190,12 +195,15 @@ class Lab:
 
     def listen(self, role, ctrl):
         import socket
+        epochs = ConnectionEpochs()
         try:
             with open(self.out / (role + "-events.jsonl"), "a") as log:
                 while not self.stop_event.is_set():
                     try:
                         event = ctrl.sock.recv(65535).decode(errors="replace")
-                        record = self.record_event(role, event)
+                        # Classify before record_event can block on the journal lock.
+                        attempt = epochs.observe(event) if role == "sta" else None
+                        record = self.record_event(role, event, attempt)
                         log.write(json.dumps(record.to_dict()) + "\n")
                         log.flush()
                     except socket.timeout:
@@ -223,6 +231,35 @@ class Lab:
 
     def status(self):
         return fields(self.command("sta", "STATUS", "read_status"))
+
+    def probe_data_plane(self):
+        """Challenge/response through the owned STA/AP link, never an external host."""
+        began = time.monotonic_ns()
+        nonce = os.urandom(16).hex()
+        before = self.status()
+        address = before.get("address", "")
+        import re
+        if not re.fullmatch(r"[0-9a-fA-F]{2}(?::[0-9a-fA-F]{2}){5}", address):
+            raise BackendError("collection_error", "data probe: missing STA address")
+        ap_before = self.command("ap", "STA " + address, "probe_ap_before", allow_rejected=True)
+        argv = ["ip", "netns", "exec", self.namespaces[1], "ping", "-n", "-c", "1",
+                "-W", "1", "-I", self.sta_if, "-p", nonce, "10.203.0.1"]
+        try:
+            reply = subprocess.run(argv, capture_output=True, text=True, timeout=3)
+        except (OSError, subprocess.TimeoutExpired) as exc:
+            raise BackendError("collection_error", "data probe unavailable: " + str(exc)) from exc
+        after = self.status()
+        ap_after = self.command("ap", "STA " + address, "probe_ap_after", allow_rejected=True)
+        connected = all(x.get("wpa_state") == "COMPLETED" for x in (before, after))
+        authorized = all("[AUTHORIZED]" in x for x in (ap_before, ap_after))
+        result = {"status": "pass" if reply.returncode == 0 and connected and authorized else "fail",
+                  "simulated": False, "method": "private_namespace_icmp_challenge",
+                  "started_ns": began, "finished_ns": time.monotonic_ns(),
+                  "challenge": nonce, "argv": argv, "returncode": reply.returncode,
+                  "stdout": reply.stdout, "stderr": reply.stderr,
+                  "sta_before": before, "sta_after": after,
+                  "ap_before": ap_before, "ap_after": ap_after}
+        return result
 
     def wait_connected(self, timeout=20):
         deadline = time.monotonic() + timeout

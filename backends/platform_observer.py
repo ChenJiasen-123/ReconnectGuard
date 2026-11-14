@@ -121,7 +121,9 @@ class PlatformObserver:
             return None, "before_cursor"
         if record.run_id != context.run_id:
             return None, "wrong_run"
-        if record.attempt_id is not None and record.attempt_id != context.attempt_id:
+        if record.attempt_id is None:
+            return None, "unattributed_attempt"
+        if record.attempt_id != context.attempt_id:
             return None, "wrong_attempt"
         if record.source != "sta":
             return None, "wrong_source"

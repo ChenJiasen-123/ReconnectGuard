@@ -65,6 +65,13 @@ class RealSession:
         self.requests.append(event)
         return event
 
+    def verify_data_plane(self, checkpoint):
+        if not hasattr(self.lab, "probe_data_plane"):
+            return {"status": "not_evaluated", "reason": "probe_unavailable"}
+        result = self.lab.probe_data_plane()
+        self.lab.save(checkpoint + "-data-plane.json", result)
+        return dict(result, evidence_ref=checkpoint + "-data-plane.json")
+
     def close(self):
         try:
             self.observer.close()

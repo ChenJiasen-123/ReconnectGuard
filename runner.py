@@ -133,6 +133,7 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
     last_event_seq = 0
     cleanup = {"errors": []}
     recovery_profile = None
+    data_plane = {"baseline": {"status": "not_evaluated"}, "recovery": {"status": "not_evaluated"}}
     recovery_attempts = []
     retries_used = 0
     def capture(checkpoint):
@@ -162,6 +163,10 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
                 recovery_profile = dict(event.data)
             last_event_seq = event.seq
             capture(step["observe"])
+            if expected == "baseline_confirmed" and hasattr(session, "verify_data_plane"):
+                data_plane["baseline"] = session.verify_data_plane("connected_baseline")
+                if data_plane["baseline"]["status"] == "fail":
+                    raise BackendError("data_plane_baseline_failed", "基线通信探针失败")
         elif "snapshot" in step:
             capture(step["snapshot"])
         else:
@@ -225,6 +230,10 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
                                                   "error": str(exc)})
                     raise
         recovered = machine.state == State.RECONNECTED
+        if hasattr(session, "verify_data_plane"):
+            data_plane["recovery"] = session.verify_data_plane("after_reconnect")
+            if data_plane["recovery"]["status"] == "fail":
+                raise BackendError("data_plane_failed", "连接已恢复，但实际通信探针失败")
     except KeyboardInterrupt:
         error, category = "用户中断本轮实验", "cancelled"
         machine.fail(error)
@@ -267,6 +276,9 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
               "cleanup_status": "failed" if cleanup.get("errors") else "completed",
               "disconnect_observed": any(t.get("to") == "DISCONNECTED" for t in machine.transitions),
               "recovery": "pass" if recovered else ("fail" if step_number == 4 and category == "observation_timeout" else "not_evaluated"),
+              "connection_recovery": "pass" if recovered else "not_evaluated",
+              "data_plane_recovery": data_plane["recovery"]["status"],
+              "data_plane": data_plane,
               "security_profile": "pass" if recovered and profile_matches(recovery_profile or {}) else "not_evaluated",
               "client_process_unchanged": _continuity(snapshots),
               "auth_path": context.auth_path, "authorization_timing": "insufficient_evidence",

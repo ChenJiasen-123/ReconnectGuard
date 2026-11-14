@@ -32,11 +32,15 @@ class LabDouble:
         self.connected = True
         self.dead = False
         self.stops = 0
+        from rg_platform.epochs import ConnectionEpochs
+        self.epochs = ConnectionEpochs()
 
     def save(self, name, value):
         (self.out / name).write_text(json.dumps(value), encoding="utf-8")
 
     def record_event(self, source, raw_event, attempt_id=None):
+        if source == "sta" and attempt_id is None:
+            attempt_id = self.epochs.observe(raw_event)
         record = self.event_journal.append(source, raw_event, attempt_id)
         with (self.out / "events.jsonl").open("a", encoding="utf-8") as stream:
             stream.write(json.dumps(record.to_dict()) + "\n")

@@ -75,22 +75,22 @@ class PlatformObserverTest(unittest.TestCase):
         self.lab.event_journal.append("sta", "CTRL-EVENT-SCAN-STARTED")
         self.lab.event_journal.append("ap", "AP-STA-CONNECTED 02:00:00:00:01:00")
         connected = self.lab.event_journal.append(
-            "sta", "CTRL-EVENT-CONNECTED - Connection completed")
+            "sta", "CTRL-EVENT-CONNECTED - Connection completed", attempt_id=self.context.attempt_id)
         baseline = self.observer.wait_event("baseline_confirmed", 0, .1, self.context)
         self.assertEqual(baseline.seq, connected.seq)
         self.assertEqual(baseline.data["key_mgmt"], "SAE")
-        self.assertEqual(baseline.data["attempt_attribution"], "received_after_cursor")
+        self.assertEqual(baseline.data["attempt_attribution"], "recorder")
 
         cursor = self.observer.mark()
         disconnected = self.lab.event_journal.append(
-            "sta", "CTRL-EVENT-DISCONNECTED reason=3")
+            "sta", "CTRL-EVENT-DISCONNECTED reason=3", attempt_id=self.context.attempt_id)
         event = self.observer.wait_event("sta_disconnected", cursor, .1, self.context)
         self.assertEqual(event.seq, disconnected.seq)
 
         self.context.attempt_id = 2
         cursor = self.observer.mark()
         restored_raw = self.lab.event_journal.append(
-            "sta", "CTRL-EVENT-CONNECTED - Connection completed")
+            "sta", "CTRL-EVENT-CONNECTED - Connection completed", attempt_id=self.context.attempt_id)
         restored = self.observer.wait_event("connection_restored", cursor, .1, self.context)
         self.assertEqual(restored.attempt_id, 2)
         self.assertEqual(restored.seq, restored_raw.seq)
@@ -105,11 +105,11 @@ class PlatformObserverTest(unittest.TestCase):
         with self.assertRaises(TimeoutError):
             self.observer.wait_event("sta_disconnected", 0, .01, self.context)
         self.assertEqual({row["ignored"] for row in self.observer.observations},
-                         {"wrong_source", "unexpected_kind", "wrong_attempt"})
+                         {"unattributed_attempt", "wrong_attempt"})
 
         cursor = self.observer.mark()
-        first = self.lab.event_journal.append("sta", "CTRL-EVENT-DISCONNECTED reason=3")
-        self.lab.event_journal.append("sta", "CTRL-EVENT-DISCONNECTED reason=3")
+        first = self.lab.event_journal.append("sta", "CTRL-EVENT-DISCONNECTED reason=3", attempt_id=self.context.attempt_id)
+        self.lab.event_journal.append("sta", "CTRL-EVENT-DISCONNECTED reason=3", attempt_id=self.context.attempt_id)
         self.assertEqual(self.observer.wait_event(
             "sta_disconnected", cursor, .1, self.context).seq, first.seq)
         with self.assertRaises(TimeoutError):
