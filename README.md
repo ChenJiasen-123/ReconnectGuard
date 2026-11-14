@@ -143,3 +143,5 @@ sudo python3 comparison.py --backend real --client stock --repeat 10
 单案例和对照入口现支持 `--evaluator module:factory`，每轮新建检查器实例。默认仍为未评估，不代表安全检查通过。mock 有界恢复示例、真实依赖及最新验证记录见 [王奥鑫中期代码交接](docs/wang-midterm-code-handoff.md)。
 
 实际检查器已交付，加载名 `observer.oracle:Oracle`（例如 `python3 runner.py --case ap_deauth --evaluator observer.oracle:Oracle`）。判定规则与证据引用格式见 [检查器交付](docs/wang-oracle-delivery.md)，Kali 真实验证与真实帧号见 [验证补充](docs/wang-kali-validation-20261110.md)，逐条交接状态与待集成项见 [交接核对清单](docs/wang-handoff-checklist.md)。真实运行中 `authorization_timing` 仍为 `insufficient_evidence`，不代表安全检查通过。
+
+动作回执只说命令被平台接受，`actions.jsonl` 的 `effect_status` 原本恒为 `unverified`。`backends/receipts.py` 从事件补算效果归属（`observed` / `not_observed` / `unverified`），可对已有结果目录事后运行：`python3 -m backends.receipts results/<run_id>`。重复 `RECONNECT` 在 Runner 路径被状态机拒绝且不消耗 `attempt_id`；hwsim 实测重复调用返回 `OK` 但不产生新关联、不改 PMKSA、不换客户端进程，AP 停止后 `RECONNECT` 同样返回 `OK` 而始终未恢复。动作拒绝回执与真实重试仍未取得。详见 [恢复动作语义与动作回执](docs/jiang-recovery-semantics.md)，日志原文与帧号摘录见 [真机证据附录](docs/evidence-jiang-2026-11-12.md)。
