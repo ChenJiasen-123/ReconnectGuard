@@ -180,3 +180,16 @@ class ReportTest(unittest.TestCase):
         self.assertEqual(report["security_verdict"], "not_evaluated")
         refs = [row["ref"] for row in report["control_timeline"]]
         self.assertIn("events.jsonl#seq=27", refs)
+
+class PcapControlFrameTest(unittest.TestCase):
+    def test_ack_without_sequence_control_is_readable(self):
+        try:
+            from scapy.all import RadioTap,Dot11,wrpcap
+        except ImportError:
+            self.skipTest('Scapy not installed')
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp)/'ack.pcap'
+            wrpcap(str(path),RadioTap()/Dot11(type=1,subtype=13,addr1='00:11:22:33:44:55'))
+            rows=frames.read_pcap_frames(path)
+            self.assertEqual(len(rows),1)
+            self.assertIsNone(rows[0]['sequence_control'])

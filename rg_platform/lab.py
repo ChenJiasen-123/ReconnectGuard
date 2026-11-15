@@ -75,6 +75,8 @@ class Lab:
         self.phys = hwsim_phys()
         if len(self.phys) != 2:
             raise RuntimeError("expected exactly two newly created hwsim phys")
+        if hasattr(self, "on_radios_created"):
+            self.on_radios_created()
         suffix = self.run_id[-6:]
         self.ap_if, self.sta_if = "rgap" + suffix, "rgst" + suffix
         for phy, role, iface in zip(self.phys, ("ap", "sta"), (self.ap_if, self.sta_if)):

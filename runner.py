@@ -107,7 +107,7 @@ def _continuity(snapshots):
 
 
 def run_case(case, output_root=ROOT / "results", scenario="normal", *,
-             backend=None, client="stock", session_factory=None, evaluator=None, evaluator_spec=None, radio="hwsim", ap_iface=None, sta_iface=None, analyze=False):
+             backend=None, client="stock", session_factory=None, evaluator=None, evaluator_spec=None, radio="hwsim", ap_iface=None, sta_iface=None, analyze=False, cache_policy=None):
     chosen = backend or case["backend"]
     if chosen not in {"mock", "real"}:
         raise ValueError("未知 backend")
@@ -117,6 +117,8 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
         raise ValueError("physical radio 必须使用 real 后端")
     if analyze and chosen != "real":
         raise ValueError("帧级事后分析仅用于 real 后端")
+    if cache_policy and (chosen != "real" or case["id"] != "client_disconnect_reconnect"):
+        raise ValueError("缓存对照只支持真实客户端主动断开案例")
     retry_budget = validate_retry_policy(case, chosen)
     if evaluator is not None and evaluator_spec:
         raise ValueError("evaluator 与 evaluator_spec 不能同时指定")
@@ -211,6 +213,10 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
             while True:
                 try:
                     execute_step(step)
+                    if step_number == 3 and cache_policy:
+                        from backends.interventions import apply_cache_policy
+                        apply_cache_policy(session.lab, cache_policy)
+                        capture("after_cache_intervention")
                     if step_number == 4:
                         recovery_attempts.append({"attempt_id": context.attempt_id, "outcome": "pass"})
                     break
@@ -272,6 +278,7 @@ def run_case(case, output_root=ROOT / "results", scenario="normal", *,
     result = {"schema_version": 1, "run_id": context.run_id, "simulated": session.simulated,
               "backend": chosen, "scenario": scenario if session.simulated else None,
               "execution_status": "completed" if recovered and error is None else "failed",
+              "cache_policy": cache_policy,
               "recovery_attempts": recovery_attempts,
               "retries_used": retries_used,
               "evaluator": evaluator_spec or (type(evaluator).__module__ + ":" + type(evaluator).__qualname__ if evaluator else None),

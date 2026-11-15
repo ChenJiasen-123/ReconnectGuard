@@ -142,7 +142,7 @@ def classify_frame(row: dict) -> list[str]:
 def read_pcap_frames(path: Path) -> list[dict]:
     """读取 pcap，返回标准化帧记录。需要 scapy（延迟导入）。"""
     try:
-        from scapy.all import PcapReader, Dot11, Dot11Auth, Dot11Elt, EAPOL
+        from scapy.all import PcapReader, Dot11, Dot11Auth, Dot11Elt, EAPOL, Dot11AssoResp, Dot11Deauth, Dot11Disas
     except ImportError as exc:
         raise MissingScapy("读取 trace.pcap 需要 scapy：" + str(exc)) from exc
 
@@ -158,6 +158,8 @@ def read_pcap_frames(path: Path) -> list[dict]:
                 "type": int(dot11.type),
                 "subtype": int(dot11.subtype),
                 "protected": bool(int(dot11.FCfield) & 0x40),
+                "sequence_control": int(dot11.SC) if dot11.SC is not None else None,
+                "retry": bool(int(dot11.FCfield) & 0x08),
                 "addr1": dot11.addr1, "addr2": dot11.addr2, "addr3": dot11.addr3,
             }
             if dot11.type == 0 and dot11.subtype == 11 and packet.haslayer(Dot11Auth):
@@ -173,6 +175,12 @@ def read_pcap_frames(path: Path) -> list[dict]:
                             row["rsn_pmkids"] = parsed["pmkids"]
                         break
                     layer = layer.payload if hasattr(layer, "payload") else None
+            if packet.haslayer(Dot11AssoResp):
+                row["status_code"] = int(packet[Dot11AssoResp].status)
+            if packet.haslayer(Dot11Deauth):
+                row["reason_code"] = int(packet[Dot11Deauth].reason)
+            if packet.haslayer(Dot11Disas):
+                row["reason_code"] = int(packet[Dot11Disas].reason)
             if packet.haslayer(EAPOL):
                 payload = bytes(packet[EAPOL].payload)
                 if len(payload) >= 3 and payload[0] == 2:  # RSN Key descriptor

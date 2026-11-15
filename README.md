@@ -179,3 +179,26 @@ sudo python3 -m observer.postprocess results/comparison-实际编号
 分析只接受本轮目标 MAC 对及已接受的恢复时间窗口，保留输入哈希、帧号、
 日志行号。缓存复用需关联 PMKID 与本次缓存命中/匹配日志一致，并捕获一致的
 四次握手；证据不足保留 unknown。授权时序仍需独立的密钥安装和授权证据。
+
+## 缓存、失败与阶段实验
+
+```sh
+# 实体网卡缓存四组：先1轮预实验，验证干预后再各10轮。
+sudo python3 research.py --repeat 1 --ap-iface wlan1 --sta-iface wlan2
+sudo python3 research.py --repeat 10 --ap-iface wlan1 --sta-iface wlan2
+# 隔离 hwsim；需要先构建 Framework AP、Python依赖与实验客户端。
+sudo python3 rejection.py --fault reject_deauth
+sudo python3 rejection.py --fault drop_eapol --duration 2
+# 读取已有三路径结果，输出阶段耗时 JSON/CSV。
+sudo python3 -m observer.timing results/comparison-实际编号
+```
+
+A/B/C/D 分别为双方保留、仅AP清除、仅STA清除、双方清除。实验在主动断开后
+查询并验证缓存操作，不以重启进程代替缓存干预。`rejection.py` 的测试选项只用于
+本项目新建的 hwsim：接受、关联响应错误码53、关联阶段 reason9 Deauth、短暂
+关联帧处理丢失、短暂 EAPOL 发送丢失。不是对周围设备发帧的入口。
+
+`model/protocol.py` 增加认证、关联和密钥建立的观测阶段及动作前置条件。
+固定/随机/状态触发比较使用相同控制器和观测器，属于单一已知案例的小规模
+触发策略试验，不是通用序列探索优势证明。实验回移脚本位于 scripts/research/，
+对2.10派生源码实施局部地址范围的修改，不能声称是2026年上游补丁原样应用。
