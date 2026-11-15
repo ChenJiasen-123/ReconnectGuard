@@ -1,0 +1,14 @@
+{
+  "alphabet": [
+    "install",
+    "delete",
+    "failed_install",
+    "authorize",
+    "revoke"
+  ],
+  "max_events": 5,
+  "traces_checked": 3906,
+  "monitor_matches_prefix_formula": true,
+  "scope": "exhaustive bounded monitor conformance, not implementation-wide WPA3 proof",
+  "verifier_source_sha256": "5d943634b9e3abc81ab17eb8f2b2a5c9637e63ebafce1fa07778f50b97cab28b"
+}

@@ -12,6 +12,7 @@ class FaultLab(Lab):
         self.fault,self.duration=fault,duration
         self.injections=[]
         self.armed=False
+        self.controller_stop=threading.Event()
         from model.protocol import ProtocolMonitor
         import random
         self.monitor=ProtocolMonitor()
@@ -49,7 +50,7 @@ class FaultLab(Lab):
     def control(self,cursor,setting):
         first=None
         try:
-            while not self.stop_event.is_set():
+            while not self.stop_event.is_set() and not self.controller_stop.is_set():
                 for record in self.event_journal.wait_after(cursor,.05):
                     cursor=record.seq;raw=record.raw_event
                     if record.source!='ap':continue

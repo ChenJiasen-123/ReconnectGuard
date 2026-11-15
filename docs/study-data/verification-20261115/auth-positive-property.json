@@ -1,0 +1,315 @@
+{
+  "property": "G(successful_authorize(peer) -> prior_successful_pairwise_key(peer) since last confirmed deletion)",
+  "status": "pass",
+  "roles": {
+    "ap": {
+      "status": "pass",
+      "authorizations": 2,
+      "violations": [],
+      "trace": [
+        {
+          "ns": 23347920629494,
+          "kind": "key",
+          "rc": 0,
+          "ref": "ap.log#line=506",
+          "idx": 0,
+          "alg": 0,
+          "len": 0
+        },
+        {
+          "ns": 23347920676958,
+          "kind": "port",
+          "rc": 0,
+          "ref": "ap.log#line=510",
+          "authorized": 0
+        },
+        {
+          "ns": 23347920699069,
+          "kind": "key",
+          "rc": 0,
+          "ref": "ap.log#line=516",
+          "idx": 0,
+          "alg": 0,
+          "len": 0
+        },
+        {
+          "ns": 23347920722550,
+          "kind": "key",
+          "rc": 0,
+          "ref": "ap.log#line=524",
+          "idx": 0,
+          "alg": 0,
+          "len": 0
+        },
+        {
+          "ns": 23347920732476,
+          "kind": "port",
+          "rc": 0,
+          "ref": "ap.log#line=526",
+          "authorized": 0
+        },
+        {
+          "ns": 23347973458702,
+          "kind": "key",
+          "rc": 0,
+          "ref": "ap.log#line=616",
+          "idx": 0,
+          "alg": 3,
+          "len": 16
+        },
+        {
+          "ns": 23347973503647,
+          "kind": "port",
+          "rc": 0,
+          "ref": "ap.log#line=621",
+          "authorized": 1
+        },
+        {
+          "ns": 23348084225788,
+          "kind": "port",
+          "rc": 0,
+          "ref": "ap.log#line=646",
+          "authorized": 0
+        },
+        {
+          "ns": 23348128034272,
+          "kind": "key",
+          "rc": 0,
+          "ref": "ap.log#line=652",
+          "idx": 0,
+          "alg": 0,
+          "len": 0
+        },
+        {
+          "ns": 23348128113105,
+          "kind": "key",
+          "rc": 0,
+          "ref": "ap.log#line=659",
+          "idx": 0,
+          "alg": 0,
+          "len": 0
+        },
+        {
+          "ns": 23348128129957,
+          "kind": "port",
+          "rc": 0,
+          "ref": "ap.log#line=661",
+          "authorized": 0
+        },
+        {
+          "ns": 23348128159291,
+          "kind": "key",
+          "rc": 0,
+          "ref": "ap.log#line=670",
+          "idx": 0,
+          "alg": 0,
+          "len": 0
+        },
+        {
+          "ns": 23348128168569,
+          "kind": "port",
+          "rc": 0,
+          "ref": "ap.log#line=672",
+          "authorized": 0
+        },
+        {
+          "ns": 23348198292184,
+          "kind": "port",
+          "rc": 0,
+          "ref": "ap.log#line=742",
+          "authorized": 0
+        },
+        {
+          "ns": 23348202444776,
+          "kind": "key",
+          "rc": 0,
+          "ref": "ap.log#line=841",
+          "idx": 0,
+          "alg": 0,
+          "len": 0
+        },
+        {
+          "ns": 23348202483702,
+          "kind": "port",
+          "rc": 0,
+          "ref": "ap.log#line=845",
+          "authorized": 0
+        },
+        {
+          "ns": 23348202504702,
+          "kind": "key",
+          "rc": 0,
+          "ref": "ap.log#line=851",
+          "idx": 0,
+          "alg": 0,
+          "len": 0
+        },
+        {
+          "ns": 23348202527776,
+          "kind": "key",
+          "rc": 0,
+          "ref": "ap.log#line=859",
+          "idx": 0,
+          "alg": 0,
+          "len": 0
+        },
+        {
+          "ns": 23348202537591,
+          "kind": "port",
+          "rc": 0,
+          "ref": "ap.log#line=861",
+          "authorized": 0
+        },
+        {
+          "ns": 23348203880504,
+          "kind": "key",
+          "rc": 0,
+          "ref": "ap.log#line=937",
+          "idx": 0,
+          "alg": 3,
+          "len": 16
+        },
+        {
+          "ns": 23348204245246,
+          "kind": "port",
+          "rc": 0,
+          "ref": "ap.log#line=942",
+          "authorized": 1
+        },
+        {
+          "ns": 23348524962139,
+          "kind": "port",
+          "rc": 0,
+          "ref": "ap.log#line=974",
+          "authorized": 0
+        },
+        {
+          "ns": 23348556023475,
+          "kind": "key",
+          "rc": 0,
+          "ref": "ap.log#line=980",
+          "idx": 0,
+          "alg": 0,
+          "len": 0
+        },
+        {
+          "ns": 23348556075902,
+          "kind": "key",
+          "rc": 0,
+          "ref": "ap.log#line=987",
+          "idx": 0,
+          "alg": 0,
+          "len": 0
+        },
+        {
+          "ns": 23348556091587,
+          "kind": "port",
+          "rc": 0,
+          "ref": "ap.log#line=989",
+          "authorized": 0
+        },
+        {
+          "ns": 23348556121568,
+          "kind": "key",
+          "rc": 0,
+          "ref": "ap.log#line=998",
+          "idx": 0,
+          "alg": 0,
+          "len": 0
+        },
+        {
+          "ns": 23348556131272,
+          "kind": "port",
+          "rc": 0,
+          "ref": "ap.log#line=1000",
+          "authorized": 0
+        }
+      ]
+    },
+    "sta": {
+      "status": "pass",
+      "authorizations": 2,
+      "violations": [],
+      "trace": [
+        {
+          "ns": 23347992039745,
+          "kind": "key",
+          "rc": 0,
+          "ref": "sta.log#line=1068",
+          "idx": 0,
+          "alg": 3,
+          "len": 16
+        },
+        {
+          "ns": 23347992088856,
+          "kind": "port",
+          "rc": 0,
+          "ref": "sta.log#line=1073",
+          "authorized": 1
+        },
+        {
+          "ns": 23348192262158,
+          "kind": "key",
+          "rc": 0,
+          "ref": "sta.log#line=1201",
+          "idx": 0,
+          "alg": 0,
+          "len": 0
+        },
+        {
+          "ns": 23348203849745,
+          "kind": "key",
+          "rc": 0,
+          "ref": "sta.log#line=1595",
+          "idx": 0,
+          "alg": 3,
+          "len": 16
+        },
+        {
+          "ns": 23348203869560,
+          "kind": "port",
+          "rc": 0,
+          "ref": "sta.log#line=1600",
+          "authorized": 1
+        },
+        {
+          "ns": 23348616234659,
+          "kind": "key",
+          "rc": 0,
+          "ref": "sta.log#line=1766",
+          "idx": 0,
+          "alg": 0,
+          "len": 0
+        }
+      ]
+    }
+  },
+  "instrumentation": {
+    "binary_sha256": {
+      "ap": "cbf4cb710651543b082146f5522d8c53b1a111d7fa102ce56720bb1d54f6afcd",
+      "sta": "8c9f18ccf73e3962ff9b3ef50e81a40967a7424fde80dcb852779ae9e27bd43b"
+    },
+    "driver_source_sha256": "bbed059a4e5ba28e32e2b0221ddbabdf8ee75525860eb1f06d1c58b3e0cf480b",
+    "verifier_source_sha256": "5d943634b9e3abc81ab17eb8f2b2a5c9637e63ebafce1fa07778f50b97cab28b",
+    "negative_control": false,
+    "source_commit": "6692b4478f1a5536bed1fd11b8b3ea07e2a0e082"
+  },
+  "input_sha256": {
+    "connected_baseline.json": "c12c1213e5425630090a63668964667be2f6a090a8deadad3eac406e941af18f",
+    "meta.json": "17e7b3fd7a0dcc44ebccc963eb101974dccaa5948ba8110d82c92f8dcd284806",
+    "ap.log": "d82d4741457199e4a3e8b65059d9fe5299320a2d8f0ed9a67e3d8a9a07cf9776",
+    "sta.log": "cb067096f825a6f277a47f80b50a61b042970c56c320f9d4cd4234e5973fe76f",
+    "instrumentation-manifest.json": "89054ed9a72b551bb6baf95dd3f3b5015f51e0be7accad380a1c06032b282956"
+  },
+  "scope": "this finite driver-API trace, matching peers, cold baseline plus reconnect",
+  "premises": [
+    "instrumented source covers the exercised key/authorization driver paths",
+    "complete unmodified process logs",
+    "successful driver operation represents the specified API effect"
+  ],
+  "does_not_prove": [
+    "firmware internal key state",
+    "absence of every possible premature data delivery",
+    "unobserved executions or full protocol security"
+  ]
+}

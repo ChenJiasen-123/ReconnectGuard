@@ -1,0 +1,11 @@
+{
+  "sequence_runs": 57,
+  "binary_pairs": [
+    {
+      "ap": "e73cbcf5ae7eff9ff135d07c5b626a5b863a66b72e0ab6b4b3ec944b6aebcf88",
+      "sta": "e7da9b09f9443a5c5c1b667a08074e10656fa928836ffae154f0bb0476194b88"
+    }
+  ],
+  "raw_local_copy": "results/verification-20261115/raw",
+  "note": "includes 54 repeated strategy runs and 3 shortest-certificate validation runs"
+}

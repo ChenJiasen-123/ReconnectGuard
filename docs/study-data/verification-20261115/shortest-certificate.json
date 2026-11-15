@@ -1,0 +1,64 @@
+{
+  "alphabet": [
+    "disconnect",
+    "flush_ap",
+    "flush_sta",
+    "arm_reject",
+    "allow",
+    "reconnect"
+  ],
+  "initial": {
+    "connected": true,
+    "ap_cache": true,
+    "sta_cache": true,
+    "rejecting": false
+  },
+  "metric": "number of harness operations; baseline and observation wait excluded",
+  "failure_predicate": "cached association under armed Deauth rejection policy; AP cache loss is not required",
+  "policy_semantics": "arm_reject installs repeated reason-9 rejection until full SAE or allow; not one frame",
+  "shortest": [
+    "disconnect",
+    "arm_reject",
+    "reconnect"
+  ],
+  "length": 3,
+  "strictly_shorter_terminal_plans": [
+    [
+      "disconnect",
+      "reconnect"
+    ]
+  ],
+  "scope": "deterministic cache-rejection abstraction; not all Wi-Fi actions or nondeterministic device executions",
+  "real_validation": [
+    {
+      "plan": [
+        "disconnect",
+        "reconnect"
+      ],
+      "recovery": "pass",
+      "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-shortest-5f52eded3dd747c5bf2cf1683e08e5c8/20261115-095828-8735f6"
+    },
+    {
+      "plan": [
+        "disconnect",
+        "arm_reject",
+        "reconnect"
+      ],
+      "recovery": "fail",
+      "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-shortest-5f52eded3dd747c5bf2cf1683e08e5c8/20261115-095833-de140e"
+    },
+    {
+      "plan": [
+        "disconnect",
+        "arm_reject",
+        "reconnect"
+      ],
+      "recovery": "fail",
+      "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-shortest-5f52eded3dd747c5bf2cf1683e08e5c8/20261115-095859-6068ef"
+    }
+  ],
+  "all_shorter_observed_pass": true,
+  "candidate_reproduced": true,
+  "original_real_certificate_sha256": "97113b1e582672d73f17d93b3ce7baa7ff7f1785e92da546f7d1f17a4535dc11",
+  "model_source_sha256": "bf2ab901eaf749bc64a8b917e2025a84631c958ed86a168fe56a62bd69316997"
+}

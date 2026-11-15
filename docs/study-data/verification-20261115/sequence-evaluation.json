@@ -1,0 +1,4568 @@
+{
+  "sources": [
+    {
+      "file": "results/verification-20261115/repeated/sequences-fixed-cdee10a4fdb64fbfb6454089fce86685/summary.json",
+      "sha256": "71811b33c56e59baf49704c6a6a817044a209c5f926acb6b8a1679d89fbf15d8",
+      "executed_source_sha256": {
+        "sequence_study.py": "97b7390b1f4c235321b9c0b2034d6f81b91e78bb2ba45156a1a5d9ef94d9c66a",
+        "model/sequences.py": "dcb7b471468f801708dada022ec2e7e375c7672a6ed91103411de2e048485fe8",
+        "rejection.py": "eaf68edcb4618a1f04f4512500da3b77b5687c3d744453d3e2b6c92c57e589e2",
+        "observer/experiment.py": "09c8b7a2ba6145589df56936e0ea190a7f0d0433bab53c2d5095386dc11c4fe8"
+      }
+    },
+    {
+      "file": "results/verification-20261115/repeated/sequences-fixed-6d427165af6c4c299e802911175b959a/summary.json",
+      "sha256": "66e3469419ec443a88f2f52ca5ce4c5b86bae2d9a24294bb98e2e819c7dfc26c",
+      "executed_source_sha256": {
+        "sequence_study.py": "97b7390b1f4c235321b9c0b2034d6f81b91e78bb2ba45156a1a5d9ef94d9c66a",
+        "model/sequences.py": "dcb7b471468f801708dada022ec2e7e375c7672a6ed91103411de2e048485fe8",
+        "rejection.py": "eaf68edcb4618a1f04f4512500da3b77b5687c3d744453d3e2b6c92c57e589e2",
+        "observer/experiment.py": "09c8b7a2ba6145589df56936e0ea190a7f0d0433bab53c2d5095386dc11c4fe8"
+      }
+    },
+    {
+      "file": "results/verification-20261115/repeated/sequences-fixed-d0139a67d95e43309c58ee2b5a2040d1/summary.json",
+      "sha256": "36be916c808576a9b145c2a1f68b19856d8b70a356ec0a93894a7190907e7abc",
+      "executed_source_sha256": {
+        "sequence_study.py": "97b7390b1f4c235321b9c0b2034d6f81b91e78bb2ba45156a1a5d9ef94d9c66a",
+        "model/sequences.py": "dcb7b471468f801708dada022ec2e7e375c7672a6ed91103411de2e048485fe8",
+        "rejection.py": "eaf68edcb4618a1f04f4512500da3b77b5687c3d744453d3e2b6c92c57e589e2",
+        "observer/experiment.py": "09c8b7a2ba6145589df56936e0ea190a7f0d0433bab53c2d5095386dc11c4fe8"
+      }
+    },
+    {
+      "file": "results/verification-20261115/repeated/sequences-random-valid-cfa008ea4709437a836c54282b737c89/summary.json",
+      "sha256": "472f2e823e501ec4f575abb761b1772d1ca64ccd822fd37af06512c8b3ed0809",
+      "executed_source_sha256": {
+        "sequence_study.py": "97b7390b1f4c235321b9c0b2034d6f81b91e78bb2ba45156a1a5d9ef94d9c66a",
+        "model/sequences.py": "dcb7b471468f801708dada022ec2e7e375c7672a6ed91103411de2e048485fe8",
+        "rejection.py": "eaf68edcb4618a1f04f4512500da3b77b5687c3d744453d3e2b6c92c57e589e2",
+        "observer/experiment.py": "09c8b7a2ba6145589df56936e0ea190a7f0d0433bab53c2d5095386dc11c4fe8"
+      }
+    },
+    {
+      "file": "results/verification-20261115/repeated/sequences-random-valid-aa28c15275004706ae2300dcdb498c22/summary.json",
+      "sha256": "ade17d88e4a85e582a716ef16fa863eb36fd85737758d5f4450bd7827a4e3a9e",
+      "executed_source_sha256": {
+        "sequence_study.py": "97b7390b1f4c235321b9c0b2034d6f81b91e78bb2ba45156a1a5d9ef94d9c66a",
+        "model/sequences.py": "dcb7b471468f801708dada022ec2e7e375c7672a6ed91103411de2e048485fe8",
+        "rejection.py": "eaf68edcb4618a1f04f4512500da3b77b5687c3d744453d3e2b6c92c57e589e2",
+        "observer/experiment.py": "09c8b7a2ba6145589df56936e0ea190a7f0d0433bab53c2d5095386dc11c4fe8"
+      }
+    },
+    {
+      "file": "results/verification-20261115/repeated/sequences-random-valid-c93928bc019946e6a8e16e53ca159868/summary.json",
+      "sha256": "83e578992dec0a995006c6b689fc38ab7635f75f63741f02edc9a56b5368bcfb",
+      "executed_source_sha256": {
+        "sequence_study.py": "97b7390b1f4c235321b9c0b2034d6f81b91e78bb2ba45156a1a5d9ef94d9c66a",
+        "model/sequences.py": "dcb7b471468f801708dada022ec2e7e375c7672a6ed91103411de2e048485fe8",
+        "rejection.py": "eaf68edcb4618a1f04f4512500da3b77b5687c3d744453d3e2b6c92c57e589e2",
+        "observer/experiment.py": "09c8b7a2ba6145589df56936e0ea190a7f0d0433bab53c2d5095386dc11c4fe8"
+      }
+    },
+    {
+      "file": "results/verification-20261115/repeated/sequences-guided-8541e39c1e424db1b1f50df341a9975e/summary.json",
+      "sha256": "0d83b483e71afe4c276a0cebd61ca9e32d2615e4cb949691bbecd4b45514efe7",
+      "executed_source_sha256": {
+        "sequence_study.py": "97b7390b1f4c235321b9c0b2034d6f81b91e78bb2ba45156a1a5d9ef94d9c66a",
+        "model/sequences.py": "dcb7b471468f801708dada022ec2e7e375c7672a6ed91103411de2e048485fe8",
+        "rejection.py": "eaf68edcb4618a1f04f4512500da3b77b5687c3d744453d3e2b6c92c57e589e2",
+        "observer/experiment.py": "09c8b7a2ba6145589df56936e0ea190a7f0d0433bab53c2d5095386dc11c4fe8"
+      }
+    },
+    {
+      "file": "results/verification-20261115/repeated/sequences-guided-bf52daf43d3a4a3aa9a7dd4e78f00577/summary.json",
+      "sha256": "97b08858875150871552e718c5c62658595e15e1cbb995d924c888097c612af5",
+      "executed_source_sha256": {
+        "sequence_study.py": "97b7390b1f4c235321b9c0b2034d6f81b91e78bb2ba45156a1a5d9ef94d9c66a",
+        "model/sequences.py": "dcb7b471468f801708dada022ec2e7e375c7672a6ed91103411de2e048485fe8",
+        "rejection.py": "eaf68edcb4618a1f04f4512500da3b77b5687c3d744453d3e2b6c92c57e589e2",
+        "observer/experiment.py": "09c8b7a2ba6145589df56936e0ea190a7f0d0433bab53c2d5095386dc11c4fe8"
+      }
+    },
+    {
+      "file": "results/verification-20261115/repeated/sequences-guided-f288444cbe884e7e8759a16183215825/summary.json",
+      "sha256": "0c61540c1de513b6955b45efad271fbaae59fd677fc9418248eb03f8e8c62203",
+      "executed_source_sha256": {
+        "sequence_study.py": "97b7390b1f4c235321b9c0b2034d6f81b91e78bb2ba45156a1a5d9ef94d9c66a",
+        "model/sequences.py": "dcb7b471468f801708dada022ec2e7e375c7672a6ed91103411de2e048485fe8",
+        "rejection.py": "eaf68edcb4618a1f04f4512500da3b77b5687c3d744453d3e2b6c92c57e589e2",
+        "observer/experiment.py": "09c8b7a2ba6145589df56936e0ea190a7f0d0433bab53c2d5095386dc11c4fe8"
+      }
+    }
+  ],
+  "groups": {
+    "fixed": {
+      "batches": [
+        {
+          "seed": 1,
+          "budget": 6,
+          "max_depth": 6,
+          "metrics": {
+            "proposals": 6,
+            "legal": 6,
+            "recovery_failures": 2,
+            "confirmed_rejection_failure_sequences": 2,
+            "first_detection": {
+              "proposal": 5,
+              "sum_run_elapsed_s": 43.981318194997584
+            },
+            "attempted_operations": 19,
+            "completed_operations": 17,
+            "independent_stages": [
+              "assoc_req",
+              "deauth",
+              "eapol_m1",
+              "eapol_m2",
+              "eapol_m3",
+              "eapol_m4",
+              "open_system_auth",
+              "sae_commit",
+              "sae_confirm"
+            ],
+            "elapsed_s": 68.7774017529955,
+            "environment_or_action_errors": 0,
+            "observation_errors": 0,
+            "cleanup_errors": 0
+          }
+        },
+        {
+          "seed": 2,
+          "budget": 6,
+          "max_depth": 6,
+          "metrics": {
+            "proposals": 6,
+            "legal": 6,
+            "recovery_failures": 2,
+            "confirmed_rejection_failure_sequences": 2,
+            "first_detection": {
+              "proposal": 5,
+              "sum_run_elapsed_s": 44.20127277200663
+            },
+            "attempted_operations": 19,
+            "completed_operations": 17,
+            "independent_stages": [
+              "assoc_req",
+              "deauth",
+              "eapol_m1",
+              "eapol_m2",
+              "eapol_m3",
+              "eapol_m4",
+              "open_system_auth",
+              "sae_commit",
+              "sae_confirm"
+            ],
+            "elapsed_s": 68.92806926200501,
+            "environment_or_action_errors": 0,
+            "observation_errors": 0,
+            "cleanup_errors": 0
+          }
+        },
+        {
+          "seed": 3,
+          "budget": 6,
+          "max_depth": 6,
+          "metrics": {
+            "proposals": 6,
+            "legal": 6,
+            "recovery_failures": 2,
+            "confirmed_rejection_failure_sequences": 2,
+            "first_detection": {
+              "proposal": 5,
+              "sum_run_elapsed_s": 43.97128399199573
+            },
+            "attempted_operations": 19,
+            "completed_operations": 17,
+            "independent_stages": [
+              "assoc_req",
+              "deauth",
+              "eapol_m1",
+              "eapol_m2",
+              "eapol_m3",
+              "eapol_m4",
+              "open_system_auth",
+              "sae_commit",
+              "sae_confirm"
+            ],
+            "elapsed_s": 68.59141995299433,
+            "environment_or_action_errors": 0,
+            "observation_errors": 0,
+            "cleanup_errors": 0
+          }
+        }
+      ],
+      "rows": [
+        {
+          "trial": 0,
+          "plan": [
+            "disconnect",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-fixed-cdee10a4fdb64fbfb6454089fce86685/20261115-101807-4fd5b3",
+          "result": {
+            "run_id": "20261115-101807-4fd5b3",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.938280202997703,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22646.480555158,
+                "finished_s": 22646.569074195
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22646.570743415,
+                "finished_s": 22646.587861791
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 1,
+          "plan": [
+            "disconnect",
+            "flush_ap",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-fixed-cdee10a4fdb64fbfb6454089fce86685/20261115-101813-264090",
+          "result": {
+            "run_id": "20261115-101813-264090",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.855466648998117,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22651.759548086,
+                "finished_s": 22651.88138439
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 22651.883148908,
+                "finished_s": 22651.884287567
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22651.885878898,
+                "finished_s": 22651.975113341
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": {
+                "frame": 53,
+                "status_code": 53,
+                "reason_code": null
+              },
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 2,
+          "plan": [
+            "disconnect",
+            "flush_sta",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-fixed-cdee10a4fdb64fbfb6454089fce86685/20261115-101818-bcd7b0",
+          "result": {
+            "run_id": "20261115-101818-bcd7b0",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.780188345001079,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22656.694001562,
+                "finished_s": 22656.79797509
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 22656.799955443,
+                "finished_s": 22656.802403819
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22656.804700916,
+                "finished_s": 22656.895116642
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 3,
+          "plan": [
+            "disconnect",
+            "flush_ap",
+            "flush_sta",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-fixed-cdee10a4fdb64fbfb6454089fce86685/20261115-101823-272df4",
+          "result": {
+            "run_id": "20261115-101823-272df4",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.810458481999376,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22661.670798503,
+                "finished_s": 22661.765027576
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 22661.766310977,
+                "finished_s": 22661.767051299
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 22661.768387683,
+                "finished_s": 22661.769346044
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22661.770583204,
+                "finished_s": 22661.822911477
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 4,
+          "plan": [
+            "disconnect",
+            "arm_reject",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-fixed-cdee10a4fdb64fbfb6454089fce86685/20261115-101828-e9121f",
+          "result": {
+            "run_id": "20261115-101828-e9121f",
+            "recovery": "fail",
+            "failure": {
+              "category": "recovery_timeout",
+              "message": "connection_restored: no matching event within 20s"
+            },
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 24.59692451600131,
+            "data_probes_pass": 0,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22666.531373023,
+                "finished_s": 22666.629045178
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 22666.630432433,
+                "finished_s": 22666.631125662
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22666.632434952
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": true,
+              "detected_recovery_failure": true,
+              "first_rejection": {
+                "frame": 52,
+                "status_code": null,
+                "reason_code": 9
+              },
+              "rejection_reason_codes": [
+                9
+              ]
+            }
+          }
+        },
+        {
+          "trial": 5,
+          "plan": [
+            "disconnect",
+            "flush_ap",
+            "arm_reject",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-fixed-cdee10a4fdb64fbfb6454089fce86685/20261115-101853-44ced3",
+          "result": {
+            "run_id": "20261115-101853-44ced3",
+            "recovery": "fail",
+            "failure": {
+              "category": "recovery_timeout",
+              "message": "connection_restored: no matching event within 20s"
+            },
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 24.796083557997918,
+            "data_probes_pass": 0,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22691.719326999,
+                "finished_s": 22691.821446587
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 22691.822915415,
+                "finished_s": 22691.823580218
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 22691.825012009,
+                "finished_s": 22691.825697793
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22691.827067639
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": true,
+              "detected_recovery_failure": true,
+              "first_rejection": {
+                "frame": 52,
+                "status_code": null,
+                "reason_code": 9
+              },
+              "rejection_reason_codes": [
+                9
+              ]
+            }
+          }
+        },
+        {
+          "trial": 0,
+          "plan": [
+            "disconnect",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-fixed-6d427165af6c4c299e802911175b959a/20261115-101918-3612dc",
+          "result": {
+            "run_id": "20261115-101918-3612dc",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.848172832000273,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22717.452151483,
+                "finished_s": 22717.55314834
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22717.554466426,
+                "finished_s": 22717.567544989
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 1,
+          "plan": [
+            "disconnect",
+            "flush_ap",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-fixed-6d427165af6c4c299e802911175b959a/20261115-101924-dfbe01",
+          "result": {
+            "run_id": "20261115-101924-dfbe01",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.8834735350028495,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22722.843450879,
+                "finished_s": 22722.945092401
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 22722.946451191,
+                "finished_s": 22722.947169012
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22722.948617654,
+                "finished_s": 22723.020680782
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": {
+                "frame": 53,
+                "status_code": 53,
+                "reason_code": null
+              },
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 2,
+          "plan": [
+            "disconnect",
+            "flush_sta",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-fixed-6d427165af6c4c299e802911175b959a/20261115-101929-cf3ecf",
+          "result": {
+            "run_id": "20261115-101929-cf3ecf",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.897482159001811,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22727.84733306,
+                "finished_s": 22727.941384712
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 22727.942813058,
+                "finished_s": 22727.943863826
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22727.945196857,
+                "finished_s": 22727.967482907
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 3,
+          "plan": [
+            "disconnect",
+            "flush_ap",
+            "flush_sta",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-fixed-6d427165af6c4c299e802911175b959a/20261115-101934-998f0c",
+          "result": {
+            "run_id": "20261115-101934-998f0c",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.816483816000982,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22732.757764428,
+                "finished_s": 22732.865685511
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 22732.867089634,
+                "finished_s": 22732.86781027
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 22732.869172319,
+                "finished_s": 22732.870187162
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22732.871558452,
+                "finished_s": 22732.914865205
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 4,
+          "plan": [
+            "disconnect",
+            "arm_reject",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-fixed-6d427165af6c4c299e802911175b959a/20261115-101939-41e00e",
+          "result": {
+            "run_id": "20261115-101939-41e00e",
+            "recovery": "fail",
+            "failure": {
+              "category": "recovery_timeout",
+              "message": "connection_restored: no matching event within 20s"
+            },
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 24.755660430000717,
+            "data_probes_pass": 0,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22737.784359915,
+                "finished_s": 22737.901390497
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 22737.902973752,
+                "finished_s": 22737.903876778
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22737.905666423
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": true,
+              "detected_recovery_failure": true,
+              "first_rejection": {
+                "frame": 54,
+                "status_code": null,
+                "reason_code": 9
+              },
+              "rejection_reason_codes": [
+                9
+              ]
+            }
+          }
+        },
+        {
+          "trial": 5,
+          "plan": [
+            "disconnect",
+            "flush_ap",
+            "arm_reject",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-fixed-6d427165af6c4c299e802911175b959a/20261115-102004-208f12",
+          "result": {
+            "run_id": "20261115-102004-208f12",
+            "recovery": "fail",
+            "failure": {
+              "category": "recovery_timeout",
+              "message": "connection_restored: no matching event within 20s"
+            },
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 24.726796489998378,
+            "data_probes_pass": 0,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22763.111183685,
+                "finished_s": 22763.209068013
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 22763.210525673,
+                "finished_s": 22763.212618506
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 22763.214161667,
+                "finished_s": 22763.214808784
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22763.216173499
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": true,
+              "detected_recovery_failure": true,
+              "first_rejection": {
+                "frame": 53,
+                "status_code": null,
+                "reason_code": 9
+              },
+              "rejection_reason_codes": [
+                9
+              ]
+            }
+          }
+        },
+        {
+          "trial": 0,
+          "plan": [
+            "disconnect",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-fixed-d0139a67d95e43309c58ee2b5a2040d1/20261115-102030-c22453",
+          "result": {
+            "run_id": "20261115-102030-c22453",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.7642538949985465,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22788.631926587,
+                "finished_s": 22788.729039658
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22788.730434502,
+                "finished_s": 22788.759153219
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 1,
+          "plan": [
+            "disconnect",
+            "flush_ap",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-fixed-d0139a67d95e43309c58ee2b5a2040d1/20261115-102035-ca1f8c",
+          "result": {
+            "run_id": "20261115-102035-ca1f8c",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.862199679999321,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22793.999467024,
+                "finished_s": 22794.101075662
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 22794.102355339,
+                "finished_s": 22794.103122604
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22794.104534338,
+                "finished_s": 22794.178972219
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": {
+                "frame": 54,
+                "status_code": 53,
+                "reason_code": null
+              },
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 2,
+          "plan": [
+            "disconnect",
+            "flush_sta",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-fixed-d0139a67d95e43309c58ee2b5a2040d1/20261115-102040-5a8bcb",
+          "result": {
+            "run_id": "20261115-102040-5a8bcb",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.866030288998445,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22798.970744522,
+                "finished_s": 22799.065087096
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 22799.077755753,
+                "finished_s": 22799.078814725
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22799.080215755,
+                "finished_s": 22799.131707706
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 3,
+          "plan": [
+            "disconnect",
+            "flush_ap",
+            "flush_sta",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-fixed-d0139a67d95e43309c58ee2b5a2040d1/20261115-102045-7ed512",
+          "result": {
+            "run_id": "20261115-102045-7ed512",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.817563984001026,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22803.98335463,
+                "finished_s": 22804.085159332
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 22804.086404009,
+                "finished_s": 22804.087162255
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 22804.0886116,
+                "finished_s": 22804.089563663
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22804.090728525,
+                "finished_s": 22804.174907567
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 4,
+          "plan": [
+            "disconnect",
+            "arm_reject",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-fixed-d0139a67d95e43309c58ee2b5a2040d1/20261115-102050-69017f",
+          "result": {
+            "run_id": "20261115-102050-69017f",
+            "recovery": "fail",
+            "failure": {
+              "category": "recovery_timeout",
+              "message": "connection_restored: no matching event within 20s"
+            },
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 24.661236143998394,
+            "data_probes_pass": 0,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22808.903359669,
+                "finished_s": 22808.993056973
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 22808.994308483,
+                "finished_s": 22808.995061526
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22808.99645663
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": true,
+              "detected_recovery_failure": true,
+              "first_rejection": {
+                "frame": 53,
+                "status_code": null,
+                "reason_code": 9
+              },
+              "rejection_reason_codes": [
+                9
+              ]
+            }
+          }
+        },
+        {
+          "trial": 5,
+          "plan": [
+            "disconnect",
+            "flush_ap",
+            "arm_reject",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-fixed-d0139a67d95e43309c58ee2b5a2040d1/20261115-102115-977c3f",
+          "result": {
+            "run_id": "20261115-102115-977c3f",
+            "recovery": "fail",
+            "failure": {
+              "category": "recovery_timeout",
+              "message": "connection_restored: no matching event within 20s"
+            },
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 24.620135960998596,
+            "data_probes_pass": 0,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22834.091215332,
+                "finished_s": 22834.189021063
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 22834.190243517,
+                "finished_s": 22834.190908615
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 22834.192232884,
+                "finished_s": 22834.19298463
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22834.194261103
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": true,
+              "detected_recovery_failure": true,
+              "first_rejection": {
+                "frame": 55,
+                "status_code": null,
+                "reason_code": 9
+              },
+              "rejection_reason_codes": [
+                9
+              ]
+            }
+          }
+        }
+      ],
+      "metrics": {
+        "proposals": 18,
+        "legal": 18,
+        "recovery_failures": 6,
+        "confirmed_rejection_failure_sequences": 6,
+        "attempted_operations": 57,
+        "completed_operations": 51,
+        "independent_stages": [
+          "assoc_req",
+          "deauth",
+          "eapol_m1",
+          "eapol_m2",
+          "eapol_m3",
+          "eapol_m4",
+          "open_system_auth",
+          "sae_commit",
+          "sae_confirm"
+        ],
+        "elapsed_s": 206.29689096799484,
+        "environment_or_action_errors": 0,
+        "observation_errors": 0,
+        "cleanup_errors": 0
+      }
+    },
+    "random-valid": {
+      "batches": [
+        {
+          "seed": 1,
+          "budget": 6,
+          "max_depth": 6,
+          "metrics": {
+            "proposals": 6,
+            "legal": 6,
+            "recovery_failures": 2,
+            "confirmed_rejection_failure_sequences": 2,
+            "first_detection": {
+              "proposal": 2,
+              "sum_run_elapsed_s": 31.793692797000404
+            },
+            "attempted_operations": 32,
+            "completed_operations": 30,
+            "independent_stages": [
+              "assoc_req",
+              "deauth",
+              "eapol_m1",
+              "eapol_m2",
+              "eapol_m3",
+              "eapol_m4",
+              "open_system_auth",
+              "sae_commit",
+              "sae_confirm"
+            ],
+            "elapsed_s": 71.18940869300059,
+            "environment_or_action_errors": 0,
+            "observation_errors": 0,
+            "cleanup_errors": 0
+          }
+        },
+        {
+          "seed": 2,
+          "budget": 6,
+          "max_depth": 6,
+          "metrics": {
+            "proposals": 6,
+            "legal": 6,
+            "recovery_failures": 1,
+            "confirmed_rejection_failure_sequences": 1,
+            "first_detection": {
+              "proposal": 6,
+              "sum_run_elapsed_s": 49.16159253300793
+            },
+            "attempted_operations": 29,
+            "completed_operations": 28,
+            "independent_stages": [
+              "assoc_req",
+              "deauth",
+              "eapol_m1",
+              "eapol_m2",
+              "eapol_m3",
+              "eapol_m4",
+              "open_system_auth",
+              "sae_commit",
+              "sae_confirm"
+            ],
+            "elapsed_s": 49.16159253300793,
+            "environment_or_action_errors": 0,
+            "observation_errors": 0,
+            "cleanup_errors": 0
+          }
+        },
+        {
+          "seed": 3,
+          "budget": 6,
+          "max_depth": 6,
+          "metrics": {
+            "proposals": 6,
+            "legal": 6,
+            "recovery_failures": 2,
+            "confirmed_rejection_failure_sequences": 2,
+            "first_detection": {
+              "proposal": 1,
+              "sum_run_elapsed_s": 24.785352259998035
+            },
+            "attempted_operations": 34,
+            "completed_operations": 32,
+            "independent_stages": [
+              "assoc_req",
+              "deauth",
+              "eapol_m1",
+              "eapol_m2",
+              "eapol_m3",
+              "eapol_m4",
+              "open_system_auth",
+              "sae_commit",
+              "sae_confirm"
+            ],
+            "elapsed_s": 69.76679288499508,
+            "environment_or_action_errors": 0,
+            "observation_errors": 0,
+            "cleanup_errors": 0
+          }
+        }
+      ],
+      "rows": [
+        {
+          "trial": 0,
+          "plan": [
+            "disconnect",
+            "flush_sta",
+            "arm_reject",
+            "flush_ap",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-random-valid-cfa008ea4709437a836c54282b737c89/20261115-102141-5e427e",
+          "result": {
+            "run_id": "20261115-102141-5e427e",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 7.003403181999602,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22859.615948684,
+                "finished_s": 22859.709292764
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 22859.71067633,
+                "finished_s": 22859.711608948
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 22859.713147349,
+                "finished_s": 22859.713945336
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 22859.7156402,
+                "finished_s": 22859.717706382
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22859.719016614,
+                "finished_s": 22861.810046989
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 1,
+          "plan": [
+            "disconnect",
+            "reconnect",
+            "disconnect",
+            "arm_reject",
+            "flush_ap",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-random-valid-cfa008ea4709437a836c54282b737c89/20261115-102148-5846dd",
+          "result": {
+            "run_id": "20261115-102148-5846dd",
+            "recovery": "fail",
+            "failure": {
+              "category": "recovery_timeout",
+              "message": "connection_restored: no matching event within 20s"
+            },
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 24.790289615000802,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22867.135721892,
+                "finished_s": 22867.241298055
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22867.24296666,
+                "finished_s": 22867.261411999
+              },
+              {
+                "action": "disconnect",
+                "started_s": 22867.264533299,
+                "finished_s": 22867.381492175
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 22867.383184373,
+                "finished_s": 22867.384124398
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 22867.388023927,
+                "finished_s": 22867.388835359
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22867.390149461
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": true,
+              "detected_recovery_failure": true,
+              "first_rejection": {
+                "frame": 74,
+                "status_code": null,
+                "reason_code": 9
+              },
+              "rejection_reason_codes": [
+                9
+              ]
+            }
+          }
+        },
+        {
+          "trial": 2,
+          "plan": [
+            "disconnect",
+            "arm_reject",
+            "flush_ap",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-random-valid-cfa008ea4709437a836c54282b737c89/20261115-102213-d7963b",
+          "result": {
+            "run_id": "20261115-102213-d7963b",
+            "recovery": "fail",
+            "failure": {
+              "category": "recovery_timeout",
+              "message": "connection_restored: no matching event within 20s"
+            },
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 24.53944370699901,
+            "data_probes_pass": 0,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22892.36406977,
+                "finished_s": 22892.482764334
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 22892.488503745,
+                "finished_s": 22892.48922575
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 22892.490712668,
+                "finished_s": 22892.491648101
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22892.493256186
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": true,
+              "detected_recovery_failure": true,
+              "first_rejection": {
+                "frame": 54,
+                "status_code": null,
+                "reason_code": 9
+              },
+              "rejection_reason_codes": [
+                9
+              ]
+            }
+          }
+        },
+        {
+          "trial": 3,
+          "plan": [
+            "disconnect",
+            "flush_ap",
+            "flush_sta",
+            "reconnect",
+            "disconnect",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-random-valid-cfa008ea4709437a836c54282b737c89/20261115-102239-06c339",
+          "result": {
+            "run_id": "20261115-102239-06c339",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.976408310998522,
+            "data_probes_pass": 2,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22917.444777946,
+                "finished_s": 22917.537219785
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 22917.538868148,
+                "finished_s": 22917.53976108
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 22917.541410999,
+                "finished_s": 22917.542484895
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22917.544348482,
+                "finished_s": 22917.571363445
+              },
+              {
+                "action": "disconnect",
+                "started_s": 22917.573913055,
+                "finished_s": 22917.71347194
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22917.715132618,
+                "finished_s": 22917.761065655
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 4,
+          "plan": [
+            "disconnect",
+            "flush_ap",
+            "reconnect",
+            "disconnect",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-random-valid-cfa008ea4709437a836c54282b737c89/20261115-102244-f3083f",
+          "result": {
+            "run_id": "20261115-102244-f3083f",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.959092448003503,
+            "data_probes_pass": 2,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22922.590647177,
+                "finished_s": 22922.705346608
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 22922.707104287,
+                "finished_s": 22922.708104294
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22922.709780064,
+                "finished_s": 22922.776545983
+              },
+              {
+                "action": "disconnect",
+                "started_s": 22922.781671869,
+                "finished_s": 22922.905252304
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22922.907090465,
+                "finished_s": 22922.942823301
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": {
+                "frame": 53,
+                "status_code": 53,
+                "reason_code": null
+              },
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 5,
+          "plan": [
+            "disconnect",
+            "arm_reject",
+            "allow",
+            "arm_reject",
+            "allow",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-random-valid-cfa008ea4709437a836c54282b737c89/20261115-102249-f36048",
+          "result": {
+            "run_id": "20261115-102249-f36048",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.920771429999149,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22927.683252871,
+                "finished_s": 22927.80145182
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 22927.802811959,
+                "finished_s": 22927.803514463
+              },
+              {
+                "action": "allow",
+                "started_s": 22927.804980455,
+                "finished_s": 22927.854778385
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 22927.856823306,
+                "finished_s": 22927.857809035
+              },
+              {
+                "action": "allow",
+                "started_s": 22927.859353027,
+                "finished_s": 22927.909139604
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22927.910692522,
+                "finished_s": 22927.955423325
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 0,
+          "plan": [
+            "disconnect",
+            "flush_sta",
+            "arm_reject",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-random-valid-aa28c15275004706ae2300dcdb498c22/20261115-102254-66e62e",
+          "result": {
+            "run_id": "20261115-102254-66e62e",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.866392465002718,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22933.128141042,
+                "finished_s": 22933.225141805
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 22933.226606963,
+                "finished_s": 22933.227604785
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 22933.22900348,
+                "finished_s": 22933.229985838
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22933.231360292,
+                "finished_s": 22933.257591876
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 1,
+          "plan": [
+            "disconnect",
+            "reconnect",
+            "disconnect",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-random-valid-aa28c15275004706ae2300dcdb498c22/20261115-102259-812f7a",
+          "result": {
+            "run_id": "20261115-102259-812f7a",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.858118670999829,
+            "data_probes_pass": 2,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22938.332637352,
+                "finished_s": 22938.445517125
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22938.447899956,
+                "finished_s": 22938.490855095
+              },
+              {
+                "action": "disconnect",
+                "started_s": 22938.493651484,
+                "finished_s": 22938.589020288
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22938.590418742,
+                "finished_s": 22938.604471669
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 2,
+          "plan": [
+            "disconnect",
+            "arm_reject",
+            "allow",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-random-valid-aa28c15275004706ae2300dcdb498c22/20261115-102304-fbd843",
+          "result": {
+            "run_id": "20261115-102304-fbd843",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.809317955001461,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22943.343362571,
+                "finished_s": 22943.46513038
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 22943.46663826,
+                "finished_s": 22943.467351728
+              },
+              {
+                "action": "allow",
+                "started_s": 22943.468889034,
+                "finished_s": 22943.519420574
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22943.520795268,
+                "finished_s": 22943.555173348
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 3,
+          "plan": [
+            "disconnect",
+            "flush_sta",
+            "reconnect",
+            "disconnect",
+            "flush_ap",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-random-valid-aa28c15275004706ae2300dcdb498c22/20261115-102309-4defa9",
+          "result": {
+            "run_id": "20261115-102309-4defa9",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.95061213200097,
+            "data_probes_pass": 2,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22948.334501838,
+                "finished_s": 22948.449408985
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 22948.452503616,
+                "finished_s": 22948.453462049
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22948.456430716,
+                "finished_s": 22948.483218134
+              },
+              {
+                "action": "disconnect",
+                "started_s": 22948.487511459,
+                "finished_s": 22948.605084957
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 22948.606353743,
+                "finished_s": 22948.607125452
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22948.608459905,
+                "finished_s": 22948.666916698
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": {
+                "frame": 76,
+                "status_code": 53,
+                "reason_code": null
+              },
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 4,
+          "plan": [
+            "disconnect",
+            "arm_reject",
+            "flush_ap",
+            "allow",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-random-valid-aa28c15275004706ae2300dcdb498c22/20261115-102314-3ae485",
+          "result": {
+            "run_id": "20261115-102314-3ae485",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.901565045001917,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22953.363280736,
+                "finished_s": 22953.469376691
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 22953.471949467,
+                "finished_s": 22953.472862881
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 22953.474303705,
+                "finished_s": 22953.475040247
+              },
+              {
+                "action": "allow",
+                "started_s": 22953.476654035,
+                "finished_s": 22953.523838863
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22953.525080649,
+                "finished_s": 22953.571496713
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": {
+                "frame": 54,
+                "status_code": 53,
+                "reason_code": null
+              },
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 5,
+          "plan": [
+            "disconnect",
+            "flush_ap",
+            "reconnect",
+            "disconnect",
+            "arm_reject",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-random-valid-aa28c15275004706ae2300dcdb498c22/20261115-102319-2aaeb0",
+          "result": {
+            "run_id": "20261115-102319-2aaeb0",
+            "recovery": "fail",
+            "failure": {
+              "category": "recovery_timeout",
+              "message": "connection_restored: no matching event within 20s"
+            },
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 24.77558626500104,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22958.371140122,
+                "finished_s": 22958.473151565
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 22958.475363487,
+                "finished_s": 22958.476735625
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22958.478099764,
+                "finished_s": 22958.559352256
+              },
+              {
+                "action": "disconnect",
+                "started_s": 22958.561788457,
+                "finished_s": 22958.649056359
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 22958.650319016,
+                "finished_s": 22958.651029817
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22958.6524644
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": true,
+              "detected_recovery_failure": true,
+              "first_rejection": {
+                "frame": 53,
+                "status_code": 53,
+                "reason_code": null
+              },
+              "rejection_reason_codes": [
+                9
+              ]
+            }
+          }
+        },
+        {
+          "trial": 0,
+          "plan": [
+            "disconnect",
+            "reconnect",
+            "disconnect",
+            "arm_reject",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-random-valid-c93928bc019946e6a8e16e53ca159868/20261115-102345-14ef0f",
+          "result": {
+            "run_id": "20261115-102345-14ef0f",
+            "recovery": "fail",
+            "failure": {
+              "category": "recovery_timeout",
+              "message": "connection_restored: no matching event within 20s"
+            },
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 24.785352259998035,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 22984.204581509,
+                "finished_s": 22984.293340421
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22984.29513647,
+                "finished_s": 22984.335228723
+              },
+              {
+                "action": "disconnect",
+                "started_s": 22984.337883184,
+                "finished_s": 22984.437176847
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 22984.438585208,
+                "finished_s": 22984.439468195
+              },
+              {
+                "action": "reconnect",
+                "started_s": 22984.441050687
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": true,
+              "detected_recovery_failure": true,
+              "first_rejection": {
+                "frame": 75,
+                "status_code": null,
+                "reason_code": 9
+              },
+              "rejection_reason_codes": [
+                9
+              ]
+            }
+          }
+        },
+        {
+          "trial": 1,
+          "plan": [
+            "disconnect",
+            "reconnect",
+            "disconnect",
+            "reconnect",
+            "disconnect",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-random-valid-c93928bc019946e6a8e16e53ca159868/20261115-102411-812110",
+          "result": {
+            "run_id": "20261115-102411-812110",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 5.247874454002158,
+            "data_probes_pass": 3,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23009.879558492,
+                "finished_s": 23009.977079255
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23009.978348578,
+                "finished_s": 23009.992715758
+              },
+              {
+                "action": "disconnect",
+                "started_s": 23009.995337385,
+                "finished_s": 23010.08902668
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23010.090401114,
+                "finished_s": 23010.127904159
+              },
+              {
+                "action": "disconnect",
+                "started_s": 23010.130204506,
+                "finished_s": 23010.261211325
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23010.262785594,
+                "finished_s": 23010.303338675
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 2,
+          "plan": [
+            "disconnect",
+            "reconnect",
+            "disconnect",
+            "flush_ap",
+            "arm_reject",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-random-valid-c93928bc019946e6a8e16e53ca159868/20261115-102416-a00bc0",
+          "result": {
+            "run_id": "20261115-102416-a00bc0",
+            "recovery": "fail",
+            "failure": {
+              "category": "recovery_timeout",
+              "message": "connection_restored: no matching event within 20s"
+            },
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 24.88783956399857,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23015.19534799,
+                "finished_s": 23015.313102372
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23015.314493621,
+                "finished_s": 23015.332808473
+              },
+              {
+                "action": "disconnect",
+                "started_s": 23015.334931208,
+                "finished_s": 23015.445410991
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 23015.447061538,
+                "finished_s": 23015.447712634
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23015.449085957,
+                "finished_s": 23015.449847388
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23015.451454953
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": true,
+              "detected_recovery_failure": true,
+              "first_rejection": {
+                "frame": 72,
+                "status_code": null,
+                "reason_code": 9
+              },
+              "rejection_reason_codes": [
+                9
+              ]
+            }
+          }
+        },
+        {
+          "trial": 3,
+          "plan": [
+            "disconnect",
+            "flush_sta",
+            "flush_ap",
+            "arm_reject",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-random-valid-c93928bc019946e6a8e16e53ca159868/20261115-102442-d3b9f3",
+          "result": {
+            "run_id": "20261115-102442-d3b9f3",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.864406957000028,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23040.767446618,
+                "finished_s": 23040.905752803
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 23040.90718796,
+                "finished_s": 23040.908129632
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 23040.909394565,
+                "finished_s": 23040.910122329
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23040.911348632,
+                "finished_s": 23040.912048155
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23040.91389911,
+                "finished_s": 23040.936691263
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 4,
+          "plan": [
+            "disconnect",
+            "flush_sta",
+            "reconnect",
+            "disconnect",
+            "flush_sta",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-random-valid-c93928bc019946e6a8e16e53ca159868/20261115-102447-d069d6",
+          "result": {
+            "run_id": "20261115-102447-d069d6",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 5.0403535189980175,
+            "data_probes_pass": 2,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23045.815444355,
+                "finished_s": 23045.941470871
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 23045.943016343,
+                "finished_s": 23045.9439432
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23045.945173652,
+                "finished_s": 23045.994939721
+              },
+              {
+                "action": "disconnect",
+                "started_s": 23045.997166179,
+                "finished_s": 23046.137019627
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 23046.138402209,
+                "finished_s": 23046.1393194
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23046.140662019,
+                "finished_s": 23046.223330059
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 5,
+          "plan": [
+            "disconnect",
+            "arm_reject",
+            "allow",
+            "flush_sta",
+            "arm_reject",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-random-valid-c93928bc019946e6a8e16e53ca159868/20261115-102452-ac2fea",
+          "result": {
+            "run_id": "20261115-102452-ac2fea",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.940966130998277,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23051.003844568,
+                "finished_s": 23051.121065843
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23051.122420351,
+                "finished_s": 23051.123065651
+              },
+              {
+                "action": "allow",
+                "started_s": 23051.12449877,
+                "finished_s": 23051.174113633
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 23051.175795087,
+                "finished_s": 23051.176924742
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23051.178164027,
+                "finished_s": 23051.178878883
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23051.18036554,
+                "finished_s": 23051.204862442
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        }
+      ],
+      "metrics": {
+        "proposals": 18,
+        "legal": 18,
+        "recovery_failures": 5,
+        "confirmed_rejection_failure_sequences": 5,
+        "attempted_operations": 95,
+        "completed_operations": 90,
+        "independent_stages": [
+          "assoc_req",
+          "deauth",
+          "eapol_m1",
+          "eapol_m2",
+          "eapol_m3",
+          "eapol_m4",
+          "open_system_auth",
+          "sae_commit",
+          "sae_confirm"
+        ],
+        "elapsed_s": 190.1177941110036,
+        "environment_or_action_errors": 0,
+        "observation_errors": 0,
+        "cleanup_errors": 0
+      }
+    },
+    "guided": {
+      "batches": [
+        {
+          "seed": 1,
+          "budget": 6,
+          "max_depth": 6,
+          "metrics": {
+            "proposals": 6,
+            "legal": 6,
+            "recovery_failures": 3,
+            "confirmed_rejection_failure_sequences": 3,
+            "first_detection": {
+              "proposal": 2,
+              "sum_run_elapsed_s": 29.461681408000004
+            },
+            "attempted_operations": 29,
+            "completed_operations": 26,
+            "independent_stages": [
+              "assoc_req",
+              "deauth",
+              "eapol_m1",
+              "eapol_m2",
+              "eapol_m3",
+              "eapol_m4",
+              "open_system_auth",
+              "sae_commit",
+              "sae_confirm"
+            ],
+            "elapsed_s": 88.43049821999739,
+            "environment_or_action_errors": 0,
+            "observation_errors": 0,
+            "cleanup_errors": 0
+          }
+        },
+        {
+          "seed": 2,
+          "budget": 6,
+          "max_depth": 6,
+          "metrics": {
+            "proposals": 6,
+            "legal": 6,
+            "recovery_failures": 3,
+            "confirmed_rejection_failure_sequences": 3,
+            "first_detection": {
+              "proposal": 2,
+              "sum_run_elapsed_s": 29.641939267999987
+            },
+            "attempted_operations": 29,
+            "completed_operations": 26,
+            "independent_stages": [
+              "assoc_req",
+              "deauth",
+              "eapol_m1",
+              "eapol_m2",
+              "eapol_m3",
+              "eapol_m4",
+              "open_system_auth",
+              "sae_commit",
+              "sae_confirm"
+            ],
+            "elapsed_s": 88.55033109599754,
+            "environment_or_action_errors": 0,
+            "observation_errors": 0,
+            "cleanup_errors": 0
+          }
+        },
+        {
+          "seed": 3,
+          "budget": 6,
+          "max_depth": 6,
+          "metrics": {
+            "proposals": 6,
+            "legal": 6,
+            "recovery_failures": 3,
+            "confirmed_rejection_failure_sequences": 3,
+            "first_detection": {
+              "proposal": 2,
+              "sum_run_elapsed_s": 29.626135359001637
+            },
+            "attempted_operations": 29,
+            "completed_operations": 26,
+            "independent_stages": [
+              "assoc_req",
+              "deauth",
+              "eapol_m1",
+              "eapol_m2",
+              "eapol_m3",
+              "eapol_m4",
+              "open_system_auth",
+              "sae_commit",
+              "sae_confirm"
+            ],
+            "elapsed_s": 89.17718198799776,
+            "environment_or_action_errors": 0,
+            "observation_errors": 0,
+            "cleanup_errors": 0
+          }
+        }
+      ],
+      "rows": [
+        {
+          "trial": 0,
+          "plan": [
+            "disconnect",
+            "flush_sta",
+            "flush_ap",
+            "arm_reject",
+            "allow",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-guided-8541e39c1e424db1b1f50df341a9975e/20261115-102457-f12313",
+          "result": {
+            "run_id": "20261115-102457-f12313",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.903743660001055,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23056.379398791,
+                "finished_s": 23056.477288598
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 23056.478662884,
+                "finished_s": 23056.479598815
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 23056.480972545,
+                "finished_s": 23056.481735087
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23056.483021316,
+                "finished_s": 23056.48375045
+              },
+              {
+                "action": "allow",
+                "started_s": 23056.485136014,
+                "finished_s": 23056.534778375
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23056.536165753,
+                "finished_s": 23056.582979839
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 1,
+          "plan": [
+            "disconnect",
+            "flush_ap",
+            "arm_reject",
+            "reconnect",
+            "disconnect",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-guided-8541e39c1e424db1b1f50df341a9975e/20261115-102503-53509c",
+          "result": {
+            "run_id": "20261115-102503-53509c",
+            "recovery": "fail",
+            "failure": {
+              "category": "recovery_timeout",
+              "message": "connection_restored: no matching event within 20s"
+            },
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 24.55793774799895,
+            "data_probes_pass": 0,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23061.709589188,
+                "finished_s": 23061.813390211
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 23061.814801589,
+                "finished_s": 23061.815470575
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23061.816856546,
+                "finished_s": 23061.817550475
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23061.819068595
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": true,
+              "detected_recovery_failure": true,
+              "first_rejection": {
+                "frame": 53,
+                "status_code": null,
+                "reason_code": 9
+              },
+              "rejection_reason_codes": [
+                9
+              ]
+            }
+          }
+        },
+        {
+          "trial": 2,
+          "plan": [
+            "disconnect",
+            "arm_reject",
+            "reconnect",
+            "disconnect",
+            "flush_sta",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-guided-8541e39c1e424db1b1f50df341a9975e/20261115-102528-e8d7b8",
+          "result": {
+            "run_id": "20261115-102528-e8d7b8",
+            "recovery": "fail",
+            "failure": {
+              "category": "recovery_timeout",
+              "message": "connection_restored: no matching event within 20s"
+            },
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 24.600202186997194,
+            "data_probes_pass": 0,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23086.799760481,
+                "finished_s": 23086.945330442
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23086.94684108,
+                "finished_s": 23086.947634844
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23086.949266223
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": true,
+              "detected_recovery_failure": true,
+              "first_rejection": {
+                "frame": 54,
+                "status_code": null,
+                "reason_code": 9
+              },
+              "rejection_reason_codes": [
+                9
+              ]
+            }
+          }
+        },
+        {
+          "trial": 3,
+          "plan": [
+            "disconnect",
+            "flush_sta",
+            "arm_reject",
+            "reconnect",
+            "disconnect",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-guided-8541e39c1e424db1b1f50df341a9975e/20261115-102553-ce126b",
+          "result": {
+            "run_id": "20261115-102553-ce126b",
+            "recovery": "fail",
+            "failure": {
+              "category": "recovery_timeout",
+              "message": "connection_restored: no matching event within 20s"
+            },
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 24.661007668997627,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23111.983232993,
+                "finished_s": 23112.089068697
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 23112.090415371,
+                "finished_s": 23112.091353617
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23112.092700809,
+                "finished_s": 23112.093378591
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23112.094800506,
+                "finished_s": 23112.120674572
+              },
+              {
+                "action": "disconnect",
+                "started_s": 23112.122749676,
+                "finished_s": 23112.228988957
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23112.230367853
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": true,
+              "detected_recovery_failure": true,
+              "first_rejection": {
+                "frame": 74,
+                "status_code": null,
+                "reason_code": 9
+              },
+              "rejection_reason_codes": [
+                9
+              ]
+            }
+          }
+        },
+        {
+          "trial": 4,
+          "plan": [
+            "disconnect",
+            "arm_reject",
+            "flush_sta",
+            "flush_ap",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-guided-8541e39c1e424db1b1f50df341a9975e/20261115-102618-4f7f2a",
+          "result": {
+            "run_id": "20261115-102618-4f7f2a",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.714905861001171,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23137.283540572,
+                "finished_s": 23137.377467809
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23137.379047021,
+                "finished_s": 23137.379829673
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 23137.381326515,
+                "finished_s": 23137.382513502
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 23137.38383688,
+                "finished_s": 23137.384767496
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23137.386194059,
+                "finished_s": 23137.431494465
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 5,
+          "plan": [
+            "disconnect",
+            "arm_reject",
+            "flush_ap",
+            "allow",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-guided-8541e39c1e424db1b1f50df341a9975e/20261115-102623-d81e45",
+          "result": {
+            "run_id": "20261115-102623-d81e45",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.992701095001394,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23142.215427047,
+                "finished_s": 23142.305958023
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23142.30823759,
+                "finished_s": 23142.30933443
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 23142.31154583,
+                "finished_s": 23142.312768522
+              },
+              {
+                "action": "allow",
+                "started_s": 23142.314650754,
+                "finished_s": 23142.36035279
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23142.361633075,
+                "finished_s": 23142.43172485
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": {
+                "frame": 54,
+                "status_code": 53,
+                "reason_code": null
+              },
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 0,
+          "plan": [
+            "disconnect",
+            "flush_sta",
+            "flush_ap",
+            "arm_reject",
+            "allow",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-guided-bf52daf43d3a4a3aa9a7dd4e78f00577/20261115-102629-d709e9",
+          "result": {
+            "run_id": "20261115-102629-d709e9",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.9724755930001265,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23147.680338687,
+                "finished_s": 23147.797150352
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 23147.798579008,
+                "finished_s": 23147.799518476
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 23147.80087402,
+                "finished_s": 23147.801601579
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23147.802906345,
+                "finished_s": 23147.80362996
+              },
+              {
+                "action": "allow",
+                "started_s": 23147.805467248,
+                "finished_s": 23147.854643967
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23147.856095771,
+                "finished_s": 23147.880427991
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 1,
+          "plan": [
+            "disconnect",
+            "flush_ap",
+            "arm_reject",
+            "reconnect",
+            "disconnect",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-guided-bf52daf43d3a4a3aa9a7dd4e78f00577/20261115-102634-ea837e",
+          "result": {
+            "run_id": "20261115-102634-ea837e",
+            "recovery": "fail",
+            "failure": {
+              "category": "recovery_timeout",
+              "message": "connection_restored: no matching event within 20s"
+            },
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 24.66946367499986,
+            "data_probes_pass": 0,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23153.159549175,
+                "finished_s": 23153.281146473
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 23153.282701332,
+                "finished_s": 23153.28350704
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23153.284922992,
+                "finished_s": 23153.2856637
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23153.287034929
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": true,
+              "detected_recovery_failure": true,
+              "first_rejection": {
+                "frame": 54,
+                "status_code": null,
+                "reason_code": 9
+              },
+              "rejection_reason_codes": [
+                9
+              ]
+            }
+          }
+        },
+        {
+          "trial": 2,
+          "plan": [
+            "disconnect",
+            "arm_reject",
+            "reconnect",
+            "disconnect",
+            "flush_sta",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-guided-bf52daf43d3a4a3aa9a7dd4e78f00577/20261115-102659-9204f6",
+          "result": {
+            "run_id": "20261115-102659-9204f6",
+            "recovery": "fail",
+            "failure": {
+              "category": "recovery_timeout",
+              "message": "connection_restored: no matching event within 20s"
+            },
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 24.55823379699723,
+            "data_probes_pass": 0,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23178.279308848,
+                "finished_s": 23178.393042775
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23178.394463189,
+                "finished_s": 23178.395167656
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23178.396627737
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": true,
+              "detected_recovery_failure": true,
+              "first_rejection": {
+                "frame": 53,
+                "status_code": null,
+                "reason_code": 9
+              },
+              "rejection_reason_codes": [
+                9
+              ]
+            }
+          }
+        },
+        {
+          "trial": 3,
+          "plan": [
+            "disconnect",
+            "flush_sta",
+            "arm_reject",
+            "reconnect",
+            "disconnect",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-guided-bf52daf43d3a4a3aa9a7dd4e78f00577/20261115-102724-2af801",
+          "result": {
+            "run_id": "20261115-102724-2af801",
+            "recovery": "fail",
+            "failure": {
+              "category": "recovery_timeout",
+              "message": "connection_restored: no matching event within 20s"
+            },
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 24.693609775997174,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23203.379250063,
+                "finished_s": 23203.501072477
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 23203.50243578,
+                "finished_s": 23203.503396748
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23203.504614865,
+                "finished_s": 23203.505299369
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23203.506717801,
+                "finished_s": 23203.536715468
+              },
+              {
+                "action": "disconnect",
+                "started_s": 23203.539101776,
+                "finished_s": 23203.633020275
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23203.634269744
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": true,
+              "detected_recovery_failure": true,
+              "first_rejection": {
+                "frame": 76,
+                "status_code": null,
+                "reason_code": 9
+              },
+              "rejection_reason_codes": [
+                9
+              ]
+            }
+          }
+        },
+        {
+          "trial": 4,
+          "plan": [
+            "disconnect",
+            "arm_reject",
+            "flush_sta",
+            "flush_ap",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-guided-bf52daf43d3a4a3aa9a7dd4e78f00577/20261115-102750-389f50",
+          "result": {
+            "run_id": "20261115-102750-389f50",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.846773394001502,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23228.7436865,
+                "finished_s": 23228.853283415
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23228.855069238,
+                "finished_s": 23228.855882038
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 23228.857604158,
+                "finished_s": 23228.858930905
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 23228.860550987,
+                "finished_s": 23228.861572788
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23228.863641964,
+                "finished_s": 23228.895132115
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 5,
+          "plan": [
+            "disconnect",
+            "arm_reject",
+            "flush_ap",
+            "allow",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-guided-bf52daf43d3a4a3aa9a7dd4e78f00577/20261115-102755-77ba9c",
+          "result": {
+            "run_id": "20261115-102755-77ba9c",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.809774861001642,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23233.683313178,
+                "finished_s": 23233.769196662
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23233.770649336,
+                "finished_s": 23233.771394339
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 23233.772993939,
+                "finished_s": 23233.773728776
+              },
+              {
+                "action": "allow",
+                "started_s": 23233.775022301,
+                "finished_s": 23233.822402694
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23233.823694126,
+                "finished_s": 23233.894946262
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": {
+                "frame": 52,
+                "status_code": 53,
+                "reason_code": null
+              },
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 0,
+          "plan": [
+            "disconnect",
+            "flush_sta",
+            "flush_ap",
+            "arm_reject",
+            "allow",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-guided-f288444cbe884e7e8759a16183215825/20261115-102800-21f1dd",
+          "result": {
+            "run_id": "20261115-102800-21f1dd",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 5.049464562001958,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23239.084053354,
+                "finished_s": 23239.213053522
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 23239.214466381,
+                "finished_s": 23239.215440756
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 23239.216805373,
+                "finished_s": 23239.217540395
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23239.21884855,
+                "finished_s": 23239.219570905
+              },
+              {
+                "action": "allow",
+                "started_s": 23239.221000134,
+                "finished_s": 23239.270769926
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23239.272991751,
+                "finished_s": 23239.325553612
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 1,
+          "plan": [
+            "disconnect",
+            "flush_ap",
+            "arm_reject",
+            "reconnect",
+            "disconnect",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-guided-f288444cbe884e7e8759a16183215825/20261115-102806-d0ad8a",
+          "result": {
+            "run_id": "20261115-102806-d0ad8a",
+            "recovery": "fail",
+            "failure": {
+              "category": "recovery_timeout",
+              "message": "connection_restored: no matching event within 20s"
+            },
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 24.57667079699968,
+            "data_probes_pass": 0,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23244.49802866,
+                "finished_s": 23244.605094925
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 23244.606370671,
+                "finished_s": 23244.607040934
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23244.608380162,
+                "finished_s": 23244.609109647
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23244.610587173
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": true,
+              "detected_recovery_failure": true,
+              "first_rejection": {
+                "frame": 51,
+                "status_code": null,
+                "reason_code": 9
+              },
+              "rejection_reason_codes": [
+                9
+              ]
+            }
+          }
+        },
+        {
+          "trial": 2,
+          "plan": [
+            "disconnect",
+            "arm_reject",
+            "reconnect",
+            "disconnect",
+            "flush_sta",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-guided-f288444cbe884e7e8759a16183215825/20261115-102831-a18fba",
+          "result": {
+            "run_id": "20261115-102831-a18fba",
+            "recovery": "fail",
+            "failure": {
+              "category": "recovery_timeout",
+              "message": "connection_restored: no matching event within 20s"
+            },
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 24.804178700997,
+            "data_probes_pass": 0,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23269.763168942,
+                "finished_s": 23269.893390597
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23269.895163976,
+                "finished_s": 23269.895985813
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23269.897751191
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "open_system_auth"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": true,
+              "detected_recovery_failure": true,
+              "first_rejection": {
+                "frame": 52,
+                "status_code": null,
+                "reason_code": 9
+              },
+              "rejection_reason_codes": [
+                9
+              ]
+            }
+          }
+        },
+        {
+          "trial": 3,
+          "plan": [
+            "disconnect",
+            "flush_sta",
+            "arm_reject",
+            "reconnect",
+            "disconnect",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-guided-f288444cbe884e7e8759a16183215825/20261115-102856-7b369c",
+          "result": {
+            "run_id": "20261115-102856-7b369c",
+            "recovery": "fail",
+            "failure": {
+              "category": "recovery_timeout",
+              "message": "connection_restored: no matching event within 20s"
+            },
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 24.87802476199795,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23295.05512489,
+                "finished_s": 23295.16123696
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 23295.162564984,
+                "finished_s": 23295.163825582
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23295.164997014,
+                "finished_s": 23295.166005018
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23295.167375654,
+                "finished_s": 23295.222844274
+              },
+              {
+                "action": "disconnect",
+                "started_s": 23295.225057987,
+                "finished_s": 23295.313041328
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23295.314438241
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "deauth",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": true,
+              "detected_recovery_failure": true,
+              "first_rejection": {
+                "frame": 75,
+                "status_code": null,
+                "reason_code": 9
+              },
+              "rejection_reason_codes": [
+                9
+              ]
+            }
+          }
+        },
+        {
+          "trial": 4,
+          "plan": [
+            "disconnect",
+            "arm_reject",
+            "flush_sta",
+            "flush_ap",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-guided-f288444cbe884e7e8759a16183215825/20261115-102922-00f01c",
+          "result": {
+            "run_id": "20261115-102922-00f01c",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.89814346500134,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23320.640928232,
+                "finished_s": 23320.741093098
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23320.742700846,
+                "finished_s": 23320.743407701
+              },
+              {
+                "action": "flush_sta",
+                "started_s": 23320.744735818,
+                "finished_s": 23320.745840526
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 23320.74700642,
+                "finished_s": 23320.747640201
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23320.749005059,
+                "finished_s": 23320.796930529
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": null,
+              "rejection_reason_codes": []
+            }
+          }
+        },
+        {
+          "trial": 5,
+          "plan": [
+            "disconnect",
+            "arm_reject",
+            "flush_ap",
+            "allow",
+            "reconnect"
+          ],
+          "valid": true,
+          "output": "/home/izumedonabe/Projects/ReconnectGuard/results/sequences-guided-f288444cbe884e7e8759a16183215825/20261115-102927-645f5a",
+          "result": {
+            "run_id": "20261115-102927-645f5a",
+            "recovery": "pass",
+            "failure": null,
+            "cleanup": {
+              "errors": []
+            },
+            "elapsed_s": 4.97069970099983,
+            "data_probes_pass": 1,
+            "operations": [
+              {
+                "action": "disconnect",
+                "started_s": 23325.671165848,
+                "finished_s": 23325.797095158
+              },
+              {
+                "action": "arm_reject",
+                "started_s": 23325.798439849,
+                "finished_s": 23325.799080333
+              },
+              {
+                "action": "flush_ap",
+                "started_s": 23325.800650432,
+                "finished_s": 23325.801382473
+              },
+              {
+                "action": "allow",
+                "started_s": 23325.802665071,
+                "finished_s": 23325.850074278
+              },
+              {
+                "action": "reconnect",
+                "started_s": 23325.851344339,
+                "finished_s": 23325.918980061
+              }
+            ],
+            "independent_observation": {
+              "stages": [
+                "assoc_req",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "stage_denominator": [
+                "assoc_req",
+                "deauth",
+                "disassoc",
+                "eapol_m1",
+                "eapol_m2",
+                "eapol_m3",
+                "eapol_m4",
+                "open_system_auth",
+                "sae_commit",
+                "sae_confirm"
+              ],
+              "effective_fault": false,
+              "detected_recovery_failure": false,
+              "first_rejection": {
+                "frame": 55,
+                "status_code": 53,
+                "reason_code": null
+              },
+              "rejection_reason_codes": []
+            }
+          }
+        }
+      ],
+      "metrics": {
+        "proposals": 18,
+        "legal": 18,
+        "recovery_failures": 9,
+        "confirmed_rejection_failure_sequences": 9,
+        "attempted_operations": 87,
+        "completed_operations": 78,
+        "independent_stages": [
+          "assoc_req",
+          "deauth",
+          "eapol_m1",
+          "eapol_m2",
+          "eapol_m3",
+          "eapol_m4",
+          "open_system_auth",
+          "sae_commit",
+          "sae_confirm"
+        ],
+        "elapsed_s": 266.1580113039927,
+        "environment_or_action_errors": 0,
+        "observation_errors": 0,
+        "cleanup_errors": 0
+      }
+    }
+  },
+  "budget_unit": "proposed sequences; maximum six operations per proposal",
+  "failure_identity": "one known cached-association rejection failure mode",
+  "scope": "bounded action grammar, one implementation and environment; not general superiority"
+}

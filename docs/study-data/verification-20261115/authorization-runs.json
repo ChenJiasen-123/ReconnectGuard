@@ -1,0 +1,67 @@
+[
+  {
+    "negative": false,
+    "output": "/home/izumedonabe/Projects/ReconnectGuard/results/20261115-102949-904102",
+    "execution_status": "completed",
+    "property_status": "pass",
+    "roles": {
+      "ap": {
+        "status": "pass",
+        "authorizations": 2,
+        "violations": []
+      },
+      "sta": {
+        "status": "pass",
+        "authorizations": 2,
+        "violations": []
+      }
+    }
+  },
+  {
+    "negative": false,
+    "output": "/home/izumedonabe/Projects/ReconnectGuard/results/20261115-102954-bde467",
+    "execution_status": "completed",
+    "property_status": "pass",
+    "roles": {
+      "ap": {
+        "status": "pass",
+        "authorizations": 2,
+        "violations": []
+      },
+      "sta": {
+        "status": "pass",
+        "authorizations": 2,
+        "violations": []
+      }
+    }
+  },
+  {
+    "negative": true,
+    "output": "/home/izumedonabe/Projects/ReconnectGuard/results/20261115-102959-f5e225",
+    "execution_status": "completed",
+    "property_status": "fail",
+    "roles": {
+      "ap": {
+        "status": "fail",
+        "authorizations": 4,
+        "violations": [
+          {
+            "authorization": "ap.log#line=611",
+            "key_reference": null,
+            "ns": 23357897139997
+          },
+          {
+            "authorization": "ap.log#line=934",
+            "key_reference": null,
+            "ns": 23358075976590
+          }
+        ]
+      },
+      "sta": {
+        "status": "pass",
+        "authorizations": 2,
+        "violations": []
+      }
+    }
+  }
+]

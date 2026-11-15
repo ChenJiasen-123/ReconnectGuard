@@ -103,7 +103,7 @@ class Lab:
             self.out, {"ap": self.ap_config, "sta": self.sta_config})
         self.save("meta.json", self.meta)
         fw_python = FW / "setup/venv/bin/python"
-        ap_binary = FW / "dependencies/hostap_2_10/hostapd/hostapd"
+        ap_binary = Path(os.environ.get("RG_HOSTAPD", FW / "dependencies/hostap_2_10/hostapd/hostapd"))
         framework_sta = FW / "dependencies/hostap_2_10/wpa_supplicant/wpa_supplicant"
         stock_sta = Path(os.environ.get("RG_STOCK_WPA_SUPPLICANT", STOCK_WPA))
         sta_binary = framework_sta if self.mode == "framework" else stock_sta
