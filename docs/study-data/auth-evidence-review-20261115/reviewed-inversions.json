@@ -1,0 +1,917 @@
+[
+  {
+    "schema_version": 2,
+    "kind": "derived_authentication_evidence",
+    "run_id": "20261115-092925-c8f731",
+    "attempt_id": 2,
+    "radio": "physical",
+    "source_sha256": {
+      "meta.json": "e978668f4ea7ccfddccc721a1a8f1fca36631ca7164d76680ef9fad45b596552",
+      "context.json": "f021cceacd91f236cdebaf8e5ad6426f89004aa7987109237f1356c3a06a228c",
+      "connected_baseline.json": "9119e2a02dee3dafdf6968a7d64f1aae016dc62ddde54adf424c9da4c2544721",
+      "events.jsonl": "9c6568625dfca99e510b271fa5df4a270ccd55b1e0ca921476dbe665f2783cf7",
+      "transitions.jsonl": "278a7e4477825b168eef6d73ccccf051de2618b83a6a645cd9e980563e13074c",
+      "sta.log": "ac03d6fabed00d3b768e120fa295eee76662e5e1bfbeaea8abc6a2331d21b676",
+      "capture.log": "313cba7ec8694e9208cdfab60cb906ac496dfa1880b59adfc052ba2030d6e994",
+      "trace.pcap": "73728581cc0b0065e7d937dee65395ddcea817e4a76fb9a58c4f2a7be508832f",
+      "ap.log": "3c9d8d7a92dbf661fe277f6f4f2f3c9df799990f7cb9ed96340e1b179739c621"
+    },
+    "analyzer_sha256": {
+      "postprocess.py": "0fdfe4549465b2aaf08a95391b871f8632ae4cb37fa2c0adcd2c4d381b03ab6b",
+      "frames.py": "2c8cb227ba7f8aa38dc7da9e7633bc73fb3e9a56962a5a4b725a6e161d70da8c",
+      "handshake.py": "2372cc8ef5587f3ad94e54f2aab30f1872c84a310d92e3f19590c1a706482694"
+    },
+    "window": {
+      "sta_disconnected": 1794706169.079164,
+      "connection_restored": 1794706169.235083
+    },
+    "auth_path": {
+      "value": "full_sae",
+      "reason": "恢复窗口内捕获双方 SAE commit/confirm，匹配同一四次握手；抓包顺序质量另见 handshake",
+      "frame_refs": [
+        "trace.pcap#frame=33",
+        "trace.pcap#frame=35",
+        "trace.pcap#frame=32",
+        "trace.pcap#frame=34",
+        "trace.pcap#frame=38",
+        "trace.pcap#frame=39",
+        "trace.pcap#frame=41",
+        "trace.pcap#frame=40"
+      ],
+      "log_refs": [
+        "sta.log#line=1711",
+        "sta.log#line=1736",
+        "sta.log#line=1781",
+        "sta.log#line=1786",
+        "sta.log#line=1843",
+        "sta.log#line=1850",
+        "ap.log#line=1108",
+        "ap.log#line=1143",
+        "ap.log#line=1145",
+        "ap.log#line=1151",
+        "sta.log#line=1685",
+        "sta.log#line=1771",
+        "sta.log#line=1724",
+        "ap.log#line=1079",
+        "ap.log#line=1106"
+      ],
+      "target_window_frames": 10,
+      "handshake": {
+        "status": "matched_with_capture_inversion",
+        "reason": "identity matched; endpoint logs show M3 before M4; capture inversion retained",
+        "observed_stages": {
+          "eapol_m1": [
+            38
+          ],
+          "eapol_m2": [
+            39
+          ],
+          "eapol_m3": [
+            41
+          ],
+          "eapol_m4": [
+            40
+          ]
+        },
+        "capture_order_is_air_order": false,
+        "candidate_groups": 1,
+        "protocol_frame_refs": [
+          "trace.pcap#frame=38",
+          "trace.pcap#frame=39",
+          "trace.pcap#frame=41",
+          "trace.pcap#frame=40"
+        ],
+        "capture_order": [
+          "eapol_m1",
+          "eapol_m2",
+          "eapol_m4",
+          "eapol_m3"
+        ],
+        "capture_frame_refs": [
+          "trace.pcap#frame=38",
+          "trace.pcap#frame=39",
+          "trace.pcap#frame=40",
+          "trace.pcap#frame=41"
+        ],
+        "strict_capture_order": false,
+        "m3_after_m4_capture_ms": 2.746,
+        "endpoint_corroboration": {
+          "status": "corroborated",
+          "log_refs": [
+            "sta.log#line=1711",
+            "sta.log#line=1736",
+            "sta.log#line=1781",
+            "sta.log#line=1786",
+            "sta.log#line=1843",
+            "sta.log#line=1850",
+            "ap.log#line=1108",
+            "ap.log#line=1143",
+            "ap.log#line=1145",
+            "ap.log#line=1151",
+            "sta.log#line=1685",
+            "sta.log#line=1771",
+            "sta.log#line=1724",
+            "ap.log#line=1079",
+            "ap.log#line=1106"
+          ]
+        }
+      },
+      "evidence_basis": "pcap_identity_and_endpoint_logs"
+    },
+    "authorization_timing": {
+      "status": "insufficient_evidence",
+      "reason": "未获取可信的密钥安装与端口授权先后证据；握手和通信恢复不能证明不存在提前授权"
+    },
+    "security_verdict": "not_evaluated",
+    "limitations": [
+      "时间窗口使用本机控制事件接收时间，边界附近的空口帧可能被保守排除",
+      "TX 状态回报和 RX 记录混合，pcap 时间不保证是空口顺序；倒序保留，不重写时间戳",
+      "未验证握手 MIC；分类是观测路径证据，不是密码学安全证明",
+      "内核丢包为零不能证明固件交付了全部空口报文"
+    ]
+  },
+  {
+    "schema_version": 2,
+    "kind": "derived_authentication_evidence",
+    "run_id": "20261115-093033-419568",
+    "attempt_id": 2,
+    "radio": "physical",
+    "source_sha256": {
+      "meta.json": "91cbbe0adb8bdee9aefc8d2fc68fd7a9f35a6ba26046b5f3cbc95a59b22239fc",
+      "context.json": "db4f98f5f9a762075d68d0e96e9a50943b207cbf03cbb98853acad4536a32a0a",
+      "connected_baseline.json": "a999a5160f27067bef19a91418726affa0b6d9aa15fb0b0ab0bc36f5f4a00fa9",
+      "events.jsonl": "0cf8f09bf15c1d402e4a6aa559ac83001238f34d0cd3ceab984be38ea5670fb5",
+      "transitions.jsonl": "f87e4933e4277821723927058e28b7b1fb0da495bb436ada701dcf8fde6238b3",
+      "sta.log": "81a552d42dc39f3f0225440d97e180e48ba55ed78527078483d746fbe8315f9a",
+      "capture.log": "ce958fe79f61799032e27cb3e32abe78d6204675e74b0efe6475e41b24c0e44a",
+      "trace.pcap": "ab2bb73956b19685efdd26837225c02e17b89288d8ab5959cad34c220a4b06f9",
+      "ap.log": "bb28e860fdde3e1bb114ffa8308879606da216c502704c1554679e5233c22816"
+    },
+    "analyzer_sha256": {
+      "postprocess.py": "0fdfe4549465b2aaf08a95391b871f8632ae4cb37fa2c0adcd2c4d381b03ab6b",
+      "frames.py": "2c8cb227ba7f8aa38dc7da9e7633bc73fb3e9a56962a5a4b725a6e161d70da8c",
+      "handshake.py": "2372cc8ef5587f3ad94e54f2aab30f1872c84a310d92e3f19590c1a706482694"
+    },
+    "window": {
+      "sta_disconnected": 1794706237.791178,
+      "connection_restored": 1794706237.987858
+    },
+    "auth_path": {
+      "value": "full_sae",
+      "reason": "恢复窗口内捕获双方 SAE commit/confirm，匹配同一四次握手；抓包顺序质量另见 handshake",
+      "frame_refs": [
+        "trace.pcap#frame=40",
+        "trace.pcap#frame=42",
+        "trace.pcap#frame=39",
+        "trace.pcap#frame=41",
+        "trace.pcap#frame=45",
+        "trace.pcap#frame=46",
+        "trace.pcap#frame=48",
+        "trace.pcap#frame=47"
+      ],
+      "log_refs": [
+        "sta.log#line=1714",
+        "sta.log#line=1739",
+        "sta.log#line=1784",
+        "sta.log#line=1789",
+        "sta.log#line=1846",
+        "sta.log#line=1853",
+        "ap.log#line=1129",
+        "ap.log#line=1164",
+        "ap.log#line=1166",
+        "ap.log#line=1172",
+        "sta.log#line=1688",
+        "sta.log#line=1774",
+        "sta.log#line=1727",
+        "ap.log#line=1100",
+        "ap.log#line=1127"
+      ],
+      "target_window_frames": 10,
+      "handshake": {
+        "status": "matched_with_capture_inversion",
+        "reason": "identity matched; endpoint logs show M3 before M4; capture inversion retained",
+        "observed_stages": {
+          "eapol_m1": [
+            45
+          ],
+          "eapol_m2": [
+            46
+          ],
+          "eapol_m3": [
+            48
+          ],
+          "eapol_m4": [
+            47
+          ]
+        },
+        "capture_order_is_air_order": false,
+        "candidate_groups": 1,
+        "protocol_frame_refs": [
+          "trace.pcap#frame=45",
+          "trace.pcap#frame=46",
+          "trace.pcap#frame=48",
+          "trace.pcap#frame=47"
+        ],
+        "capture_order": [
+          "eapol_m1",
+          "eapol_m2",
+          "eapol_m4",
+          "eapol_m3"
+        ],
+        "capture_frame_refs": [
+          "trace.pcap#frame=45",
+          "trace.pcap#frame=46",
+          "trace.pcap#frame=47",
+          "trace.pcap#frame=48"
+        ],
+        "strict_capture_order": false,
+        "m3_after_m4_capture_ms": 2.746,
+        "endpoint_corroboration": {
+          "status": "corroborated",
+          "log_refs": [
+            "sta.log#line=1714",
+            "sta.log#line=1739",
+            "sta.log#line=1784",
+            "sta.log#line=1789",
+            "sta.log#line=1846",
+            "sta.log#line=1853",
+            "ap.log#line=1129",
+            "ap.log#line=1164",
+            "ap.log#line=1166",
+            "ap.log#line=1172",
+            "sta.log#line=1688",
+            "sta.log#line=1774",
+            "sta.log#line=1727",
+            "ap.log#line=1100",
+            "ap.log#line=1127"
+          ]
+        }
+      },
+      "evidence_basis": "pcap_identity_and_endpoint_logs"
+    },
+    "authorization_timing": {
+      "status": "insufficient_evidence",
+      "reason": "未获取可信的密钥安装与端口授权先后证据；握手和通信恢复不能证明不存在提前授权"
+    },
+    "security_verdict": "not_evaluated",
+    "limitations": [
+      "时间窗口使用本机控制事件接收时间，边界附近的空口帧可能被保守排除",
+      "TX 状态回报和 RX 记录混合，pcap 时间不保证是空口顺序；倒序保留，不重写时间戳",
+      "未验证握手 MIC；分类是观测路径证据，不是密码学安全证明",
+      "内核丢包为零不能证明固件交付了全部空口报文"
+    ]
+  },
+  {
+    "schema_version": 2,
+    "kind": "derived_authentication_evidence",
+    "run_id": "20261115-093136-139d60",
+    "attempt_id": 2,
+    "radio": "physical",
+    "source_sha256": {
+      "meta.json": "3ab557af704b4544e56415b2d365f5fec73d7671e593a9a6c879ed5c9730ab00",
+      "context.json": "3836bdf130018690a1ff6357841ca5a7791a3c53277b660184081e4f091f1b67",
+      "connected_baseline.json": "dbdb8e8a691d4289847990e89ce6a1f5a66658db79c221be36886bd249a117a3",
+      "events.jsonl": "7d347dfcd32572bd58881b42984f0be8564bf415be5fff4912be4e270d456efb",
+      "transitions.jsonl": "2771db37377ef0c84170784c09efe60d583cf6cebcf1e642330074fdfbb2d49f",
+      "sta.log": "77ab018beb454dd08e22613d8f0f7d7c1e605c00c8f31c15166c25ef9731091b",
+      "capture.log": "f326847a797f64678e8eda3729b7838cbb0ad154805ca18922d05da1849b0a45",
+      "trace.pcap": "2f6e5f0801a09c9bb2c0c7f5dd321dd4ec0775be778a20588c55fe236220c898",
+      "ap.log": "31aa14b2f7856f1c0075cc5da44c43892ebd3f93f862b210894a8efd19beb8c5"
+    },
+    "analyzer_sha256": {
+      "postprocess.py": "0fdfe4549465b2aaf08a95391b871f8632ae4cb37fa2c0adcd2c4d381b03ab6b",
+      "frames.py": "2c8cb227ba7f8aa38dc7da9e7633bc73fb3e9a56962a5a4b725a6e161d70da8c",
+      "handshake.py": "2372cc8ef5587f3ad94e54f2aab30f1872c84a310d92e3f19590c1a706482694"
+    },
+    "window": {
+      "sta_disconnected": 1794706300.003272,
+      "connection_restored": 1794706300.634449
+    },
+    "auth_path": {
+      "value": "pmksa_reuse",
+      "reason": "本次关联 PMKID 与恢复窗口内缓存命中及匹配日志一致，四次握手完整，窗口内未见 SAE；仍受固件采集可见性限制",
+      "frame_refs": [
+        "trace.pcap#frame=30",
+        "trace.pcap#frame=32",
+        "trace.pcap#frame=33",
+        "trace.pcap#frame=35",
+        "trace.pcap#frame=34"
+      ],
+      "log_refs": [
+        "sta.log#line=1466",
+        "sta.log#line=1491",
+        "sta.log#line=1533",
+        "sta.log#line=1538",
+        "sta.log#line=1595",
+        "sta.log#line=1602",
+        "ap.log#line=904",
+        "ap.log#line=939",
+        "ap.log#line=941",
+        "ap.log#line=947",
+        "sta.log#line=1440",
+        "sta.log#line=1523",
+        "sta.log#line=1479",
+        "ap.log#line=872",
+        "ap.log#line=902",
+        "sta.log#line=1388",
+        "sta.log#line=1470"
+      ],
+      "target_window_frames": 8,
+      "handshake": {
+        "status": "matched_with_capture_inversion",
+        "reason": "identity matched; endpoint logs show M3 before M4; capture inversion retained",
+        "observed_stages": {
+          "eapol_m1": [
+            32
+          ],
+          "eapol_m2": [
+            33
+          ],
+          "eapol_m3": [
+            35
+          ],
+          "eapol_m4": [
+            34
+          ]
+        },
+        "capture_order_is_air_order": false,
+        "candidate_groups": 1,
+        "protocol_frame_refs": [
+          "trace.pcap#frame=32",
+          "trace.pcap#frame=33",
+          "trace.pcap#frame=35",
+          "trace.pcap#frame=34"
+        ],
+        "capture_order": [
+          "eapol_m1",
+          "eapol_m2",
+          "eapol_m4",
+          "eapol_m3"
+        ],
+        "capture_frame_refs": [
+          "trace.pcap#frame=32",
+          "trace.pcap#frame=33",
+          "trace.pcap#frame=34",
+          "trace.pcap#frame=35"
+        ],
+        "strict_capture_order": false,
+        "m3_after_m4_capture_ms": 3.012,
+        "endpoint_corroboration": {
+          "status": "corroborated",
+          "log_refs": [
+            "sta.log#line=1466",
+            "sta.log#line=1491",
+            "sta.log#line=1533",
+            "sta.log#line=1538",
+            "sta.log#line=1595",
+            "sta.log#line=1602",
+            "ap.log#line=904",
+            "ap.log#line=939",
+            "ap.log#line=941",
+            "ap.log#line=947",
+            "sta.log#line=1440",
+            "sta.log#line=1523",
+            "sta.log#line=1479",
+            "ap.log#line=872",
+            "ap.log#line=902"
+          ]
+        }
+      },
+      "evidence_basis": "pcap_identity_and_endpoint_logs"
+    },
+    "authorization_timing": {
+      "status": "insufficient_evidence",
+      "reason": "未获取可信的密钥安装与端口授权先后证据；握手和通信恢复不能证明不存在提前授权"
+    },
+    "security_verdict": "not_evaluated",
+    "limitations": [
+      "时间窗口使用本机控制事件接收时间，边界附近的空口帧可能被保守排除",
+      "TX 状态回报和 RX 记录混合，pcap 时间不保证是空口顺序；倒序保留，不重写时间戳",
+      "未验证握手 MIC；分类是观测路径证据，不是密码学安全证明",
+      "内核丢包为零不能证明固件交付了全部空口报文"
+    ]
+  },
+  {
+    "schema_version": 2,
+    "kind": "derived_authentication_evidence",
+    "run_id": "20261115-093142-4dcd6e",
+    "attempt_id": 2,
+    "radio": "physical",
+    "source_sha256": {
+      "meta.json": "9f9ff85490d1e5de974ef03020424d7ea1667fcf66dc856523530f0d8e80d07e",
+      "context.json": "4b6d689efb33689faba45f9bcee3679bae745b24c3e51227f65f62675d3a6b24",
+      "connected_baseline.json": "53be0b6c2dc08d511b8e02cfb24c866ccaa89a631f9ccf55433b2e3ad7730b36",
+      "events.jsonl": "a8f90952b8d13739b5aa6823442796503047cf156ee021a67ffe3ee346c6457e",
+      "transitions.jsonl": "602dc4400b3f4da7708d350a16d81cfe3c799a493a269efb92a1caa16564e8ce",
+      "sta.log": "a68d46cddcb02e539903badd138e7b616db824c38b9284a2a7acb2d3b8358c8e",
+      "capture.log": "729ecf1716906d3705f62096906e654b9cde8709497fe14b51a8eff66bb696d8",
+      "trace.pcap": "2fe31586afa2094de960206bf9c0f7129aef5c5177732f365309de2e30658b14",
+      "ap.log": "deb3442bd9c5d60dacd507d04a60cd167a455aa7bc896722e93b492c5d9ccd6b"
+    },
+    "analyzer_sha256": {
+      "postprocess.py": "0fdfe4549465b2aaf08a95391b871f8632ae4cb37fa2c0adcd2c4d381b03ab6b",
+      "frames.py": "2c8cb227ba7f8aa38dc7da9e7633bc73fb3e9a56962a5a4b725a6e161d70da8c",
+      "handshake.py": "2372cc8ef5587f3ad94e54f2aab30f1872c84a310d92e3f19590c1a706482694"
+    },
+    "window": {
+      "sta_disconnected": 1794706305.911153,
+      "connection_restored": 1794706306.175606
+    },
+    "auth_path": {
+      "value": "full_sae",
+      "reason": "恢复窗口内捕获双方 SAE commit/confirm，匹配同一四次握手；抓包顺序质量另见 handshake",
+      "frame_refs": [
+        "trace.pcap#frame=37",
+        "trace.pcap#frame=39",
+        "trace.pcap#frame=36",
+        "trace.pcap#frame=38",
+        "trace.pcap#frame=42",
+        "trace.pcap#frame=43",
+        "trace.pcap#frame=45",
+        "trace.pcap#frame=44"
+      ],
+      "log_refs": [
+        "sta.log#line=1895",
+        "sta.log#line=1920",
+        "sta.log#line=1965",
+        "sta.log#line=1970",
+        "sta.log#line=2027",
+        "sta.log#line=2034",
+        "ap.log#line=1324",
+        "ap.log#line=1359",
+        "ap.log#line=1361",
+        "ap.log#line=1367",
+        "sta.log#line=1869",
+        "sta.log#line=1955",
+        "sta.log#line=1908",
+        "ap.log#line=1295",
+        "ap.log#line=1322"
+      ],
+      "target_window_frames": 14,
+      "handshake": {
+        "status": "matched_with_capture_inversion",
+        "reason": "identity matched; endpoint logs show M3 before M4; capture inversion retained",
+        "observed_stages": {
+          "eapol_m1": [
+            42
+          ],
+          "eapol_m2": [
+            43
+          ],
+          "eapol_m3": [
+            45
+          ],
+          "eapol_m4": [
+            44
+          ]
+        },
+        "capture_order_is_air_order": false,
+        "candidate_groups": 1,
+        "protocol_frame_refs": [
+          "trace.pcap#frame=42",
+          "trace.pcap#frame=43",
+          "trace.pcap#frame=45",
+          "trace.pcap#frame=44"
+        ],
+        "capture_order": [
+          "eapol_m1",
+          "eapol_m2",
+          "eapol_m4",
+          "eapol_m3"
+        ],
+        "capture_frame_refs": [
+          "trace.pcap#frame=42",
+          "trace.pcap#frame=43",
+          "trace.pcap#frame=44",
+          "trace.pcap#frame=45"
+        ],
+        "strict_capture_order": false,
+        "m3_after_m4_capture_ms": 8.771,
+        "endpoint_corroboration": {
+          "status": "corroborated",
+          "log_refs": [
+            "sta.log#line=1895",
+            "sta.log#line=1920",
+            "sta.log#line=1965",
+            "sta.log#line=1970",
+            "sta.log#line=2027",
+            "sta.log#line=2034",
+            "ap.log#line=1324",
+            "ap.log#line=1359",
+            "ap.log#line=1361",
+            "ap.log#line=1367",
+            "sta.log#line=1869",
+            "sta.log#line=1955",
+            "sta.log#line=1908",
+            "ap.log#line=1295",
+            "ap.log#line=1322"
+          ]
+        }
+      },
+      "evidence_basis": "pcap_identity_and_endpoint_logs"
+    },
+    "authorization_timing": {
+      "status": "insufficient_evidence",
+      "reason": "未获取可信的密钥安装与端口授权先后证据；握手和通信恢复不能证明不存在提前授权"
+    },
+    "security_verdict": "not_evaluated",
+    "limitations": [
+      "时间窗口使用本机控制事件接收时间，边界附近的空口帧可能被保守排除",
+      "TX 状态回报和 RX 记录混合，pcap 时间不保证是空口顺序；倒序保留，不重写时间戳",
+      "未验证握手 MIC；分类是观测路径证据，不是密码学安全证明",
+      "内核丢包为零不能证明固件交付了全部空口报文"
+    ]
+  },
+  {
+    "schema_version": 2,
+    "kind": "derived_authentication_evidence",
+    "run_id": "20261115-093153-2dccbe",
+    "attempt_id": 2,
+    "radio": "physical",
+    "source_sha256": {
+      "meta.json": "4bc87e038115f2f9fb4e0e61806ac95d2be955a4f584276cd56c23fdbe04a3c1",
+      "context.json": "40f71effdd507328829d6b979603175ee1741a91d3ccc4d2a52d3773a42cd280",
+      "connected_baseline.json": "7f5eb04cbe0eda7b25fa7afd409067afb265c7a210fbb19dd7aadbcf28e00fc4",
+      "events.jsonl": "bbe6e7fdc27119c68a13202a8f083cf3c26d73fede7c51dce1b0efde9b2fbd27",
+      "transitions.jsonl": "7431a43e8cf6a128f69fded752fa6f8fbb39d7fcb96a711c9ca7fa8695798fe5",
+      "sta.log": "3327fa189742c91d23cee351cefd58b1a778bd6e75b0650c175f3efd3920e38e",
+      "capture.log": "fb1a957bf9f90f14475700bd2d4353fba5861178e83ec847b241955c9633df97",
+      "trace.pcap": "f58ebad3b1710b31c695a0bc88aee80276c9fd8081ef1209d438b109a656004c",
+      "ap.log": "4b16d36d651024cc63fba57be2d5ab86186d792ecb4a9f067a75940db89b0b15"
+    },
+    "analyzer_sha256": {
+      "postprocess.py": "0fdfe4549465b2aaf08a95391b871f8632ae4cb37fa2c0adcd2c4d381b03ab6b",
+      "frames.py": "2c8cb227ba7f8aa38dc7da9e7633bc73fb3e9a56962a5a4b725a6e161d70da8c",
+      "handshake.py": "2372cc8ef5587f3ad94e54f2aab30f1872c84a310d92e3f19590c1a706482694"
+    },
+    "window": {
+      "sta_disconnected": 1794706317.623148,
+      "connection_restored": 1794706317.755582
+    },
+    "auth_path": {
+      "value": "pmksa_reuse",
+      "reason": "本次关联 PMKID 与恢复窗口内缓存命中及匹配日志一致，四次握手完整，窗口内未见 SAE；仍受固件采集可见性限制",
+      "frame_refs": [
+        "trace.pcap#frame=40",
+        "trace.pcap#frame=42",
+        "trace.pcap#frame=43",
+        "trace.pcap#frame=45",
+        "trace.pcap#frame=44"
+      ],
+      "log_refs": [
+        "sta.log#line=1453",
+        "sta.log#line=1478",
+        "sta.log#line=1523",
+        "sta.log#line=1528",
+        "sta.log#line=1585",
+        "sta.log#line=1592",
+        "ap.log#line=887",
+        "ap.log#line=922",
+        "ap.log#line=924",
+        "ap.log#line=930",
+        "sta.log#line=1427",
+        "sta.log#line=1513",
+        "sta.log#line=1466",
+        "ap.log#line=855",
+        "ap.log#line=885",
+        "sta.log#line=1375",
+        "sta.log#line=1457"
+      ],
+      "target_window_frames": 8,
+      "handshake": {
+        "status": "matched_with_capture_inversion",
+        "reason": "identity matched; endpoint logs show M3 before M4; capture inversion retained",
+        "observed_stages": {
+          "eapol_m1": [
+            42
+          ],
+          "eapol_m2": [
+            43
+          ],
+          "eapol_m3": [
+            45
+          ],
+          "eapol_m4": [
+            44
+          ]
+        },
+        "capture_order_is_air_order": false,
+        "candidate_groups": 1,
+        "protocol_frame_refs": [
+          "trace.pcap#frame=42",
+          "trace.pcap#frame=43",
+          "trace.pcap#frame=45",
+          "trace.pcap#frame=44"
+        ],
+        "capture_order": [
+          "eapol_m1",
+          "eapol_m2",
+          "eapol_m4",
+          "eapol_m3"
+        ],
+        "capture_frame_refs": [
+          "trace.pcap#frame=42",
+          "trace.pcap#frame=43",
+          "trace.pcap#frame=44",
+          "trace.pcap#frame=45"
+        ],
+        "strict_capture_order": false,
+        "m3_after_m4_capture_ms": 2.727,
+        "endpoint_corroboration": {
+          "status": "corroborated",
+          "log_refs": [
+            "sta.log#line=1453",
+            "sta.log#line=1478",
+            "sta.log#line=1523",
+            "sta.log#line=1528",
+            "sta.log#line=1585",
+            "sta.log#line=1592",
+            "ap.log#line=887",
+            "ap.log#line=922",
+            "ap.log#line=924",
+            "ap.log#line=930",
+            "sta.log#line=1427",
+            "sta.log#line=1513",
+            "sta.log#line=1466",
+            "ap.log#line=855",
+            "ap.log#line=885"
+          ]
+        }
+      },
+      "evidence_basis": "pcap_identity_and_endpoint_logs"
+    },
+    "authorization_timing": {
+      "status": "insufficient_evidence",
+      "reason": "未获取可信的密钥安装与端口授权先后证据；握手和通信恢复不能证明不存在提前授权"
+    },
+    "security_verdict": "not_evaluated",
+    "limitations": [
+      "时间窗口使用本机控制事件接收时间，边界附近的空口帧可能被保守排除",
+      "TX 状态回报和 RX 记录混合，pcap 时间不保证是空口顺序；倒序保留，不重写时间戳",
+      "未验证握手 MIC；分类是观测路径证据，不是密码学安全证明",
+      "内核丢包为零不能证明固件交付了全部空口报文"
+    ]
+  },
+  {
+    "schema_version": 2,
+    "kind": "derived_authentication_evidence",
+    "run_id": "20261115-093216-808c0e",
+    "attempt_id": 2,
+    "radio": "physical",
+    "source_sha256": {
+      "meta.json": "2c00e403e636855b9de1a7dc3b8a7aacd2ec99ccab83be5a94e74e2cd59be541",
+      "context.json": "1e374825a8cf9f1e05f45324be398bc7b1a57259b8ad4ec8c245e3d2cdd8d2a0",
+      "connected_baseline.json": "8a942f3a82d1f02e7f2d7ef6cf91245356ef0fc22d4d07280eb9783c2797239a",
+      "events.jsonl": "5c382dbfa57755d3eb8edc5f31cbb6371dcbca23823fe25d341982872c2bfda4",
+      "transitions.jsonl": "d807e0e515d5f9f6b8a0561dc83904a3ec3adf9f6faf5bf2068ddc9b275bca0a",
+      "sta.log": "61884bc6513c8744e3ae51211158e2f2ec699d10140c98bf1d681678fcd02cf6",
+      "capture.log": "3a74acd5f88b3b73b9a20285164c55d25eb8e3ecb48d74cee4e7fd92b2ff2d58",
+      "trace.pcap": "23d7352fe7b584b4d21b2c14910e9c9d7b0789483d8ea5866c30433a7302991a",
+      "ap.log": "1876c7fac3a78834ae1b8a5866222e742c93e83a00e4adef0b6c0b0088539377"
+    },
+    "analyzer_sha256": {
+      "postprocess.py": "0fdfe4549465b2aaf08a95391b871f8632ae4cb37fa2c0adcd2c4d381b03ab6b",
+      "frames.py": "2c8cb227ba7f8aa38dc7da9e7633bc73fb3e9a56962a5a4b725a6e161d70da8c",
+      "handshake.py": "2372cc8ef5587f3ad94e54f2aab30f1872c84a310d92e3f19590c1a706482694"
+    },
+    "window": {
+      "sta_disconnected": 1794706340.315219,
+      "connection_restored": 1794706340.578691
+    },
+    "auth_path": {
+      "value": "full_sae",
+      "reason": "恢复窗口内捕获双方 SAE commit/confirm，匹配同一四次握手；抓包顺序质量另见 handshake",
+      "frame_refs": [
+        "trace.pcap#frame=34",
+        "trace.pcap#frame=36",
+        "trace.pcap#frame=33",
+        "trace.pcap#frame=35",
+        "trace.pcap#frame=39",
+        "trace.pcap#frame=40",
+        "trace.pcap#frame=42",
+        "trace.pcap#frame=41"
+      ],
+      "log_refs": [
+        "sta.log#line=1890",
+        "sta.log#line=1915",
+        "sta.log#line=1960",
+        "sta.log#line=1965",
+        "sta.log#line=2022",
+        "sta.log#line=2029",
+        "ap.log#line=1182",
+        "ap.log#line=1217",
+        "ap.log#line=1219",
+        "ap.log#line=1225",
+        "sta.log#line=1864",
+        "sta.log#line=1950",
+        "sta.log#line=1903",
+        "ap.log#line=1153",
+        "ap.log#line=1180"
+      ],
+      "target_window_frames": 14,
+      "handshake": {
+        "status": "matched_with_capture_inversion",
+        "reason": "identity matched; endpoint logs show M3 before M4; capture inversion retained",
+        "observed_stages": {
+          "eapol_m1": [
+            39
+          ],
+          "eapol_m2": [
+            40
+          ],
+          "eapol_m3": [
+            42
+          ],
+          "eapol_m4": [
+            41
+          ]
+        },
+        "capture_order_is_air_order": false,
+        "candidate_groups": 1,
+        "protocol_frame_refs": [
+          "trace.pcap#frame=39",
+          "trace.pcap#frame=40",
+          "trace.pcap#frame=42",
+          "trace.pcap#frame=41"
+        ],
+        "capture_order": [
+          "eapol_m1",
+          "eapol_m2",
+          "eapol_m4",
+          "eapol_m3"
+        ],
+        "capture_frame_refs": [
+          "trace.pcap#frame=39",
+          "trace.pcap#frame=40",
+          "trace.pcap#frame=41",
+          "trace.pcap#frame=42"
+        ],
+        "strict_capture_order": false,
+        "m3_after_m4_capture_ms": 3.045,
+        "endpoint_corroboration": {
+          "status": "corroborated",
+          "log_refs": [
+            "sta.log#line=1890",
+            "sta.log#line=1915",
+            "sta.log#line=1960",
+            "sta.log#line=1965",
+            "sta.log#line=2022",
+            "sta.log#line=2029",
+            "ap.log#line=1182",
+            "ap.log#line=1217",
+            "ap.log#line=1219",
+            "ap.log#line=1225",
+            "sta.log#line=1864",
+            "sta.log#line=1950",
+            "sta.log#line=1903",
+            "ap.log#line=1153",
+            "ap.log#line=1180"
+          ]
+        }
+      },
+      "evidence_basis": "pcap_identity_and_endpoint_logs"
+    },
+    "authorization_timing": {
+      "status": "insufficient_evidence",
+      "reason": "未获取可信的密钥安装与端口授权先后证据；握手和通信恢复不能证明不存在提前授权"
+    },
+    "security_verdict": "not_evaluated",
+    "limitations": [
+      "时间窗口使用本机控制事件接收时间，边界附近的空口帧可能被保守排除",
+      "TX 状态回报和 RX 记录混合，pcap 时间不保证是空口顺序；倒序保留，不重写时间戳",
+      "未验证握手 MIC；分类是观测路径证据，不是密码学安全证明",
+      "内核丢包为零不能证明固件交付了全部空口报文"
+    ]
+  },
+  {
+    "schema_version": 2,
+    "kind": "derived_authentication_evidence",
+    "run_id": "20261115-093248-392d3b",
+    "attempt_id": 2,
+    "radio": "physical",
+    "source_sha256": {
+      "meta.json": "f053e9f4c998555555a9b407fbf4012d92fd1f78408a0b25684563587cef2756",
+      "context.json": "16ee5033d69161c7b7b0e2d514bf0db8bd17edeec99dd687c3e1951e06b1b903",
+      "connected_baseline.json": "731787ca1792e82bc4d23cc18830985227423284ecc1f8656567e14b4683e919",
+      "events.jsonl": "c65dff98514494b877b40c3ae2085b14f3370a6109383c05f3c660b21e6e96e8",
+      "transitions.jsonl": "3f331d957d162dbfe188dbda63eb8737095be11c5cdc1bd7ad7a92a075cd94ed",
+      "sta.log": "423aca980ad864650ef134e2cfed2209445af8c60b071c9132eb091aa7ce1686",
+      "capture.log": "f18c4ef5d28369ffe3c50f25c26599f78a8892637b36854efa32417fc18818d0",
+      "trace.pcap": "eddceed701694b1bc9c127e668d4e38dd6752ccff3ad82d50538b7f5bab613b2",
+      "ap.log": "a9af57bca29fbbc5ef84d3a6f09cfbe53a46f53618bf838e956fe075150a264e"
+    },
+    "analyzer_sha256": {
+      "postprocess.py": "0fdfe4549465b2aaf08a95391b871f8632ae4cb37fa2c0adcd2c4d381b03ab6b",
+      "frames.py": "2c8cb227ba7f8aa38dc7da9e7633bc73fb3e9a56962a5a4b725a6e161d70da8c",
+      "handshake.py": "2372cc8ef5587f3ad94e54f2aab30f1872c84a310d92e3f19590c1a706482694"
+    },
+    "window": {
+      "sta_disconnected": 1794706372.451189,
+      "connection_restored": 1794706372.611363
+    },
+    "auth_path": {
+      "value": "full_sae",
+      "reason": "恢复窗口内捕获双方 SAE commit/confirm，匹配同一四次握手；抓包顺序质量另见 handshake",
+      "frame_refs": [
+        "trace.pcap#frame=40",
+        "trace.pcap#frame=42",
+        "trace.pcap#frame=39",
+        "trace.pcap#frame=41",
+        "trace.pcap#frame=45",
+        "trace.pcap#frame=46",
+        "trace.pcap#frame=48",
+        "trace.pcap#frame=47"
+      ],
+      "log_refs": [
+        "sta.log#line=1709",
+        "sta.log#line=1734",
+        "sta.log#line=1778",
+        "sta.log#line=1783",
+        "sta.log#line=1840",
+        "sta.log#line=1847",
+        "ap.log#line=1142",
+        "ap.log#line=1177",
+        "ap.log#line=1179",
+        "ap.log#line=1185",
+        "sta.log#line=1683",
+        "sta.log#line=1768",
+        "sta.log#line=1722",
+        "ap.log#line=1113",
+        "ap.log#line=1140"
+      ],
+      "target_window_frames": 10,
+      "handshake": {
+        "status": "matched_with_capture_inversion",
+        "reason": "identity matched; endpoint logs show M3 before M4; capture inversion retained",
+        "observed_stages": {
+          "eapol_m1": [
+            45
+          ],
+          "eapol_m2": [
+            46
+          ],
+          "eapol_m3": [
+            48
+          ],
+          "eapol_m4": [
+            47
+          ]
+        },
+        "capture_order_is_air_order": false,
+        "candidate_groups": 1,
+        "protocol_frame_refs": [
+          "trace.pcap#frame=45",
+          "trace.pcap#frame=46",
+          "trace.pcap#frame=48",
+          "trace.pcap#frame=47"
+        ],
+        "capture_order": [
+          "eapol_m1",
+          "eapol_m2",
+          "eapol_m4",
+          "eapol_m3"
+        ],
+        "capture_frame_refs": [
+          "trace.pcap#frame=45",
+          "trace.pcap#frame=46",
+          "trace.pcap#frame=47",
+          "trace.pcap#frame=48"
+        ],
+        "strict_capture_order": false,
+        "m3_after_m4_capture_ms": 3.01,
+        "endpoint_corroboration": {
+          "status": "corroborated",
+          "log_refs": [
+            "sta.log#line=1709",
+            "sta.log#line=1734",
+            "sta.log#line=1778",
+            "sta.log#line=1783",
+            "sta.log#line=1840",
+            "sta.log#line=1847",
+            "ap.log#line=1142",
+            "ap.log#line=1177",
+            "ap.log#line=1179",
+            "ap.log#line=1185",
+            "sta.log#line=1683",
+            "sta.log#line=1768",
+            "sta.log#line=1722",
+            "ap.log#line=1113",
+            "ap.log#line=1140"
+          ]
+        }
+      },
+      "evidence_basis": "pcap_identity_and_endpoint_logs"
+    },
+    "authorization_timing": {
+      "status": "insufficient_evidence",
+      "reason": "未获取可信的密钥安装与端口授权先后证据；握手和通信恢复不能证明不存在提前授权"
+    },
+    "security_verdict": "not_evaluated",
+    "limitations": [
+      "时间窗口使用本机控制事件接收时间，边界附近的空口帧可能被保守排除",
+      "TX 状态回报和 RX 记录混合，pcap 时间不保证是空口顺序；倒序保留，不重写时间戳",
+      "未验证握手 MIC；分类是观测路径证据，不是密码学安全证明",
+      "内核丢包为零不能证明固件交付了全部空口报文"
+    ]
+  }
+]

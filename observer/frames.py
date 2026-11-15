@@ -21,6 +21,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -162,10 +163,19 @@ def read_pcap_frames(path: Path) -> list[dict]:
                 "retry": bool(int(dot11.FCfield) & 0x08),
                 "addr1": dot11.addr1, "addr2": dot11.addr2, "addr3": dot11.addr3,
             }
+            # 不把本机 TX 状态回报的 pcap 时间当作空口发送时间。
+            fields = packet.fields if packet.name == 'RadioTap' else {}
+            tx, rx = 'TXFlags' in fields, 'RXFlags' in fields
+            row['capture_origin'] = 'local_tx_status' if tx and not rx else 'radio_rx' if rx and not tx else 'unknown'
+            if tx:
+                row['radiotap_tx_flags'] = int(fields['TXFlags'])
+            row['bad_fcs'] = bool(int(fields.get('Flags', 0)) & 0x40)
+            row['bad_plcp'] = bool(int(fields.get('RXFlags', 0)) & 2)
             if dot11.type == 0 and dot11.subtype == 11 and packet.haslayer(Dot11Auth):
                 auth = packet[Dot11Auth]
                 row["auth_algo"] = int(auth.algo)
                 row["auth_seq"] = int(auth.seqnum)
+                row["auth_status"] = int(auth.status)
             if dot11.type == 0 and dot11.subtype == 0:
                 layer = packet
                 while layer is not None:
@@ -182,6 +192,7 @@ def read_pcap_frames(path: Path) -> list[dict]:
             if packet.haslayer(Dot11Disas):
                 row["reason_code"] = int(packet[Dot11Disas].reason)
             if packet.haslayer(EAPOL):
+                row['eapol_sha256'] = hashlib.sha256(bytes(packet[EAPOL])).hexdigest()
                 payload = bytes(packet[EAPOL].payload)
                 if len(payload) >= 3 and payload[0] == 2:  # RSN Key descriptor
                     row["eapol_key_info"] = int.from_bytes(payload[1:3], "big")

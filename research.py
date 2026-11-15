@@ -8,7 +8,7 @@ import uuid
 from runner import ROOT, load_case, run_case, _save
 
 
-def run_cache(output,repeat,ap,sta):
+def run_cache(output,repeat,ap,sta,*,session_factory=None):
     out=Path(output)/('cache-'+uuid.uuid4().hex);out.mkdir(parents=True)
     rows=[]
     plan={'repeat':repeat,'policies':{'A':'retain/retain','B':'flush/retain','C':'retain/flush','D':'flush/flush'},'recovery_timeout_s':20,'radio':'physical','ap_iface':ap,'sta_iface':sta,'runs':rows,'stop_reason':None}
@@ -16,7 +16,7 @@ def run_cache(output,repeat,ap,sta):
     for n in range(repeat):
         for offset in range(4):
             policy='ABCD'[(n+offset)%4]
-            result,folder=run_case(load_case(ROOT/'cases.yaml','client_disconnect_reconnect'),out,backend='real',radio='physical',ap_iface=ap,sta_iface=sta,cache_policy=policy,evaluator_spec='observer.oracle:Oracle',analyze=True)
+            result,folder=run_case(load_case(ROOT/'cases.yaml','client_disconnect_reconnect'),out,backend='real',radio='physical',ap_iface=ap,sta_iface=sta,cache_policy=policy,evaluator_spec='observer.oracle:Oracle',analyze=True,session_factory=session_factory)
             rows.append({'round':n+1,'policy':policy,'result':result,'output':str(folder.resolve())})
             if result['cleanup_status']=='failed' or result['error_category'] in ('cancelled','environment_error'):
                 plan['stop_reason']=result['error_category'] or 'cleanup_error'

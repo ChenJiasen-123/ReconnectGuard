@@ -216,3 +216,9 @@ A/B/C/D 分别为双方保留、仅AP清除、仅STA清除、双方清除。实�
 
 代码、真实实验、归纳证明、证书和复现步骤见
 [最短反例与时序验证报告](docs/verification-study-20261115.md)。
+
+实体抓包的 TX 状态与 RX 顺序分开解释。v2 通过帧身份和本轮双端日志互证，
+保留 M3/M4 倒序标记；旧40轮现可确认10轮缓存复用、30轮完整SAE。
+只读重分析入口为 `python3 -m observer.reanalysis`；独立真机与固定五包诊断入口为
+`evidence_study.py`。判定条件、旧结果保留和12轮复测见
+[认证证据复核](docs/auth-evidence-review-20261115.md)。

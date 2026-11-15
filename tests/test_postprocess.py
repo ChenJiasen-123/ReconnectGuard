@@ -48,9 +48,11 @@ class PostprocessTest(unittest.TestCase):
     def test_full_sae_requires_both_sides_commit_and_confirm(self):
         rows=frames()
         for n,(source,seq) in enumerate([(AP,1),(STA,1),(AP,2),(STA,2)],10):
-            rows.append(dict(frame=n-10,time=1.01+(n-10)*.01,type=0,subtype=11,addr1=STA if source==AP else AP,addr2=source,auth_algo=3,auth_seq=seq))
+            rows.append(dict(frame=n-10,time=1.01+(n-10)*.01,type=0,subtype=11,addr1=STA if source==AP else AP,addr2=source,auth_algo=3,auth_seq=seq,auth_status=0))
         self.assertEqual(infer(rows)['value'],'full_sae')
         self.assertEqual(infer(rows[:-1])['value'],'unknown')
+        rows[-1]['auth_status']=77
+        self.assertEqual(infer(rows)['value'],'unknown')
 
     def test_other_network_sae_cannot_override_cache_reuse(self):
         rows=frames()+[dict(frame=100,time=1.11,type=0,subtype=11,addr1='aa',addr2='bb',auth_algo=3,auth_seq=1)]
@@ -78,3 +80,8 @@ class PostprocessTest(unittest.TestCase):
             for name,content in before.items():
                 self.assertEqual((p/name).read_bytes(),content)
                 self.assertEqual(report['source_sha256'][name],hashlib.sha256(content).hexdigest())
+            old=(p/'authentication-analysis.json').read_bytes()
+            with patch('observer.postprocess.read_pcap_frames',return_value=frames()):
+                analyze_run(p,output=p/'separate-v2.json')
+            self.assertEqual((p/'authentication-analysis.json').read_bytes(),old)
+            self.assertTrue((p/'separate-v2.json').exists())

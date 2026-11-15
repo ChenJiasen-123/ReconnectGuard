@@ -1,5 +1,5 @@
 import unittest
-from backends.interventions import apply_cache_policy
+from backends.interventions import apply_cache_policy,retention_check
 from model.protocol import ProtocolMonitor,Phase
 
 
@@ -10,10 +10,17 @@ class CacheLab:
     def command(self,target,cmd,*args,**kw):
         self.ops.append((target,cmd))
         if cmd=='PMKSA_FLUSH':self.cache[target]=False;return 'OK'
-        return 'Index / MAC\n'+('0 00:11:22:33:44:55 pmkid' if self.cache[target] else '')
+        return 'Index / MAC\n'+('0 00:11:22:33:44:55 '+('ab'*16)+' 43199 0' if self.cache[target] else '')
 
 
 class ResearchTest(unittest.TestCase):
+    def test_retained_cache_countdown_is_not_an_identity_change(self):
+        a='0 00:11:22:33:44:55 '+('ab'*16)+' 43199 0'
+        b=a.replace('43199','43198')
+        self.assertTrue(retention_check(a,b,.02)['verified'])
+        for changed in (b.replace('ab'*16,'cd'*16),b.replace('43198','43200'),
+                        b.replace('43198','43190'),b.replace('43198','0'),b[:-1]+'1',b+' extra'):
+            self.assertFalse(retention_check(a,changed,.02)['verified'])
     def test_verified_cache_interventions_and_retention(self):
         for policy in 'ABCD':
             lab=CacheLab();r=apply_cache_policy(lab,policy)

@@ -1,0 +1,461 @@
+{
+  "batch": "cache-7c221e270b4f4e5f95e26d538cdc13cf",
+  "runs": [
+    {
+      "run_id": "20261115-110300-6ee7bf",
+      "policy": "A",
+      "auth_path": "pmksa_reuse",
+      "handshake_status": "matched_with_capture_inversion",
+      "connection_recovery": "pass",
+      "probes": {
+        "baseline": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        },
+        "recovery": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        }
+      },
+      "cleanup_status": "completed",
+      "report_sha256": "f3b50f87b1dc371fb02db1b2ffa13fe2e3ba1d57c8e388b698e57c170fa2b486"
+    },
+    {
+      "run_id": "20261115-110308-b30a1f",
+      "policy": "B",
+      "auth_path": "full_sae",
+      "handshake_status": "matched_in_capture_order",
+      "connection_recovery": "pass",
+      "probes": {
+        "baseline": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        },
+        "recovery": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        }
+      },
+      "cleanup_status": "completed",
+      "report_sha256": "7b0b2158418a071f69f99a435608bac3da69c8e94c1d82aeea481f86dde60c4b"
+    },
+    {
+      "run_id": "20261115-110316-2cfe7e",
+      "policy": "C",
+      "auth_path": "full_sae",
+      "handshake_status": "matched_in_capture_order",
+      "connection_recovery": "pass",
+      "probes": {
+        "baseline": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        },
+        "recovery": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        }
+      },
+      "cleanup_status": "completed",
+      "report_sha256": "e878feb1a30b6292ac37f6b1cc076ec129881fc55d2f972d058f89a8f95e9d5d"
+    },
+    {
+      "run_id": "20261115-110323-d13cde",
+      "policy": "D",
+      "auth_path": "full_sae",
+      "handshake_status": "matched_in_capture_order",
+      "connection_recovery": "pass",
+      "probes": {
+        "baseline": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        },
+        "recovery": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        }
+      },
+      "cleanup_status": "completed",
+      "report_sha256": "4f46cbaa489435a64b80a96e63437ed88d10d2f5df355e9921ab26bbf707df99"
+    },
+    {
+      "run_id": "20261115-110330-5b58dc",
+      "policy": "B",
+      "auth_path": "full_sae",
+      "handshake_status": "matched_in_capture_order",
+      "connection_recovery": "pass",
+      "probes": {
+        "baseline": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        },
+        "recovery": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        }
+      },
+      "cleanup_status": "completed",
+      "report_sha256": "b7ed53c2fafd9fa851e87f4e3be5685a306a603635c77eed86b6d177cdae3c1e"
+    },
+    {
+      "run_id": "20261115-110337-780428",
+      "policy": "C",
+      "auth_path": "full_sae",
+      "handshake_status": "matched_in_capture_order",
+      "connection_recovery": "pass",
+      "probes": {
+        "baseline": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        },
+        "recovery": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        }
+      },
+      "cleanup_status": "completed",
+      "report_sha256": "0fdd8c214887a4ca13d8e8b88c2f4da74c2a90b9e56c4f4c9a95644882a4d430"
+    },
+    {
+      "run_id": "20261115-110345-dc1ed9",
+      "policy": "D",
+      "auth_path": "full_sae",
+      "handshake_status": "matched_in_capture_order",
+      "connection_recovery": "pass",
+      "probes": {
+        "baseline": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        },
+        "recovery": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        }
+      },
+      "cleanup_status": "completed",
+      "report_sha256": "3bd5492b8b539255bd7fa27b4e50e4bc35ca7a2a9a92d6249ea3d279f9792e94"
+    },
+    {
+      "run_id": "20261115-110352-e04c84",
+      "policy": "A",
+      "auth_path": "pmksa_reuse",
+      "handshake_status": "matched_in_capture_order",
+      "connection_recovery": "pass",
+      "probes": {
+        "baseline": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        },
+        "recovery": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        }
+      },
+      "cleanup_status": "completed",
+      "report_sha256": "b5932ada8f3c57825ebb8ee8d35dbb7defafdef34b4b286e1e1fd1ed89c0a765"
+    },
+    {
+      "run_id": "20261115-110359-6ce5fb",
+      "policy": "C",
+      "auth_path": "full_sae",
+      "handshake_status": "matched_in_capture_order",
+      "connection_recovery": "pass",
+      "probes": {
+        "baseline": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        },
+        "recovery": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        }
+      },
+      "cleanup_status": "completed",
+      "report_sha256": "4fad3f8c849be622a53c1c3f51de0571343f6f9cd4b5d2479ac4df9f06010ff9"
+    },
+    {
+      "run_id": "20261115-110407-3aeedd",
+      "policy": "D",
+      "auth_path": "full_sae",
+      "handshake_status": "matched_in_capture_order",
+      "connection_recovery": "pass",
+      "probes": {
+        "baseline": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        },
+        "recovery": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        }
+      },
+      "cleanup_status": "completed",
+      "report_sha256": "751c4a6ae40ec6c372f7fd55881bcb214354671e52785e1e522d4464ed53d230"
+    },
+    {
+      "run_id": "20261115-110414-32bfb0",
+      "policy": "A",
+      "auth_path": "pmksa_reuse",
+      "handshake_status": "matched_in_capture_order",
+      "connection_recovery": "pass",
+      "probes": {
+        "baseline": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        },
+        "recovery": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        }
+      },
+      "cleanup_status": "completed",
+      "report_sha256": "1bf1db314e508b396844268963940216e276192e1bc5df16b736e25b40c63f61"
+    },
+    {
+      "run_id": "20261115-110421-f0acf5",
+      "policy": "B",
+      "auth_path": "full_sae",
+      "handshake_status": "matched_in_capture_order",
+      "connection_recovery": "pass",
+      "probes": {
+        "baseline": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        },
+        "recovery": {
+          "primary": "pass",
+          "status": "pass",
+          "sent": 5,
+          "received": 5,
+          "budget": {
+            "packets": 5,
+            "interval_s": 0.2,
+            "reply_timeout_s": 1,
+            "process_timeout_s": 5
+          },
+          "reachability": "pass"
+        }
+      },
+      "cleanup_status": "completed",
+      "report_sha256": "371acd9c94a59f43b029268e984378c159a5fbcb9ef96608853a36d8b9d03c7f"
+    }
+  ],
+  "auth_counts": {
+    "pmksa_reuse": 3,
+    "full_sae": 9
+  },
+  "handshake_counts": {
+    "matched_with_capture_inversion": 1,
+    "matched_in_capture_order": 11
+  },
+  "primary_recovery_pass": 12,
+  "followup_sent": 60,
+  "followup_received": 60,
+  "followup_recovery_pass": 12
+}

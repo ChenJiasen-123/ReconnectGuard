@@ -1,0 +1,52 @@
+{
+  "retention_preflight": {
+    "batch": "cache-e08c101ad6e04158b174dc11aefe8ad4",
+    "run_id": "20261115-105747-b297e3",
+    "result": {
+      "execution_status": "failed",
+      "error_category": "test_error",
+      "error": "缓存干预效果未证实: sta",
+      "connection_recovery": "not_evaluated"
+    },
+    "cache_intervention": {
+      "policy": "A",
+      "before": {
+        "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 90:de:80:47:bf:27 9ac1a63d7f7e4b5e37f63b8c4f45c7bb 43199 0",
+        "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 90:de:80:3e:2a:b7 9ac1a63d7f7e4b5e37f63b8c4f45c7bb 43199 0"
+      },
+      "after": {
+        "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 90:de:80:47:bf:27 9ac1a63d7f7e4b5e37f63b8c4f45c7bb 43199 0",
+        "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 90:de:80:3e:2a:b7 9ac1a63d7f7e4b5e37f63b8c4f45c7bb 43198 0"
+      },
+      "operations": []
+    }
+  },
+  "diagnostic_budget_deviations": [
+    {
+      "batch": "cache-af360a9a771c4575adf4b700afae2f5d",
+      "run_id": "20261115-110048-bb99da",
+      "primary_ping": "pass",
+      "sent": 6,
+      "received": 5,
+      "requested_budget": {
+        "packets": 5,
+        "interval_s": 0.2,
+        "deadline_s": 3
+      },
+      "classification": "invalid diagnostic budget; not a DUT failure verdict"
+    },
+    {
+      "batch": "cache-af360a9a771c4575adf4b700afae2f5d",
+      "run_id": "20261115-110056-176442",
+      "primary_ping": "pass",
+      "sent": 6,
+      "received": 6,
+      "requested_budget": {
+        "packets": 5,
+        "interval_s": 0.2,
+        "deadline_s": 3
+      },
+      "classification": "invalid diagnostic budget; not a DUT failure verdict"
+    }
+  ]
+}
