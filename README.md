@@ -222,3 +222,8 @@ A/B/C/D 分别为双方保留、仅AP清除、仅STA清除、双方清除。实�
 只读重分析入口为 `python3 -m observer.reanalysis`；独立真机与固定五包诊断入口为
 `evidence_study.py`。判定条件、旧结果保留和12轮复测见
 [认证证据复核](docs/auth-evidence-review-20261115.md)。
+
+失败后的连续恢复测试使用 `sudo python3 recovery_study.py --repeat 3`。
+它分别记录拒绝期间、撤销干预后的自动恢复窗口，以及必要时的一次显式重连，
+不在阶段之间重启协议进程或清除客户端缓存。条件和证据边界见
+[撤销拒绝后的恢复实验](docs/recovery-after-rejection-20261115.md)。

@@ -1,0 +1,1657 @@
+{
+  "batch": "results/recovery-study-20261115/raw",
+  "phase_budget_s": 20,
+  "runs": [
+    {
+      "run_id": "20261115-114352-aed6e9",
+      "condition": "before_keep_ap",
+      "outcome": "recovered_after_explicit_reconnect",
+      "phases": {
+        "rejection": {
+          "status": "timeout",
+          "elapsed_s": 20.001085116000468,
+          "budget_s": 20,
+          "status_after": {
+            "wpa_state": "SCANNING",
+            "ip_address": "10.203.0.2",
+            "p2p_device_address": "42:00:00:00:01:00",
+            "address": "02:00:00:00:01:00",
+            "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+          },
+          "probe": null,
+          "observed": {
+            "stages": [
+              "assoc_req_with_pmkid",
+              "deauth",
+              "open_system_auth"
+            ],
+            "reason9_frames": [
+              52,
+              80,
+              108,
+              136,
+              264
+            ],
+            "association_requests": [
+              {
+                "frame": 51,
+                "pmkids": [
+                  "fc766de85fc0f9fde41e058a9724cae0"
+                ]
+              },
+              {
+                "frame": 79,
+                "pmkids": [
+                  "fc766de85fc0f9fde41e058a9724cae0"
+                ]
+              },
+              {
+                "frame": 107,
+                "pmkids": [
+                  "fc766de85fc0f9fde41e058a9724cae0"
+                ]
+              },
+              {
+                "frame": 135,
+                "pmkids": [
+                  "fc766de85fc0f9fde41e058a9724cae0"
+                ]
+              },
+              {
+                "frame": 263,
+                "pmkids": [
+                  "fc766de85fc0f9fde41e058a9724cae0"
+                ]
+              }
+            ],
+            "sae_frames": [],
+            "window": {
+              "start": 1794714236.297389,
+              "end": 1794714256.299008
+            }
+          }
+        },
+        "release": {
+          "status": "timeout",
+          "elapsed_s": 20.001051013001415,
+          "budget_s": 20,
+          "status_after": {
+            "wpa_state": "SCANNING",
+            "ip_address": "10.203.0.2",
+            "p2p_device_address": "42:00:00:00:01:00",
+            "address": "02:00:00:00:01:00",
+            "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+          },
+          "probe": null,
+          "observed": {
+            "stages": [],
+            "reason9_frames": [],
+            "association_requests": [],
+            "sae_frames": [],
+            "window": {
+              "start": 1794714256.301909,
+              "end": 1794714276.303535
+            }
+          }
+        },
+        "explicit": {
+          "status": "connected",
+          "elapsed_s": 1.3536527369979012,
+          "budget_s": 20,
+          "event": "events.jsonl#seq=97",
+          "event_seq": 97,
+          "status_after": {
+            "bssid": "02:00:00:00:00:00",
+            "freq": "2412",
+            "ssid": "ReconnectGuardLab",
+            "id": "0",
+            "mode": "station",
+            "wifi_generation": "4",
+            "pairwise_cipher": "CCMP",
+            "group_cipher": "CCMP",
+            "key_mgmt": "SAE",
+            "pmf": "2",
+            "mgmt_group_cipher": "BIP",
+            "wpa_state": "COMPLETED",
+            "ip_address": "10.203.0.2",
+            "p2p_device_address": "42:00:00:00:01:00",
+            "address": "02:00:00:00:01:00",
+            "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+          },
+          "probe": "pass",
+          "observed": {
+            "stages": [
+              "assoc_req_with_pmkid",
+              "data_frame",
+              "eapol_m1",
+              "eapol_m2",
+              "eapol_m3",
+              "eapol_m4",
+              "open_system_auth"
+            ],
+            "reason9_frames": [],
+            "association_requests": [
+              {
+                "frame": 489,
+                "pmkids": [
+                  "fc766de85fc0f9fde41e058a9724cae0"
+                ]
+              }
+            ],
+            "sae_frames": [],
+            "window": {
+              "start": 1794714276.306293,
+              "end": 1794714277.706655
+            }
+          }
+        }
+      },
+      "caches": {
+        "after_explicit-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 fc766de85fc0f9fde41e058a9724cae0 43158 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 fc766de85fc0f9fde41e058a9724cae0 43158 0"
+        },
+        "after_rejection-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 fc766de85fc0f9fde41e058a9724cae0 43179 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 fc766de85fc0f9fde41e058a9724cae0 43179 0"
+        },
+        "after_release-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 fc766de85fc0f9fde41e058a9724cae0 43159 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 fc766de85fc0f9fde41e058a9724cae0 43159 0"
+        },
+        "baseline-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 fc766de85fc0f9fde41e058a9724cae0 43200 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 fc766de85fc0f9fde41e058a9724cae0 43200 0"
+        },
+        "before_rejection-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 fc766de85fc0f9fde41e058a9724cae0 43199 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 fc766de85fc0f9fde41e058a9724cae0 43199 0"
+        }
+      },
+      "temporary_disable_log_refs": [
+        {
+          "ref": "sta.log#line=2228",
+          "text": "rgstaed6e9: CTRL-EVENT-SSID-TEMP-DISABLED id=0 ssid=\"ReconnectGuardLab\" auth_failures=1 duration=10 reason=CONN_FAILED"
+        },
+        {
+          "ref": "sta.log#line=2393",
+          "text": "rgstaed6e9: CTRL-EVENT-SSID-REENABLED id=0 ssid=\"ReconnectGuardLab\""
+        },
+        {
+          "ref": "sta.log#line=2562",
+          "text": "rgstaed6e9: CTRL-EVENT-SSID-TEMP-DISABLED id=0 ssid=\"ReconnectGuardLab\" auth_failures=2 duration=20 reason=CONN_FAILED"
+        },
+        {
+          "ref": "sta.log#line=2745",
+          "text": "rgstaed6e9: CTRL-EVENT-SSID-REENABLED id=0 ssid=\"ReconnectGuardLab\""
+        }
+      ],
+      "protocol_processes_unchanged": true,
+      "cleanup": {
+        "errors": []
+      },
+      "error": null,
+      "binary_sha256": {
+        "ap": "e73cbcf5ae7eff9ff135d07c5b626a5b863a66b72e0ab6b4b3ec944b6aebcf88",
+        "sta": "e7da9b09f9443a5c5c1b667a08074e10656fa928836ffae154f0bb0476194b88"
+      },
+      "source_sha256": {
+        "recovery_study.py": "23bd06096f0003e040a035b8047d259f0caa515af44889888423f914b66cd495",
+        "sequence_study.py": "b07cefce40499ed5f526552c6294fe35849439a9e18aa5fab31222532f2b7163",
+        "rejection.py": "eaf68edcb4618a1f04f4512500da3b77b5687c3d744453d3e2b6c92c57e589e2"
+      },
+      "input_sha256": {
+        "result.json": "38edb08e2ac3f83155d7ff05f92b5253c0bc6d1ca6a157d12ad76b5f9b5c6095",
+        "meta.json": "3e1c0274f8b539ac2f08336d61cadfd90246cf6d73073037e9c81ed715ccc053",
+        "events.jsonl": "33fd2abde870b5576953d88d0b13130310f27de8aa4d4bf14a4cbe2c12d1455a",
+        "ap.log": "908acc0a843182dfad5cb9192556beab13c4c48a04bf51a1d42c487463a7948c",
+        "sta.log": "fcc860b555ab98e71c8ba029169110df06eda6b5a271fcdfe7eda1f2775f9f26",
+        "trace.pcap": "47a74c882989c929b9a28f996bf7bb29bd2568ebe4babf335ff94cc377de17d5",
+        "recovery-actions.json": "97efc9de441beb8b59965d418ff460ff4383f1f2b492a8e711f7f0742650016c",
+        "recovery-observations.json": "d647224558fdaf72a7ea62f5d6488208db2be7a8a12f67e848dd1a1b8999e656"
+      }
+    },
+    {
+      "run_id": "20261115-114440-0e160c",
+      "condition": "before_clear_ap",
+      "outcome": "recovered_after_explicit_reconnect",
+      "phases": {
+        "rejection": {
+          "status": "timeout",
+          "elapsed_s": 20.00161256499996,
+          "budget_s": 20,
+          "status_after": {
+            "wpa_state": "SCANNING",
+            "ip_address": "10.203.0.2",
+            "p2p_device_address": "42:00:00:00:01:00",
+            "address": "02:00:00:00:01:00",
+            "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+          },
+          "probe": null,
+          "observed": {
+            "stages": [
+              "assoc_req_with_pmkid",
+              "deauth",
+              "open_system_auth"
+            ],
+            "reason9_frames": [
+              53,
+              80,
+              108,
+              136,
+              264
+            ],
+            "association_requests": [
+              {
+                "frame": 52,
+                "pmkids": [
+                  "b4ca89cd5bf1832069ba46f026d62655"
+                ]
+              },
+              {
+                "frame": 79,
+                "pmkids": [
+                  "b4ca89cd5bf1832069ba46f026d62655"
+                ]
+              },
+              {
+                "frame": 107,
+                "pmkids": [
+                  "b4ca89cd5bf1832069ba46f026d62655"
+                ]
+              },
+              {
+                "frame": 135,
+                "pmkids": [
+                  "b4ca89cd5bf1832069ba46f026d62655"
+                ]
+              },
+              {
+                "frame": 263,
+                "pmkids": [
+                  "b4ca89cd5bf1832069ba46f026d62655"
+                ]
+              }
+            ],
+            "sae_frames": [],
+            "window": {
+              "start": 1794714284.046612,
+              "end": 1794714304.048889
+            }
+          }
+        },
+        "release": {
+          "status": "timeout",
+          "elapsed_s": 20.051758818000962,
+          "budget_s": 20,
+          "status_after": {
+            "wpa_state": "SCANNING",
+            "ip_address": "10.203.0.2",
+            "p2p_device_address": "42:00:00:00:01:00",
+            "address": "02:00:00:00:01:00",
+            "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+          },
+          "probe": null,
+          "observed": {
+            "stages": [],
+            "reason9_frames": [],
+            "association_requests": [],
+            "sae_frames": [],
+            "window": {
+              "start": 1794714304.05333,
+              "end": 1794714324.105672
+            }
+          }
+        },
+        "explicit": {
+          "status": "connected",
+          "elapsed_s": 0.33154404800006887,
+          "budget_s": 20,
+          "event": "events.jsonl#seq=103",
+          "event_seq": 103,
+          "status_after": {
+            "bssid": "02:00:00:00:00:00",
+            "freq": "2412",
+            "ssid": "ReconnectGuardLab",
+            "id": "0",
+            "mode": "station",
+            "wifi_generation": "4",
+            "pairwise_cipher": "CCMP",
+            "group_cipher": "CCMP",
+            "key_mgmt": "SAE",
+            "pmf": "2",
+            "mgmt_group_cipher": "BIP",
+            "sae_group": "19",
+            "sae_h2e": "0",
+            "sae_pk": "0",
+            "wpa_state": "COMPLETED",
+            "ip_address": "10.203.0.2",
+            "p2p_device_address": "42:00:00:00:01:00",
+            "address": "02:00:00:00:01:00",
+            "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+          },
+          "probe": "pass",
+          "observed": {
+            "stages": [
+              "assoc_req_with_pmkid",
+              "data_frame",
+              "eapol_m1",
+              "eapol_m2",
+              "eapol_m3",
+              "eapol_m4",
+              "open_system_auth",
+              "sae_commit",
+              "sae_confirm"
+            ],
+            "reason9_frames": [],
+            "association_requests": [
+              {
+                "frame": 479,
+                "pmkids": [
+                  "b4ca89cd5bf1832069ba46f026d62655"
+                ]
+              },
+              {
+                "frame": 486,
+                "pmkids": []
+              }
+            ],
+            "sae_frames": [
+              482,
+              483,
+              484,
+              485
+            ],
+            "window": {
+              "start": 1794714324.108431,
+              "end": 1794714324.476314
+            }
+          }
+        }
+      },
+      "caches": {
+        "after_explicit-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 c7c8bf22fef03fd7e7d69ecba634167a 43200 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 c7c8bf22fef03fd7e7d69ecba634167a 43200 0"
+        },
+        "after_rejection-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 b4ca89cd5bf1832069ba46f026d62655 43180 0"
+        },
+        "after_release-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 b4ca89cd5bf1832069ba46f026d62655 43160 0"
+        },
+        "baseline-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 b4ca89cd5bf1832069ba46f026d62655 43200 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 b4ca89cd5bf1832069ba46f026d62655 43200 0"
+        },
+        "before_rejection-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 b4ca89cd5bf1832069ba46f026d62655 43200 0"
+        }
+      },
+      "temporary_disable_log_refs": [
+        {
+          "ref": "sta.log#line=2227",
+          "text": "rgst0e160c: CTRL-EVENT-SSID-TEMP-DISABLED id=0 ssid=\"ReconnectGuardLab\" auth_failures=1 duration=10 reason=CONN_FAILED"
+        },
+        {
+          "ref": "sta.log#line=2392",
+          "text": "rgst0e160c: CTRL-EVENT-SSID-REENABLED id=0 ssid=\"ReconnectGuardLab\""
+        },
+        {
+          "ref": "sta.log#line=2561",
+          "text": "rgst0e160c: CTRL-EVENT-SSID-TEMP-DISABLED id=0 ssid=\"ReconnectGuardLab\" auth_failures=2 duration=20 reason=CONN_FAILED"
+        },
+        {
+          "ref": "sta.log#line=2745",
+          "text": "rgst0e160c: CTRL-EVENT-SSID-REENABLED id=0 ssid=\"ReconnectGuardLab\""
+        }
+      ],
+      "protocol_processes_unchanged": true,
+      "cleanup": {
+        "errors": []
+      },
+      "error": null,
+      "binary_sha256": {
+        "ap": "e73cbcf5ae7eff9ff135d07c5b626a5b863a66b72e0ab6b4b3ec944b6aebcf88",
+        "sta": "e7da9b09f9443a5c5c1b667a08074e10656fa928836ffae154f0bb0476194b88"
+      },
+      "source_sha256": {
+        "recovery_study.py": "23bd06096f0003e040a035b8047d259f0caa515af44889888423f914b66cd495",
+        "sequence_study.py": "b07cefce40499ed5f526552c6294fe35849439a9e18aa5fab31222532f2b7163",
+        "rejection.py": "eaf68edcb4618a1f04f4512500da3b77b5687c3d744453d3e2b6c92c57e589e2"
+      },
+      "input_sha256": {
+        "result.json": "ec724e90331e3e9d863637a000866ceb5730689d2b68d9b6a90c8f98497707d1",
+        "meta.json": "a7b9b5c063e5181b461e12d9bc3848bbad223edc76c4b421a04109914d1ead3d",
+        "events.jsonl": "43424aae9f8e9acd0cfdba98d226c031668b8cd935e016e4e0608fddc3ac58bb",
+        "ap.log": "ac751a626249168ff3b890a4ebfdeb3451e0a7bd1738c1993219c1988d2b09f3",
+        "sta.log": "8995fe5dfbd228d0f98b3a111d3c79f38a4a2741e35a300b3a2805c96d11fac5",
+        "trace.pcap": "c266fec5ee31a0b83ee61d99ef047ff706d91701f0fa8819da11c68685e4ee8f",
+        "recovery-actions.json": "1c26db6b295e366ae9b0e8ef194fec17b6d5114296dffda56f9e410b43dc31cc",
+        "recovery-observations.json": "a028b0e728599d8933674787b10dc25dcef8289da94e1c526572e380dbc9d8ce"
+      }
+    },
+    {
+      "run_id": "20261115-114526-f9474f",
+      "condition": "after_clear_ap",
+      "outcome": "connected_under_policy",
+      "phases": {
+        "rejection": {
+          "status": "connected",
+          "elapsed_s": 2.285793666000245,
+          "budget_s": 20,
+          "event": "events.jsonl#seq=47",
+          "event_seq": 47,
+          "status_after": {
+            "bssid": "02:00:00:00:00:00",
+            "freq": "2412",
+            "ssid": "ReconnectGuardLab",
+            "id": "0",
+            "mode": "station",
+            "wifi_generation": "4",
+            "pairwise_cipher": "CCMP",
+            "group_cipher": "CCMP",
+            "key_mgmt": "SAE",
+            "pmf": "2",
+            "mgmt_group_cipher": "BIP",
+            "sae_group": "19",
+            "sae_h2e": "0",
+            "sae_pk": "0",
+            "wpa_state": "COMPLETED",
+            "ip_address": "10.203.0.2",
+            "p2p_device_address": "42:00:00:00:01:00",
+            "address": "02:00:00:00:01:00",
+            "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+          },
+          "probe": "pass",
+          "observed": {
+            "stages": [
+              "assoc_req_with_pmkid",
+              "data_frame",
+              "deauth",
+              "eapol_m1",
+              "eapol_m2",
+              "eapol_m3",
+              "eapol_m4",
+              "open_system_auth",
+              "sae_commit",
+              "sae_confirm"
+            ],
+            "reason9_frames": [
+              54
+            ],
+            "association_requests": [
+              {
+                "frame": 53,
+                "pmkids": [
+                  "37c712cb68859544a5ddec84182e90c6"
+                ]
+              },
+              {
+                "frame": 83,
+                "pmkids": []
+              }
+            ],
+            "sae_frames": [
+              79,
+              80,
+              81,
+              82
+            ],
+            "window": {
+              "start": 1794714330.470288,
+              "end": 1794714332.793556
+            }
+          }
+        }
+      },
+      "caches": {
+        "after_rejection-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 f03075489944810ac1798d579597c648 43200 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 f03075489944810ac1798d579597c648 43200 0"
+        },
+        "baseline-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 37c712cb68859544a5ddec84182e90c6 43199 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 37c712cb68859544a5ddec84182e90c6 43199 0"
+        },
+        "before_rejection-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 37c712cb68859544a5ddec84182e90c6 43199 0"
+        }
+      },
+      "temporary_disable_log_refs": [],
+      "protocol_processes_unchanged": true,
+      "cleanup": {
+        "errors": []
+      },
+      "error": null,
+      "binary_sha256": {
+        "ap": "e73cbcf5ae7eff9ff135d07c5b626a5b863a66b72e0ab6b4b3ec944b6aebcf88",
+        "sta": "cab9c8ce2f219a5c6c1e5bfdd6016319ec0c0e343004ea59171bda0f5639d27e"
+      },
+      "source_sha256": {
+        "recovery_study.py": "23bd06096f0003e040a035b8047d259f0caa515af44889888423f914b66cd495",
+        "sequence_study.py": "b07cefce40499ed5f526552c6294fe35849439a9e18aa5fab31222532f2b7163",
+        "rejection.py": "eaf68edcb4618a1f04f4512500da3b77b5687c3d744453d3e2b6c92c57e589e2"
+      },
+      "input_sha256": {
+        "result.json": "6879a955ab2641e3b16d3e4154113ce64519ba468b2d1e489f94908d99734b41",
+        "meta.json": "b88d53babe4326bfac9832d16309a6b7e528138b2912b9d08e18a7b31181456b",
+        "events.jsonl": "3f26de13aac86b3149892e475a5b419959deeb4732d5a80ab2ec3331db064934",
+        "ap.log": "a577f5c26b2ab8dc7e72feba7d490cc636d722aef3876b20f1b57ee2d888214a",
+        "sta.log": "1c40daa3ca4c7137cecdd3d876f2d2cfb615921ec9bcc5695c0d26bcffbe944b",
+        "trace.pcap": "f7e8f92aec2b421b11cccf4d07e5cb28d0844cd998720084ecf6958adf8cd044",
+        "recovery-actions.json": "6b3390ed9ea1b0882e3601437aa6ab6cf9ac77db2bdd2f586d9545874f576359",
+        "recovery-observations.json": "19c5750d008e87eb0b3c0e128a4ad67dd7aba800b444cd803e8ac442e9a38b6c"
+      }
+    },
+    {
+      "run_id": "20261115-114533-d2e82f",
+      "condition": "before_clear_ap",
+      "outcome": "recovered_after_explicit_reconnect",
+      "phases": {
+        "rejection": {
+          "status": "timeout",
+          "elapsed_s": 20.00416466200113,
+          "budget_s": 20,
+          "status_after": {
+            "wpa_state": "SCANNING",
+            "ip_address": "10.203.0.2",
+            "p2p_device_address": "42:00:00:00:01:00",
+            "address": "02:00:00:00:01:00",
+            "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+          },
+          "probe": null,
+          "observed": {
+            "stages": [
+              "assoc_req_with_pmkid",
+              "deauth",
+              "open_system_auth"
+            ],
+            "reason9_frames": [
+              53,
+              81,
+              109,
+              137,
+              265
+            ],
+            "association_requests": [
+              {
+                "frame": 52,
+                "pmkids": [
+                  "fdc9468abcdc35a423c8639e48655162"
+                ]
+              },
+              {
+                "frame": 80,
+                "pmkids": [
+                  "fdc9468abcdc35a423c8639e48655162"
+                ]
+              },
+              {
+                "frame": 108,
+                "pmkids": [
+                  "fdc9468abcdc35a423c8639e48655162"
+                ]
+              },
+              {
+                "frame": 136,
+                "pmkids": [
+                  "fdc9468abcdc35a423c8639e48655162"
+                ]
+              },
+              {
+                "frame": 264,
+                "pmkids": [
+                  "fdc9468abcdc35a423c8639e48655162"
+                ]
+              }
+            ],
+            "sae_frames": [],
+            "window": {
+              "start": 1794714337.862305,
+              "end": 1794714357.867014
+            }
+          }
+        },
+        "release": {
+          "status": "timeout",
+          "elapsed_s": 20.051391863999015,
+          "budget_s": 20,
+          "status_after": {
+            "wpa_state": "SCANNING",
+            "ip_address": "10.203.0.2",
+            "p2p_device_address": "42:00:00:00:01:00",
+            "address": "02:00:00:00:01:00",
+            "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+          },
+          "probe": null,
+          "observed": {
+            "stages": [],
+            "reason9_frames": [],
+            "association_requests": [],
+            "sae_frames": [],
+            "window": {
+              "start": 1794714357.870056,
+              "end": 1794714377.922008
+            }
+          }
+        },
+        "explicit": {
+          "status": "connected",
+          "elapsed_s": 1.3591030200004752,
+          "budget_s": 20,
+          "event": "events.jsonl#seq=104",
+          "event_seq": 104,
+          "status_after": {
+            "bssid": "02:00:00:00:00:00",
+            "freq": "2412",
+            "ssid": "ReconnectGuardLab",
+            "id": "0",
+            "mode": "station",
+            "wifi_generation": "4",
+            "pairwise_cipher": "CCMP",
+            "group_cipher": "CCMP",
+            "key_mgmt": "SAE",
+            "pmf": "2",
+            "mgmt_group_cipher": "BIP",
+            "sae_group": "19",
+            "sae_h2e": "0",
+            "sae_pk": "0",
+            "wpa_state": "COMPLETED",
+            "ip_address": "10.203.0.2",
+            "p2p_device_address": "42:00:00:00:01:00",
+            "address": "02:00:00:00:01:00",
+            "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+          },
+          "probe": "pass",
+          "observed": {
+            "stages": [
+              "assoc_req_with_pmkid",
+              "data_frame",
+              "eapol_m1",
+              "eapol_m2",
+              "eapol_m3",
+              "eapol_m4",
+              "open_system_auth",
+              "sae_commit",
+              "sae_confirm"
+            ],
+            "reason9_frames": [],
+            "association_requests": [
+              {
+                "frame": 490,
+                "pmkids": [
+                  "fdc9468abcdc35a423c8639e48655162"
+                ]
+              },
+              {
+                "frame": 496,
+                "pmkids": []
+              }
+            ],
+            "sae_frames": [
+              492,
+              493,
+              494,
+              495
+            ],
+            "window": {
+              "start": 1794714377.924785,
+              "end": 1794714379.295179
+            }
+          }
+        }
+      },
+      "caches": {
+        "after_explicit-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 57503c1f2aa8a5c5d043f87ee6ab0a15 43200 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 57503c1f2aa8a5c5d043f87ee6ab0a15 43200 0"
+        },
+        "after_rejection-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 fdc9468abcdc35a423c8639e48655162 43180 0"
+        },
+        "after_release-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 fdc9468abcdc35a423c8639e48655162 43160 0"
+        },
+        "baseline-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 fdc9468abcdc35a423c8639e48655162 43200 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 fdc9468abcdc35a423c8639e48655162 43200 0"
+        },
+        "before_rejection-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 fdc9468abcdc35a423c8639e48655162 43200 0"
+        }
+      },
+      "temporary_disable_log_refs": [
+        {
+          "ref": "sta.log#line=2228",
+          "text": "rgstd2e82f: CTRL-EVENT-SSID-TEMP-DISABLED id=0 ssid=\"ReconnectGuardLab\" auth_failures=1 duration=10 reason=CONN_FAILED"
+        },
+        {
+          "ref": "sta.log#line=2393",
+          "text": "rgstd2e82f: CTRL-EVENT-SSID-REENABLED id=0 ssid=\"ReconnectGuardLab\""
+        },
+        {
+          "ref": "sta.log#line=2562",
+          "text": "rgstd2e82f: CTRL-EVENT-SSID-TEMP-DISABLED id=0 ssid=\"ReconnectGuardLab\" auth_failures=2 duration=20 reason=CONN_FAILED"
+        },
+        {
+          "ref": "sta.log#line=2746",
+          "text": "rgstd2e82f: CTRL-EVENT-SSID-REENABLED id=0 ssid=\"ReconnectGuardLab\""
+        }
+      ],
+      "protocol_processes_unchanged": true,
+      "cleanup": {
+        "errors": []
+      },
+      "error": null,
+      "binary_sha256": {
+        "ap": "e73cbcf5ae7eff9ff135d07c5b626a5b863a66b72e0ab6b4b3ec944b6aebcf88",
+        "sta": "e7da9b09f9443a5c5c1b667a08074e10656fa928836ffae154f0bb0476194b88"
+      },
+      "source_sha256": {
+        "recovery_study.py": "23bd06096f0003e040a035b8047d259f0caa515af44889888423f914b66cd495",
+        "sequence_study.py": "b07cefce40499ed5f526552c6294fe35849439a9e18aa5fab31222532f2b7163",
+        "rejection.py": "eaf68edcb4618a1f04f4512500da3b77b5687c3d744453d3e2b6c92c57e589e2"
+      },
+      "input_sha256": {
+        "result.json": "8397fe350ce4d185e2448665b39ce6ea6b21220ff677107431ab8a32c50dfb68",
+        "meta.json": "6af684ea10bd2da124193b29e86ca8e89b0641dfe4a3144d1a9fdda57d2cac83",
+        "events.jsonl": "04260b66d0ad4f75f9dd5345e0925b7bd2f8752ff37b15b22cd4497a625188f9",
+        "ap.log": "a72e0f4693fd797be274d99d33c05d84c3190e02992802993f2fdaf90a2cb0cd",
+        "sta.log": "4d555eeff9fa6266dcd6a0601a817919c4db08b9b4ad3eb55881d5d07a27b600",
+        "trace.pcap": "dab55690a79a9aab25fe5ba06b4044ac59e0400841988e32b533b6911fdd8c9b",
+        "recovery-actions.json": "4f07e5d6a8e02e61b60513cdaff4d5ef239e88a7be78505fefdb0b1d5c7a8521",
+        "recovery-observations.json": "af81d9493b5c3e10fb368a08fc249ffc1fc9c634505f047017de408d95dc40bc"
+      }
+    },
+    {
+      "run_id": "20261115-114621-de690f",
+      "condition": "after_clear_ap",
+      "outcome": "connected_under_policy",
+      "phases": {
+        "rejection": {
+          "status": "connected",
+          "elapsed_s": 2.2576421609992394,
+          "budget_s": 20,
+          "event": "events.jsonl#seq=48",
+          "event_seq": 48,
+          "status_after": {
+            "bssid": "02:00:00:00:00:00",
+            "freq": "2412",
+            "ssid": "ReconnectGuardLab",
+            "id": "0",
+            "mode": "station",
+            "wifi_generation": "4",
+            "pairwise_cipher": "CCMP",
+            "group_cipher": "CCMP",
+            "key_mgmt": "SAE",
+            "pmf": "2",
+            "mgmt_group_cipher": "BIP",
+            "sae_group": "19",
+            "sae_h2e": "0",
+            "sae_pk": "0",
+            "wpa_state": "COMPLETED",
+            "ip_address": "10.203.0.2",
+            "p2p_device_address": "42:00:00:00:01:00",
+            "address": "02:00:00:00:01:00",
+            "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+          },
+          "probe": "pass",
+          "observed": {
+            "stages": [
+              "assoc_req_with_pmkid",
+              "data_frame",
+              "deauth",
+              "eapol_m1",
+              "eapol_m2",
+              "eapol_m3",
+              "eapol_m4",
+              "open_system_auth",
+              "sae_commit",
+              "sae_confirm"
+            ],
+            "reason9_frames": [
+              53
+            ],
+            "association_requests": [
+              {
+                "frame": 52,
+                "pmkids": [
+                  "51016e5271d50e4639864bee6ca08906"
+                ]
+              },
+              {
+                "frame": 82,
+                "pmkids": []
+              }
+            ],
+            "sae_frames": [
+              77,
+              78,
+              79,
+              80
+            ],
+            "window": {
+              "start": 1794714385.114568,
+              "end": 1794714387.416555
+            }
+          }
+        }
+      },
+      "caches": {
+        "after_rejection-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 d466d2268dea2c8e70a28fbdc25744b8 43200 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 d466d2268dea2c8e70a28fbdc25744b8 43200 0"
+        },
+        "baseline-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 51016e5271d50e4639864bee6ca08906 43200 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 51016e5271d50e4639864bee6ca08906 43200 0"
+        },
+        "before_rejection-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 51016e5271d50e4639864bee6ca08906 43200 0"
+        }
+      },
+      "temporary_disable_log_refs": [],
+      "protocol_processes_unchanged": true,
+      "cleanup": {
+        "errors": []
+      },
+      "error": null,
+      "binary_sha256": {
+        "ap": "e73cbcf5ae7eff9ff135d07c5b626a5b863a66b72e0ab6b4b3ec944b6aebcf88",
+        "sta": "cab9c8ce2f219a5c6c1e5bfdd6016319ec0c0e343004ea59171bda0f5639d27e"
+      },
+      "source_sha256": {
+        "recovery_study.py": "23bd06096f0003e040a035b8047d259f0caa515af44889888423f914b66cd495",
+        "sequence_study.py": "b07cefce40499ed5f526552c6294fe35849439a9e18aa5fab31222532f2b7163",
+        "rejection.py": "eaf68edcb4618a1f04f4512500da3b77b5687c3d744453d3e2b6c92c57e589e2"
+      },
+      "input_sha256": {
+        "result.json": "ebe32c46a6aa20b9c0401300ef5bce5f81b6eb8cd6cf9a37f01640c0ca74b86d",
+        "meta.json": "bbcebd5b2d9eb9af29c322c463d36d54e828dff155338f3f0ac984b7228ef7d9",
+        "events.jsonl": "95006609116a221b02c2ed9a3dd58a2b5a9a50ff1494b8b072417af9758f17c9",
+        "ap.log": "75f35ce3d7c4681916104494683d1c6a27f97351b24f7d257aad1b4787250a31",
+        "sta.log": "d7eb0c9649c014298b323a85748a3f10dc22d1040caf8ecd2fb33387607d8fe6",
+        "trace.pcap": "22df1cf8f4fefd468441e8bba53631c535505795f61f3830b1b54adcbdc0546b",
+        "recovery-actions.json": "8693c1d45a56000c22f77be38fd3d05b93f567888f19410b8b4ab02a0a44b58a",
+        "recovery-observations.json": "cf790664c23c42ef9e392aa38b423dcd7931584a23c88aca8455ba12d26a0b4a"
+      }
+    },
+    {
+      "run_id": "20261115-114628-3346e3",
+      "condition": "before_keep_ap",
+      "outcome": "recovered_after_explicit_reconnect",
+      "phases": {
+        "rejection": {
+          "status": "timeout",
+          "elapsed_s": 20.00167190600041,
+          "budget_s": 20,
+          "status_after": {
+            "wpa_state": "SCANNING",
+            "ip_address": "10.203.0.2",
+            "p2p_device_address": "42:00:00:00:01:00",
+            "address": "02:00:00:00:01:00",
+            "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+          },
+          "probe": null,
+          "observed": {
+            "stages": [
+              "assoc_req_with_pmkid",
+              "deauth",
+              "open_system_auth"
+            ],
+            "reason9_frames": [
+              52,
+              80,
+              108,
+              136,
+              264
+            ],
+            "association_requests": [
+              {
+                "frame": 51,
+                "pmkids": [
+                  "f949b0066640d9624cdaddf3bf3e070c"
+                ]
+              },
+              {
+                "frame": 79,
+                "pmkids": [
+                  "f949b0066640d9624cdaddf3bf3e070c"
+                ]
+              },
+              {
+                "frame": 106,
+                "pmkids": [
+                  "f949b0066640d9624cdaddf3bf3e070c"
+                ]
+              },
+              {
+                "frame": 135,
+                "pmkids": [
+                  "f949b0066640d9624cdaddf3bf3e070c"
+                ]
+              },
+              {
+                "frame": 263,
+                "pmkids": [
+                  "f949b0066640d9624cdaddf3bf3e070c"
+                ]
+              }
+            ],
+            "sae_frames": [],
+            "window": {
+              "start": 1794714392.510575,
+              "end": 1794714412.512998
+            }
+          }
+        },
+        "release": {
+          "status": "timeout",
+          "elapsed_s": 20.001539624001452,
+          "budget_s": 20,
+          "status_after": {
+            "wpa_state": "SCANNING",
+            "ip_address": "10.203.0.2",
+            "p2p_device_address": "42:00:00:00:01:00",
+            "address": "02:00:00:00:01:00",
+            "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+          },
+          "probe": null,
+          "observed": {
+            "stages": [],
+            "reason9_frames": [],
+            "association_requests": [],
+            "sae_frames": [],
+            "window": {
+              "start": 1794714412.517535,
+              "end": 1794714432.519783
+            }
+          }
+        },
+        "explicit": {
+          "status": "connected",
+          "elapsed_s": 1.3688038200016308,
+          "budget_s": 20,
+          "event": "events.jsonl#seq=97",
+          "event_seq": 97,
+          "status_after": {
+            "bssid": "02:00:00:00:00:00",
+            "freq": "2412",
+            "ssid": "ReconnectGuardLab",
+            "id": "0",
+            "mode": "station",
+            "wifi_generation": "4",
+            "pairwise_cipher": "CCMP",
+            "group_cipher": "CCMP",
+            "key_mgmt": "SAE",
+            "pmf": "2",
+            "mgmt_group_cipher": "BIP",
+            "wpa_state": "COMPLETED",
+            "ip_address": "10.203.0.2",
+            "p2p_device_address": "42:00:00:00:01:00",
+            "address": "02:00:00:00:01:00",
+            "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+          },
+          "probe": "pass",
+          "observed": {
+            "stages": [
+              "assoc_req_with_pmkid",
+              "data_frame",
+              "eapol_m1",
+              "eapol_m2",
+              "eapol_m3",
+              "eapol_m4",
+              "open_system_auth"
+            ],
+            "reason9_frames": [],
+            "association_requests": [
+              {
+                "frame": 489,
+                "pmkids": [
+                  "f949b0066640d9624cdaddf3bf3e070c"
+                ]
+              }
+            ],
+            "sae_frames": [],
+            "window": {
+              "start": 1794714432.523098,
+              "end": 1794714433.930601
+            }
+          }
+        }
+      },
+      "caches": {
+        "after_explicit-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 f949b0066640d9624cdaddf3bf3e070c 43159 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 f949b0066640d9624cdaddf3bf3e070c 43159 0"
+        },
+        "after_rejection-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 f949b0066640d9624cdaddf3bf3e070c 43180 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 f949b0066640d9624cdaddf3bf3e070c 43180 0"
+        },
+        "after_release-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 f949b0066640d9624cdaddf3bf3e070c 43160 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 f949b0066640d9624cdaddf3bf3e070c 43160 0"
+        },
+        "baseline-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 f949b0066640d9624cdaddf3bf3e070c 43200 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 f949b0066640d9624cdaddf3bf3e070c 43200 0"
+        },
+        "before_rejection-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 f949b0066640d9624cdaddf3bf3e070c 43200 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 f949b0066640d9624cdaddf3bf3e070c 43200 0"
+        }
+      },
+      "temporary_disable_log_refs": [
+        {
+          "ref": "sta.log#line=2228",
+          "text": "rgst3346e3: CTRL-EVENT-SSID-TEMP-DISABLED id=0 ssid=\"ReconnectGuardLab\" auth_failures=1 duration=10 reason=CONN_FAILED"
+        },
+        {
+          "ref": "sta.log#line=2393",
+          "text": "rgst3346e3: CTRL-EVENT-SSID-REENABLED id=0 ssid=\"ReconnectGuardLab\""
+        },
+        {
+          "ref": "sta.log#line=2562",
+          "text": "rgst3346e3: CTRL-EVENT-SSID-TEMP-DISABLED id=0 ssid=\"ReconnectGuardLab\" auth_failures=2 duration=20 reason=CONN_FAILED"
+        },
+        {
+          "ref": "sta.log#line=2746",
+          "text": "rgst3346e3: CTRL-EVENT-SSID-REENABLED id=0 ssid=\"ReconnectGuardLab\""
+        }
+      ],
+      "protocol_processes_unchanged": true,
+      "cleanup": {
+        "errors": []
+      },
+      "error": null,
+      "binary_sha256": {
+        "ap": "e73cbcf5ae7eff9ff135d07c5b626a5b863a66b72e0ab6b4b3ec944b6aebcf88",
+        "sta": "e7da9b09f9443a5c5c1b667a08074e10656fa928836ffae154f0bb0476194b88"
+      },
+      "source_sha256": {
+        "recovery_study.py": "23bd06096f0003e040a035b8047d259f0caa515af44889888423f914b66cd495",
+        "sequence_study.py": "b07cefce40499ed5f526552c6294fe35849439a9e18aa5fab31222532f2b7163",
+        "rejection.py": "eaf68edcb4618a1f04f4512500da3b77b5687c3d744453d3e2b6c92c57e589e2"
+      },
+      "input_sha256": {
+        "result.json": "3da53f266d410eaa9a522e89a31963c32e82afdea2ce4be8a63dfed03689726c",
+        "meta.json": "c5b4cb841f8444be7bdfb25b5d822096a55ba5a51e55e639206e9f8da80d15b9",
+        "events.jsonl": "d927dcae5860cabfabf16f734f572e05b2fa2fb03d46d2c2677b9e469eec6774",
+        "ap.log": "51d24ba16eb942a553a5abf4e158b966b5bec5b0babb0b5d63c994c93688fdc1",
+        "sta.log": "c39b3acb5e79ee528e2145515452cdb2d2ed822ec6d73ade2270233855d84079",
+        "trace.pcap": "0a6ca4f02fce57305292d1b5e356b3960df73d598200cbe31d7a5a917d8ecd74",
+        "recovery-actions.json": "0f63130faa09ed29dda0245ca3a517457d79815cab98d26756d841ef1e8f47c8",
+        "recovery-observations.json": "62a347571a5fe9216b25a414cee74138e3eed65d228e4acccab7c8f4524b6a83"
+      }
+    },
+    {
+      "run_id": "20261115-114715-853ffc",
+      "condition": "after_clear_ap",
+      "outcome": "connected_under_policy",
+      "phases": {
+        "rejection": {
+          "status": "connected",
+          "elapsed_s": 2.2744185409974307,
+          "budget_s": 20,
+          "event": "events.jsonl#seq=47",
+          "event_seq": 47,
+          "status_after": {
+            "bssid": "02:00:00:00:00:00",
+            "freq": "2412",
+            "ssid": "ReconnectGuardLab",
+            "id": "0",
+            "mode": "station",
+            "wifi_generation": "4",
+            "pairwise_cipher": "CCMP",
+            "group_cipher": "CCMP",
+            "key_mgmt": "SAE",
+            "pmf": "2",
+            "mgmt_group_cipher": "BIP",
+            "sae_group": "19",
+            "sae_h2e": "0",
+            "sae_pk": "0",
+            "wpa_state": "COMPLETED",
+            "ip_address": "10.203.0.2",
+            "p2p_device_address": "42:00:00:00:01:00",
+            "address": "02:00:00:00:01:00",
+            "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+          },
+          "probe": "pass",
+          "observed": {
+            "stages": [
+              "assoc_req_with_pmkid",
+              "data_frame",
+              "deauth",
+              "eapol_m1",
+              "eapol_m2",
+              "eapol_m3",
+              "eapol_m4",
+              "open_system_auth",
+              "sae_commit",
+              "sae_confirm"
+            ],
+            "reason9_frames": [
+              52
+            ],
+            "association_requests": [
+              {
+                "frame": 51,
+                "pmkids": [
+                  "880e98996bbb104331685a25a8fd7d2e"
+                ]
+              },
+              {
+                "frame": 80,
+                "pmkids": []
+              }
+            ],
+            "sae_frames": [
+              76,
+              77,
+              78,
+              79
+            ],
+            "window": {
+              "start": 1794714439.781643,
+              "end": 1794714442.086876
+            }
+          }
+        }
+      },
+      "caches": {
+        "after_rejection-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 5d528378c7059727c2ab0c23825367bc 43200 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 5d528378c7059727c2ab0c23825367bc 43200 0"
+        },
+        "baseline-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 880e98996bbb104331685a25a8fd7d2e 43200 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 880e98996bbb104331685a25a8fd7d2e 43200 0"
+        },
+        "before_rejection-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 880e98996bbb104331685a25a8fd7d2e 43200 0"
+        }
+      },
+      "temporary_disable_log_refs": [],
+      "protocol_processes_unchanged": true,
+      "cleanup": {
+        "errors": []
+      },
+      "error": null,
+      "binary_sha256": {
+        "ap": "e73cbcf5ae7eff9ff135d07c5b626a5b863a66b72e0ab6b4b3ec944b6aebcf88",
+        "sta": "cab9c8ce2f219a5c6c1e5bfdd6016319ec0c0e343004ea59171bda0f5639d27e"
+      },
+      "source_sha256": {
+        "recovery_study.py": "23bd06096f0003e040a035b8047d259f0caa515af44889888423f914b66cd495",
+        "sequence_study.py": "b07cefce40499ed5f526552c6294fe35849439a9e18aa5fab31222532f2b7163",
+        "rejection.py": "eaf68edcb4618a1f04f4512500da3b77b5687c3d744453d3e2b6c92c57e589e2"
+      },
+      "input_sha256": {
+        "result.json": "1384bfcd0bcd4906d7f3b904521cf302cc943fd646396ff167b91f5aca6c3c25",
+        "meta.json": "56fd4c6ff901bf57122cd5b3c270c0b8d675ec0117ab9fbb9c678b6629e61039",
+        "events.jsonl": "0d08427a2a63db184a78ceb7c95e25a243715851048d7513cd075bd97b4d4045",
+        "ap.log": "def05c2a55bbd5fbd948657fc339be3e793da462e505f949c90e945f883bde3a",
+        "sta.log": "767691393685e75f7fe6aa53040db7bfadc7d1acba1db4237d5536b2ebf71351",
+        "trace.pcap": "5c87619e2d36bc1b325949ee624d79c9c5f22121954537be33235e8994de4f42",
+        "recovery-actions.json": "c11580946087449b00ef07830607e233193fd6f2754be872f2da841ab2e86c85",
+        "recovery-observations.json": "35888565b69aa69e1545734430d6038c8f47127c1d71c99ac32780ec16f19890"
+      }
+    },
+    {
+      "run_id": "20261115-114723-adce8d",
+      "condition": "before_keep_ap",
+      "outcome": "recovered_after_explicit_reconnect",
+      "phases": {
+        "rejection": {
+          "status": "timeout",
+          "elapsed_s": 20.000651616999676,
+          "budget_s": 20,
+          "status_after": {
+            "wpa_state": "SCANNING",
+            "ip_address": "10.203.0.2",
+            "p2p_device_address": "42:00:00:00:01:00",
+            "address": "02:00:00:00:01:00",
+            "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+          },
+          "probe": null,
+          "observed": {
+            "stages": [
+              "assoc_req_with_pmkid",
+              "deauth",
+              "open_system_auth"
+            ],
+            "reason9_frames": [
+              53,
+              81,
+              109,
+              137,
+              265
+            ],
+            "association_requests": [
+              {
+                "frame": 52,
+                "pmkids": [
+                  "fb542145a64e263508e21ff106fb2d4c"
+                ]
+              },
+              {
+                "frame": 80,
+                "pmkids": [
+                  "fb542145a64e263508e21ff106fb2d4c"
+                ]
+              },
+              {
+                "frame": 108,
+                "pmkids": [
+                  "fb542145a64e263508e21ff106fb2d4c"
+                ]
+              },
+              {
+                "frame": 136,
+                "pmkids": [
+                  "fb542145a64e263508e21ff106fb2d4c"
+                ]
+              },
+              {
+                "frame": 264,
+                "pmkids": [
+                  "fb542145a64e263508e21ff106fb2d4c"
+                ]
+              }
+            ],
+            "sae_frames": [],
+            "window": {
+              "start": 1794714447.045818,
+              "end": 1794714467.047206
+            }
+          }
+        },
+        "release": {
+          "status": "timeout",
+          "elapsed_s": 20.001400606997777,
+          "budget_s": 20,
+          "status_after": {
+            "wpa_state": "SCANNING",
+            "ip_address": "10.203.0.2",
+            "p2p_device_address": "42:00:00:00:01:00",
+            "address": "02:00:00:00:01:00",
+            "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+          },
+          "probe": null,
+          "observed": {
+            "stages": [],
+            "reason9_frames": [],
+            "association_requests": [],
+            "sae_frames": [],
+            "window": {
+              "start": 1794714467.050857,
+              "end": 1794714487.052876
+            }
+          }
+        },
+        "explicit": {
+          "status": "connected",
+          "elapsed_s": 0.3479857249985798,
+          "budget_s": 20,
+          "event": "events.jsonl#seq=97",
+          "event_seq": 97,
+          "status_after": {
+            "bssid": "02:00:00:00:00:00",
+            "freq": "2412",
+            "ssid": "ReconnectGuardLab",
+            "id": "0",
+            "mode": "station",
+            "wifi_generation": "4",
+            "pairwise_cipher": "CCMP",
+            "group_cipher": "CCMP",
+            "key_mgmt": "SAE",
+            "pmf": "2",
+            "mgmt_group_cipher": "BIP",
+            "wpa_state": "COMPLETED",
+            "ip_address": "10.203.0.2",
+            "p2p_device_address": "42:00:00:00:01:00",
+            "address": "02:00:00:00:01:00",
+            "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+          },
+          "probe": "pass",
+          "observed": {
+            "stages": [
+              "assoc_req_with_pmkid",
+              "data_frame",
+              "eapol_m1",
+              "eapol_m2",
+              "eapol_m3",
+              "eapol_m4",
+              "open_system_auth"
+            ],
+            "reason9_frames": [],
+            "association_requests": [
+              {
+                "frame": 480,
+                "pmkids": [
+                  "fb542145a64e263508e21ff106fb2d4c"
+                ]
+              }
+            ],
+            "sae_frames": [],
+            "window": {
+              "start": 1794714487.055816,
+              "end": 1794714487.412118
+            }
+          }
+        }
+      },
+      "caches": {
+        "after_explicit-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 fb542145a64e263508e21ff106fb2d4c 43159 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 fb542145a64e263508e21ff106fb2d4c 43159 0"
+        },
+        "after_rejection-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 fb542145a64e263508e21ff106fb2d4c 43180 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 fb542145a64e263508e21ff106fb2d4c 43180 0"
+        },
+        "after_release-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 fb542145a64e263508e21ff106fb2d4c 43160 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 fb542145a64e263508e21ff106fb2d4c 43160 0"
+        },
+        "baseline-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 fb542145a64e263508e21ff106fb2d4c 43200 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 fb542145a64e263508e21ff106fb2d4c 43200 0"
+        },
+        "before_rejection-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 fb542145a64e263508e21ff106fb2d4c 43200 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 fb542145a64e263508e21ff106fb2d4c 43200 0"
+        }
+      },
+      "temporary_disable_log_refs": [
+        {
+          "ref": "sta.log#line=2228",
+          "text": "rgstadce8d: CTRL-EVENT-SSID-TEMP-DISABLED id=0 ssid=\"ReconnectGuardLab\" auth_failures=1 duration=10 reason=CONN_FAILED"
+        },
+        {
+          "ref": "sta.log#line=2393",
+          "text": "rgstadce8d: CTRL-EVENT-SSID-REENABLED id=0 ssid=\"ReconnectGuardLab\""
+        },
+        {
+          "ref": "sta.log#line=2562",
+          "text": "rgstadce8d: CTRL-EVENT-SSID-TEMP-DISABLED id=0 ssid=\"ReconnectGuardLab\" auth_failures=2 duration=20 reason=CONN_FAILED"
+        },
+        {
+          "ref": "sta.log#line=2746",
+          "text": "rgstadce8d: CTRL-EVENT-SSID-REENABLED id=0 ssid=\"ReconnectGuardLab\""
+        }
+      ],
+      "protocol_processes_unchanged": true,
+      "cleanup": {
+        "errors": []
+      },
+      "error": null,
+      "binary_sha256": {
+        "ap": "e73cbcf5ae7eff9ff135d07c5b626a5b863a66b72e0ab6b4b3ec944b6aebcf88",
+        "sta": "e7da9b09f9443a5c5c1b667a08074e10656fa928836ffae154f0bb0476194b88"
+      },
+      "source_sha256": {
+        "recovery_study.py": "23bd06096f0003e040a035b8047d259f0caa515af44889888423f914b66cd495",
+        "sequence_study.py": "b07cefce40499ed5f526552c6294fe35849439a9e18aa5fab31222532f2b7163",
+        "rejection.py": "eaf68edcb4618a1f04f4512500da3b77b5687c3d744453d3e2b6c92c57e589e2"
+      },
+      "input_sha256": {
+        "result.json": "c6d514d3a5a6beda23d6b9ebb1cce9737be8d8473b08eb9e511cc733aa5a6d99",
+        "meta.json": "07ec3144013a9db5e24d22309d5870b6e1c82a191ed3816c78c4f60869602230",
+        "events.jsonl": "ef691fe2df7d06f887728c267c7410dca4fc273db793d4576bd54595f3001187",
+        "ap.log": "ae099c440e0307d0a002b00cd8fccc4883a6c46f9334c98a518a05eddc095816",
+        "sta.log": "9a9a994e1e287957f5d3882a150bc0be70782bf5dbb74e630aa2f3de0ef68c9a",
+        "trace.pcap": "66c1e39aadb65122ec85f61f6321f2b763131b3d380c531d33c63428b1e85d6f",
+        "recovery-actions.json": "e817b1909427698b89fddbbc56d8cb4464c949c1f7a13e45537380b148c81035",
+        "recovery-observations.json": "4f903067daf764e8c723b34f888e1f923e9bc10ec5930e0fea27c3f2f3f80691"
+      }
+    },
+    {
+      "run_id": "20261115-114809-e7d80a",
+      "condition": "before_clear_ap",
+      "outcome": "recovered_after_explicit_reconnect",
+      "phases": {
+        "rejection": {
+          "status": "timeout",
+          "elapsed_s": 20.00146762499935,
+          "budget_s": 20,
+          "status_after": {
+            "wpa_state": "SCANNING",
+            "ip_address": "10.203.0.2",
+            "p2p_device_address": "42:00:00:00:01:00",
+            "address": "02:00:00:00:01:00",
+            "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+          },
+          "probe": null,
+          "observed": {
+            "stages": [
+              "assoc_req_with_pmkid",
+              "deauth",
+              "open_system_auth"
+            ],
+            "reason9_frames": [
+              53,
+              81,
+              109,
+              136,
+              265
+            ],
+            "association_requests": [
+              {
+                "frame": 52,
+                "pmkids": [
+                  "5bcff87cdf02f373af270b6c40986878"
+                ]
+              },
+              {
+                "frame": 80,
+                "pmkids": [
+                  "5bcff87cdf02f373af270b6c40986878"
+                ]
+              },
+              {
+                "frame": 108,
+                "pmkids": [
+                  "5bcff87cdf02f373af270b6c40986878"
+                ]
+              },
+              {
+                "frame": 135,
+                "pmkids": [
+                  "5bcff87cdf02f373af270b6c40986878"
+                ]
+              },
+              {
+                "frame": 264,
+                "pmkids": [
+                  "5bcff87cdf02f373af270b6c40986878"
+                ]
+              }
+            ],
+            "sae_frames": [],
+            "window": {
+              "start": 1794714493.14971,
+              "end": 1794714513.151921
+            }
+          }
+        },
+        "release": {
+          "status": "timeout",
+          "elapsed_s": 20.051626440999826,
+          "budget_s": 20,
+          "status_after": {
+            "wpa_state": "SCANNING",
+            "ip_address": "10.203.0.2",
+            "p2p_device_address": "42:00:00:00:01:00",
+            "address": "02:00:00:00:01:00",
+            "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+          },
+          "probe": null,
+          "observed": {
+            "stages": [],
+            "reason9_frames": [],
+            "association_requests": [],
+            "sae_frames": [],
+            "window": {
+              "start": 1794714513.155814,
+              "end": 1794714533.208057
+            }
+          }
+        },
+        "explicit": {
+          "status": "connected",
+          "elapsed_s": 0.35674720799943316,
+          "budget_s": 20,
+          "event": "events.jsonl#seq=103",
+          "event_seq": 103,
+          "status_after": {
+            "bssid": "02:00:00:00:00:00",
+            "freq": "2412",
+            "ssid": "ReconnectGuardLab",
+            "id": "0",
+            "mode": "station",
+            "wifi_generation": "4",
+            "pairwise_cipher": "CCMP",
+            "group_cipher": "CCMP",
+            "key_mgmt": "SAE",
+            "pmf": "2",
+            "mgmt_group_cipher": "BIP",
+            "sae_group": "19",
+            "sae_h2e": "0",
+            "sae_pk": "0",
+            "wpa_state": "COMPLETED",
+            "ip_address": "10.203.0.2",
+            "p2p_device_address": "42:00:00:00:01:00",
+            "address": "02:00:00:00:01:00",
+            "uuid": "572cf82f-c957-5653-9b16-b5cfb298abf1"
+          },
+          "probe": "pass",
+          "observed": {
+            "stages": [
+              "assoc_req_with_pmkid",
+              "data_frame",
+              "eapol_m1",
+              "eapol_m2",
+              "eapol_m3",
+              "eapol_m4",
+              "open_system_auth",
+              "sae_commit",
+              "sae_confirm"
+            ],
+            "reason9_frames": [],
+            "association_requests": [
+              {
+                "frame": 480,
+                "pmkids": [
+                  "5bcff87cdf02f373af270b6c40986878"
+                ]
+              },
+              {
+                "frame": 486,
+                "pmkids": []
+              }
+            ],
+            "sae_frames": [
+              482,
+              483,
+              484,
+              485
+            ],
+            "window": {
+              "start": 1794714533.211164,
+              "end": 1794714533.601557
+            }
+          }
+        }
+      },
+      "caches": {
+        "after_explicit-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 e90173dbd594d2f1695c62aba6222b02 43200 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 e90173dbd594d2f1695c62aba6222b02 43200 0"
+        },
+        "after_rejection-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 5bcff87cdf02f373af270b6c40986878 43180 0"
+        },
+        "after_release-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 5bcff87cdf02f373af270b6c40986878 43160 0"
+        },
+        "baseline-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic\n0 02:00:00:00:01:00 5bcff87cdf02f373af270b6c40986878 43200 0",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 5bcff87cdf02f373af270b6c40986878 43200 0"
+        },
+        "before_rejection-cache": {
+          "ap": "Index / SPA / PMKID / expiration (in seconds) / opportunistic",
+          "sta": "Index / AA / PMKID / expiration (in seconds) / opportunistic\n1 02:00:00:00:00:00 5bcff87cdf02f373af270b6c40986878 43200 0"
+        }
+      },
+      "temporary_disable_log_refs": [
+        {
+          "ref": "sta.log#line=2228",
+          "text": "rgste7d80a: CTRL-EVENT-SSID-TEMP-DISABLED id=0 ssid=\"ReconnectGuardLab\" auth_failures=1 duration=10 reason=CONN_FAILED"
+        },
+        {
+          "ref": "sta.log#line=2393",
+          "text": "rgste7d80a: CTRL-EVENT-SSID-REENABLED id=0 ssid=\"ReconnectGuardLab\""
+        },
+        {
+          "ref": "sta.log#line=2562",
+          "text": "rgste7d80a: CTRL-EVENT-SSID-TEMP-DISABLED id=0 ssid=\"ReconnectGuardLab\" auth_failures=2 duration=20 reason=CONN_FAILED"
+        },
+        {
+          "ref": "sta.log#line=2745",
+          "text": "rgste7d80a: CTRL-EVENT-SSID-REENABLED id=0 ssid=\"ReconnectGuardLab\""
+        }
+      ],
+      "protocol_processes_unchanged": true,
+      "cleanup": {
+        "errors": []
+      },
+      "error": null,
+      "binary_sha256": {
+        "ap": "e73cbcf5ae7eff9ff135d07c5b626a5b863a66b72e0ab6b4b3ec944b6aebcf88",
+        "sta": "e7da9b09f9443a5c5c1b667a08074e10656fa928836ffae154f0bb0476194b88"
+      },
+      "source_sha256": {
+        "recovery_study.py": "23bd06096f0003e040a035b8047d259f0caa515af44889888423f914b66cd495",
+        "sequence_study.py": "b07cefce40499ed5f526552c6294fe35849439a9e18aa5fab31222532f2b7163",
+        "rejection.py": "eaf68edcb4618a1f04f4512500da3b77b5687c3d744453d3e2b6c92c57e589e2"
+      },
+      "input_sha256": {
+        "result.json": "72d85ee70b8f04a8316d8e915ee27d2816b9f40de5484b6943fa7cf8b5f3c0e8",
+        "meta.json": "084f1f26a63ce9fb820351634ab26ca649e22647b61c71580e92bcff6b96ee85",
+        "events.jsonl": "14ca9e14accf179e66016ddbfca2dbf67f3885aec97215b42fc9f1f43cd20ae5",
+        "ap.log": "c08b7707308bbfacd8fa1b817f1bbaf5a4efaaf88af13ad772b587511652b0e0",
+        "sta.log": "e2856123393c97b582ea2bd66ba98792d238fc74ba4997ff7f28baf3b380f21a",
+        "trace.pcap": "3b81354fa7aca9b0e5ba9f93eb52f1300cdd906bf2d2b81539649e8d652c0667",
+        "recovery-actions.json": "ea84f8075258bdd67aeaad58a2f160b81da60660f05ec8984a6ccd8389b0e0de",
+        "recovery-observations.json": "6d387a5a2af4f7470c6ff55ab999c3d62555dc2ea3969946acb5341955e17c0c"
+      }
+    }
+  ],
+  "groups": {
+    "before_keep_ap": {
+      "recovered_after_explicit_reconnect": 3
+    },
+    "before_clear_ap": {
+      "recovered_after_explicit_reconnect": 3
+    },
+    "after_clear_ap": {
+      "connected_under_policy": 3
+    }
+  },
+  "scope": "one derived client baseline and a local scoped experimental backport; one AP, isolated hwsim; finite observation",
+  "security_verdict": "not_evaluated"
+}
